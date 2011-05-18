@@ -1,5 +1,5 @@
 #Socialite for EE2
-##A plugin to generate Twitter "Tweet" and Facebook "Like" buttons.
+##An EE2 plugin to generate Twitter "Tweet" and Facebook "Like" buttons.
 
 ### To Install:
 

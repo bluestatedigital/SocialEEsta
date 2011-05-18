@@ -15,7 +15,7 @@
 // ------------------------------------------------------------------------
 
 /**
- * BSD SharEE Plugin
+ * BSD Socialite Plugin
  *
  * @package     ExpressionEngine
  * @subpackage  Addons
@@ -26,7 +26,7 @@
 
 $plugin_info = array(
     'pi_name'       => 'Socialite',
-    'pi_version'    => '1.0',
+    'pi_version'    => '1.0b',
     'pi_author'     => 'Douglas Back',
     'pi_author_url' => 'http://www.bluestatedigital.com',
     'pi_description'=> 'A simple plugin that will add a Facebook "Like", "Share", and Twitter "Tweet" button',
