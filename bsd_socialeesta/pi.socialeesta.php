@@ -30,7 +30,7 @@ $plugin_info = array(
     'pi_author'     => 'Douglas Back',
     'pi_author_url' => 'http://www.bluestatedigital.com',
     'pi_description'=> 'A simple plugin that will add a Facebook "Like", "Share", and Twitter "Tweet" button',
-    'pi_usage'      => SocialEEsta::usage()
+    'pi_usage'      => Socialeesta::usage()
 );
 
 
