@@ -15,7 +15,7 @@
 // ------------------------------------------------------------------------
 
 /**
- * BSD Socialite Plugin
+ * BSD SocialEEsta Plugin
  *
  * @package     ExpressionEngine
  * @subpackage  Addons
@@ -25,16 +25,16 @@
  */
 
 $plugin_info = array(
-    'pi_name'       => 'Socialite',
+    'pi_name'       => 'SocialEEsta',
     'pi_version'    => '1.0b',
     'pi_author'     => 'Douglas Back',
     'pi_author_url' => 'http://www.bluestatedigital.com',
     'pi_description'=> 'A simple plugin that will add a Facebook "Like", "Share", and Twitter "Tweet" button',
-    'pi_usage'      => Socialite::usage()
+    'pi_usage'      => SocialEEsta::usage()
 );
 
 
-class Socialite {
+class Socialeesta {
 
     public $return_data;
     
@@ -59,10 +59,9 @@ class Socialite {
         $class = $this->EE->TMPL->fetch_param('class');
         $id = $this->EE->TMPL->fetch_param('id');
         $this->EE->TMPL->fetch_param('link_text') ? $link_text = $this->EE->TMPL->fetch_param('link_text') : $link_text = "Tweet";
-        $query_string = '?';
         
         // Build query string based on set params:
-        
+        $query_string = '?';
         $url ? $query_string .= 'url=' . urlencode($url) . '&amp;' : false;
         $count_url ? $query_string .= 'count_url=' . urlencode($count_url) . '&amp;' : false;
         $via ? $query_string .= 'via=' . urlencode($via) . '&amp;' : false;
@@ -103,6 +102,8 @@ class Socialite {
     }
     
     function facebook(){
+        
+        // Assign variables to params or defaults.
         $this->EE->TMPL->fetch_param('url') ? $url = $this->EE->TMPL->fetch_param('url') : $url = fetch_site_index(1,0);
         $this->EE->TMPL->fetch_param('type') ? $type = $this->EE->TMPL->fetch_param('type') : $type = "iframe";
         $this->EE->TMPL->fetch_param('layout') ? $layout = $this->EE->TMPL->fetch_param('layout') : $layout = 'standard';
@@ -111,8 +112,7 @@ class Socialite {
         $this->EE->TMPL->fetch_param('verb') ? $verb = $this->EE->TMPL->fetch_param('verb') : $verb = "like";
         $this->EE->TMPL->fetch_param('color') ? $color = $this->EE->TMPL->fetch_param('color') : $color = "light";
         
-        
-        
+        // Build Like Button Code
         switch ( $type ){
             case "xfbml":
                 $like_button = '<fb:like href="' . $url . '" send="false" width="' . $width . '" show_faces="' . $faces . '" colorscheme="' . $color .'" font=""></fb:like>';
@@ -121,8 +121,6 @@ class Socialite {
             default:
                 $like_button = '<iframe src="http://www.facebook.com/plugins/like.php?href=' . urlencode($url) . '&amp;send=false&amp;layout=' . $layout .'&amp;width=' . $width . '&amp;show_faces=' . $faces . '&amp;action=' . $verb . '&amp;colorscheme=' . $color . '&amp;font&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:' . $width . 'px; height:35px;" allowTransparency="true"></iframe>';
                 break;
-            
-                
         } // end switch($type)
         
         return $like_button;
@@ -154,7 +152,7 @@ class Socialite {
         - class : Assign a class attribute to the <a> element. Only used when type="none".
         - id : Assigns an ID attribute to the <a> element. Only used when type="none".
         - link_test : If type="none", this will display as the text of the "Tweet" link. Defaults to "Tweet"
-    Example tag: {exp:socialite:twitter url="{title_permalink='blog/entry'}" type="js" via="bsdwire" text="{title}" count_position="horizontal"}
+    Example tag: {exp:socialeesta:twitter url="{title_permalink='blog/entry'}" type="js" via="bsdwire" text="{title}" count_position="horizontal"}
     
     Facebook Like Button Parameters. 
     
@@ -171,6 +169,7 @@ class Socialite {
         - verb : "like" or "recommend". Defaults to "like".
         - color : "light" or "dark". Defaults to "light".
         
+    Example tag: {exp:socialeesta:facebook url="{pages_url}" type="iframe" verb="recommend" color="light" layout="button_count" width="450"}
     
 <?php
         $buffer = ob_get_contents();
@@ -180,5 +179,5 @@ class Socialite {
 }
 
 
-/* End of file pi.bsd_sharee.php */
-/* Location: /system/expressionengine/third_party/bsd_sharee/pi.bsd_sharee.php */
+/* End of file pi.socialeesta.php */
+/* Location: /system/expressionengine/third_party/bsd_socialeesta/pi.socialeesta.php */

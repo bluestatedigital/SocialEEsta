@@ -1,9 +1,9 @@
-#Socialite for EE2
+#BSD SocialEEsta for EE2
 ##An EE2 plugin to generate Twitter "Tweet" and Facebook "Like" buttons.
 
 ### To Install:
 
-Copy the "socialite" folder to /system/expressionengine/thirdparty/
+Copy the "socialeesta" folder to /system/expressionengine/thirdparty/
 
 ###This plugin has two uses:
 
@@ -27,7 +27,7 @@ All Parameters are optional, but the Tweet Button won't function as expected wit
     - id : Assigns an ID attribute to the <a> element. Only used when type="none".
     - link_test : If type="none", this will display as the text of the "Tweet" link. Defaults to "Tweet"
     
-Example tag: {exp:socialite:twitter url="{title_permalink='blog/entry'}" type="js" via="bsdwire" text="{title}" count_position="horizontal"}
+Example tag: {exp:socialeesta:twitter url="{title_permalink='blog/entry'}" type="js" via="bsdwire" text="{title}" count_position="horizontal"}
 
 ##Facebook Like Button Parameters. 
 
@@ -46,4 +46,4 @@ All parameters are optional, but the button won't function as expected without a
     - verb : "like" or "recommend". Defaults to "like".
     - color : "light" or "dark". Defaults to "light".
 
-Example tag: {exp:socialite:facebook url="{pages_url}" type="iframe" verb="recommend" color="light" layout="button_count" width="450"}
+Example tag: {exp:socialeesta:facebook url="{pages_url}" type="iframe" verb="recommend" color="light" layout="button_count" width="450"}
