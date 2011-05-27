@@ -26,7 +26,7 @@
 
 $plugin_info = array(
     'pi_name'       => 'SocialEEsta',
-    'pi_version'    => '1.0b',
+    'pi_version'    => '1.0b2',
     'pi_author'     => 'Douglas Back',
     'pi_author_url' => 'http://www.bluestatedigital.com',
     'pi_description'=> 'A simple plugin that will add a Facebook "Like", "Share", and Twitter "Tweet" button',
@@ -58,9 +58,9 @@ class Socialeesta {
         $related = $this->EE->TMPL->fetch_param('related');
         $class = $this->EE->TMPL->fetch_param('class');
         $id = $this->EE->TMPL->fetch_param('id');
-        $this->EE->TMPL->fetch_param('link_text') ? $link_text = $this->EE->TMPL->fetch_param('link_text') : $link_text = "Tweet";
+        $link_text = $this->EE->TMPL->fetch_param('link_text', 'Tweet');
         
-        // Build query string based on set params:
+        // Build query string based on set params — only include params that exist:
         $query_string = '?';
         $url ? $query_string .= 'url=' . urlencode($url) . '&amp;' : false;
         $count_url ? $query_string .= 'count_url=' . urlencode($count_url) . '&amp;' : false;
@@ -104,13 +104,13 @@ class Socialeesta {
     function facebook(){
         
         // Assign variables to params or defaults.
-        $this->EE->TMPL->fetch_param('url') ? $url = $this->EE->TMPL->fetch_param('url') : $url = fetch_site_index(1,0);
-        $this->EE->TMPL->fetch_param('type') ? $type = $this->EE->TMPL->fetch_param('type') : $type = "iframe";
-        $this->EE->TMPL->fetch_param('layout') ? $layout = $this->EE->TMPL->fetch_param('layout') : $layout = 'standard';
-        $this->EE->TMPL->fetch_param('faces') ? $faces = $this->EE->TMPL->fetch_param('faces') : $faces = "false";
-        $this->EE->TMPL->fetch_param('width') ? $width = $this->EE->TMPL->fetch_param('width') : $width = "250";
-        $this->EE->TMPL->fetch_param('verb') ? $verb = $this->EE->TMPL->fetch_param('verb') : $verb = "like";
-        $this->EE->TMPL->fetch_param('color') ? $color = $this->EE->TMPL->fetch_param('color') : $color = "light";
+        $url = $this->EE->TMPL->fetch_param('url', fetch_site_index(1,0));
+        $type = $this->EE->TMPL->fetch_param('type', 'iframe');
+        $layout = $this->EE->TMPL->fetch_param('layout', 'standard');
+        $faces = $this->EE->TMPL->fetch_param('faces', 'false');
+        $width = $this->EE->TMPL->fetch_param('width', '250');
+        $verb = $this->EE->TMPL->fetch_param('verb', 'like');
+        $color = $this->EE->TMPL->fetch_param('color', 'light');
         
         // Build Like Button Code
         switch ( $type ){
