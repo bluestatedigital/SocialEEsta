@@ -101,42 +101,53 @@ class Socialeesta {
         return $tweet_button;
     }
     
-    // function follow(){
-    //     // Pull params into local vars
-    //     $type = $this->EE->TMPL->fetch_param('type', 'iframe');
-    //     $user = $this->EE->TMPL->fetch_param('user');
-    //     $follower_count = $this->EE->TMPL->fetch_param('follower_count');
-    //     // If we're displaying a follower count, default to 300px width; else default to 200px. Plugin params override though...
-    //     $follower_count = "yes" ? $width = $this->EE->TMPL->fetch_param('width','300') : $width = $this->EE->TMPL->fetch_param('width','200');
-    //     $button_color = $this->EE->TMPL->fetch_param('button_color','blue');
-    //     $text_color = $this->EE->TMPL->fetch_param('text_color');
-    //     $link_color = $this->EE->TMPL->fetch_param('link_color');
-    //     $lang = $this->EE->TMPL->fetch_param('lang', 'en');
-    //     $align = $this->EE->TMPL->fetch_param('align','');
-    //     $class = $this->EE->TMPL->fetch_param('class');
-    //     $id = $this->EE->TMPL->fetch_param('id');
-    //     
-    //     //Set Base URLs
-    //     switch ( $type ){
-    //         
-    //         case "js":
-    //             $follow_button = '<a class="' . $class . '" id="' . $id . '" href="http://twitter.com/' . $user 
-    //                                 . '" data-button="' . $button_color 
-    //                                 . '" data-show-count="' . $follower_count 
-    //                                 . '" data-text-color="' . $text_color 
-    //                                 . '" data-link-color="' . $link_color 
-    //                                 . '" data-lang="' . $lang 
-    //                                 . '" data-width="' . $width 
-    //                                 . '" data-align="' . $align 
-    //                                 . '">Follow @' . $user . '</a>';
-    //             break;
-    //         case "iframe";
-    //         default:
-    //             break;
-    //             
-    //         
-    //     }
-    // }
+    function follow(){
+        // Pull params into local vars
+        $type = $this->EE->TMPL->fetch_param('type', 'iframe');
+        $user = $this->EE->TMPL->fetch_param('user');
+        $follower_count = $this->EE->TMPL->fetch_param('follower_count',NULL);
+        // If we're displaying a follower count, default to 300px width; else default to 200px. Plugin params override though...
+        $follower_count = "yes" ? $width = $this->EE->TMPL->fetch_param('width','300') : $width = $this->EE->TMPL->fetch_param('width','200');
+        $button_color = $this->EE->TMPL->fetch_param('button_color','blue');
+        $text_color = $this->EE->TMPL->fetch_param('text_color', NULL);
+        $link_color = $this->EE->TMPL->fetch_param('link_color', NULL);
+        $lang = $this->EE->TMPL->fetch_param('lang', 'en');
+        $align = $this->EE->TMPL->fetch_param('align', NULL);
+        $class = $this->EE->TMPL->fetch_param('class', NULL);
+        $id = $this->EE->TMPL->fetch_param('id', NULL);
+        
+        //Set Base URLs
+        switch ( $type ){
+            
+            case "js":
+                $follow_button = '<a class="' . $class . '" id="' . $id . '" href="http://twitter.com/' . $user 
+                                    . '" data-button="' . $button_color 
+                                    . '" data-show-count="' . $follower_count 
+                                    . '" data-text-color="' . $text_color 
+                                    . '" data-link-color="' . $link_color 
+                                    . '" data-lang="' . $lang 
+                                    . '" data-width="' . $width 
+                                    . '" data-align="' . $align 
+                                    . '">Follow @' . $user . '</a>';
+                break;
+            case "iframe";
+            default:
+
+                $follow_button = '<iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/follow_button.html?screen_name=' . $user;
+                
+                //Build iframe query string...
+                isset($follower_count) ? $follow_button .= '&amp;show_count=' . $follower_count;
+                $follow_button .= '&amp;button=' . $button_color;
+                isset($text_color) ? $follow_button .= '&amp;text_color=' . $text_color;
+                isset($link_color) ? $follow_button .= '&amp;link_color=' . $link_color;
+                $follow_button .= '&amp;lang=' . $lang;
+                $follow_button .= 'style="width:300px; height:20px;"></iframe>'
+                break;
+                
+            
+        }
+        return $follow_button;
+    } // end function follow()
     
     function facebook(){
         
@@ -184,18 +195,18 @@ class Socialeesta {
     
     Twitter Parameters (based on Tweet Button specs). All Parameters are optional, but the Tweet Button won't function as expected without at least "url" or "text".
     
-<ul>
-<li>url : The URL to share on Twitter. The URL should be absolute.</li>
-<li>type : &#8220;iframe&#8221;, &#8220;js&#8221;, or &#8220;none&#8221;. If no type is specified, defaults to iframe. The &#8220;js&#8221; version will also insert the Javascript.</li>
-<li>count_url : The URL to which your shared URL resolves to; useful is the URL you are sharing has already been shortened. This affects the display of the Tweet count.</li>
-<li>via : Screen name of the user to attribute the Tweet to.</li>
-<li>text : Text of the suggested Tweet.</li>
-<li>count_position : If set, determines where the counter is display. Valid values are &#8220;none&#8221;, &#8220;horizontal&#8221;, and &#8220;vertical&#8221;. Defaults to &#8220;none&#8221;.</li>
-<li>related : Related accounts.</li>
-<li>class : Assign a class attribute to the <a> element. Only used when type=&#8221;none&#8221;.</li>
-<li>id : Assigns an ID attribute to the <a> element. Only used when type=&#8221;none&#8221;.</li>
-<li>link_text : If type=&#8221;none&#8221;, this will display as the text of the &#8220;Tweet&#8221; link. Defaults to &#8220;Tweet&#8221;</li>
-</ul>
+
+        - url : The URL to share on Twitter. The URL should be absolute.
+        - type : “iframe”, “js”, or “none”. If no type is specified, defaults to iframe. The “js” version will also insert the Javascript.
+        - count_url : The URL to which your shared URL resolves to; useful is the URL you are sharing has already been shortened. This affects the display of the Tweet count.
+        - via : Screen name of the user to attribute the Tweet to.
+        - text : Text of the suggested Tweet.
+        - count_position : If set, determines where the counter is display. Valid values are “none”, “horizontal”, and “vertical”. Defaults to “none”.
+        - related : Related accounts.
+        - class : Assign a class attribute to the  element. Only used when type=”none”.
+        - id : Assigns an ID attribute to the  element. Only used when type=”none”.
+        - link_text : If type=”none”, this will display as the text of the “Tweet” link. Defaults to “Tweet”
+
 
 Example tag: {exp:socialeesta:tweet url="{title_permalink='blog/entry'}" type="js" via="bsdwire" text="{title}" count_position="horizontal"}
     
@@ -203,22 +214,16 @@ Example tag: {exp:socialeesta:tweet url="{title_permalink='blog/entry'}" type="j
     
     All parameters are optional, but the button won't function as expected without at least a "url".
     
-    <ul>
-        <li>url : The URL to Like on Facebook. Defaults to the Site Index (homepage) if no value is present.</li>
-        <li>type : &#8220;iframe&#8221; or &#8220;xfbml&#8221;. Defaults to &#8220;iframe&#8221;. If you choose &#8220;xfbml&#8221;, you must include the Facebook Javascript SDK on your page.</li>
-        <li>layout : Accepts one of three options:
-            <ul>
-                <li>&#8220;standard&#8221; : No counter is displayed</li>
-                <li>&#8220;button<em>count&#8221; : A counter is displayed to the right of the like button</li>
-                <li>&#8220;box</em>count&#8221; : A counter is displayed above the like button</li>
-            </ul></li>
-        <li>faces : whether to display profile photos below the button (standard layout only)</li>
-        <li>width : the width of the like button. Defaults to 250px.</li>
-        <li>verb : &#8220;like&#8221; or &#8220;recommend&#8221;. Defaults to &#8220;like&#8221;.</li>
-        <li>color : &#8220;light&#8221; or &#8220;dark&#8221;. Defaults to &#8220;light&#8221;.</li>
-    </ul>
+    
+        - url : The URL to Like on Facebook. Defaults to the Site Index (homepage) if no value is present.
+        - type : “iframe” or “xfbml”. Defaults to “iframe”. If you choose “xfbml”, you must include the Facebook Javascript SDK on your page.
+        - layout : Accepts one of three options: 1) “standard” : No counter is displayed; 2) “buttoncount” : A counter is displayed to the right of the like button; 3) “boxcount” : A counter is displayed above the like button
+            
+        - faces : whether to display profile photos below the button (standard layout only)
+        - width : the width of the like button. Defaults to 250px.
+        - verb : “like” or “recommend”. Defaults to “like”.
+        - color : “light” or “dark”. Defaults to “light”.
 
-        
     Example tag: {exp:socialeesta:facebook url="{pages_url}" type="iframe" verb="recommend" color="light" layout="button_count" width="450"}
     
 <?php
