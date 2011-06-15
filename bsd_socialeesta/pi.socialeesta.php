@@ -136,12 +136,12 @@ class Socialeesta {
                 $follow_button = '<iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/follow_button.html?screen_name=' . $user;
                 
                 //Build iframe query string...
-                isset($follower_count) ? $follow_button .= '&amp;show_count=' . $follower_count;
-                $follow_button .= '&amp;button=' . $button_color;
-                isset($text_color) ? $follow_button .= '&amp;text_color=' . $text_color;
-                isset($link_color) ? $follow_button .= '&amp;link_color=' . $link_color;
+                isset($follower_count) ? $follow_button .= '&amp;show_count=' . $follower_count : false;
+                $follow_button .= '&amp;button=' . $button_color ;
+                isset($text_color) ? $follow_button .= '&amp;text_color=' . $text_color : false;
+                isset($link_color) ? $follow_button .= '&amp;link_color=' . $link_color : false;
                 $follow_button .= '&amp;lang=' . $lang;
-                $follow_button .= 'style="width:300px; height:20px;"></iframe>'
+                $follow_button .= 'style="width:300px; height:20px;"></iframe>';
                 break;
                 
             
@@ -193,7 +193,12 @@ class Socialeesta {
     - Generate a Twitter "Tweet" button
     - Generate a Facebook "Like" button
     
-    Twitter Parameters (based on Tweet Button specs). All Parameters are optional, but the Tweet Button won't function as expected without at least "url" or "text".
+    
+    =====================================
+    = Twitter "Tweet" Button Parameters =
+    =====================================
+    
+    (based on Tweet Button specs). All Parameters are optional, but the Tweet Button won't function as expected without at least "url" or "text".
     
 
         - url : The URL to share on Twitter. The URL should be absolute.
@@ -208,9 +213,41 @@ class Socialeesta {
         - link_text : If type=”none”, this will display as the text of the “Tweet” link. Defaults to “Tweet”
 
 
-Example tag: {exp:socialeesta:tweet url="{title_permalink='blog/entry'}" type="js" via="bsdwire" text="{title}" count_position="horizontal"}
+    Example tag: 
+    ************
     
-    Facebook Like Button Parameters. 
+    {exp:socialeesta:tweet url="{title_permalink='blog/entry'}" type="js" via="bsdwire" text="{title}" count_position="horizontal"}
+    
+    ======================================
+    = Twitter "Follow" Button Parameters =
+    ======================================
+    
+    All parameters are options, but the Follow button won't work without at least "user"
+    
+    - type : "js" or "iframe" :: Defines whether to use Javascript version or IFRAME version of the Follow Button. Defaults to IFRAME.
+    - user : Which user to follow. Do not include the '@'.
+    - follower_count : "yes" or "no" :: Whether to display the follower count adjacent to the follow button. Defaults to "no".
+    - button_color : "blue" or "grey" :: Change the color of the button itself. Defaults to "blue".
+    - text_color : Specify a hexadecimal color code for the "Followers count" and “Following state” text
+    - link_color : Specify a hexadecimal color code for the Username text
+    - lang : Specify the language for the button using ISO-639-1 Language code. Defaults to "en" (english).
+
+
+    Javascript button specific params — not supported with IFRAME version
+    *********************************************************************
+    
+    - width : A pixel or percentage value to set the button element width
+    - align : "right" or "left" - Defaults to "left".
+
+    Example tag:
+    ************
+    
+    {exp:socialeesta:follow user="bsdwire" follower_count="yes" type="js"}
+    
+    
+    ===================================
+    = Facebook Like Button Parameters =
+    ===================================
     
     All parameters are optional, but the button won't function as expected without at least a "url".
     
@@ -224,7 +261,10 @@ Example tag: {exp:socialeesta:tweet url="{title_permalink='blog/entry'}" type="j
         - verb : “like” or “recommend”. Defaults to “like”.
         - color : “light” or “dark”. Defaults to “light”.
 
-    Example tag: {exp:socialeesta:facebook url="{pages_url}" type="iframe" verb="recommend" color="light" layout="button_count" width="450"}
+    Example tag: 
+    ************
+    
+    {exp:socialeesta:facebook url="{pages_url}" type="iframe" verb="recommend" color="light" layout="button_count" width="450"}
     
 <?php
         $buffer = ob_get_contents();
