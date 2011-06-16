@@ -26,7 +26,7 @@
 
 $plugin_info = array(
     'pi_name'       => 'SocialEEsta',
-    'pi_version'    => '1.0b4',
+    'pi_version'    => '1.0b5',
     'pi_author'     => 'Douglas Back',
     'pi_author_url' => 'http://www.bluestatedigital.com',
     'pi_description'=> 'Generate social sharing plugins for your EE pages.',
@@ -38,6 +38,7 @@ class Socialeesta {
 
     public $return_data;
     
+    private static $tw_js = "http://platform.twitter.com/widgets.js"; // The location of the Twitter widgets.js file
     /**
      * Constructor
      */
@@ -59,6 +60,7 @@ class Socialeesta {
         $class = $this->EE->TMPL->fetch_param('class');
         $id = $this->EE->TMPL->fetch_param('id');
         $link_text = $this->EE->TMPL->fetch_param('link_text', 'Tweet');
+        $include_js = $this->EE->TMPL->fetch_param('include_js', 'yes');
         
         // Build query string based on set params — only include params that exist:
         $query_string = '?';
@@ -69,13 +71,17 @@ class Socialeesta {
         $related ? $query_string .= 'related=' . $related . '&amp;' : false;
         $count_position ? $query_string .= 'count=' . $count_position : false;
         
+        
         // Build the $tweet_button depending on whether type= js, iframe, or none
         switch ( $type ) 
         {
             case "js":
-                $js = '<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>';
+                // Simple conditional to load the Twitter widgets.js file only if the twttr object doesn't exist
+                $js = '<script>window.twttr || document.write(\'<script src="' . self::$tw_js . '">\x3C/script>\')</script>';
                 $tweet_button = '<a href="http://twitter.com/share' . $query_string . '" class="twitter-share-button">Tweet</a>';
-                $tweet_button = $js . "\n" . $tweet_button;
+                if ($include_js === "yes"){
+                    $tweet_button = $js . "\n" . $tweet_button;
+                }
                 break;
             case "none":
                 $tweet_button = '<a';
@@ -114,11 +120,14 @@ class Socialeesta {
         $align = $this->EE->TMPL->fetch_param('align', NULL);
         $class = $this->EE->TMPL->fetch_param('class', NULL);
         $id = $this->EE->TMPL->fetch_param('id', NULL);
+        $include_js = $this->EE->TMPL->fetch_param('include_js', 'yes');
         
         //Set Base URLs
         switch ( $type ){
             
             case "js":
+                // Simple conditional to load the Twitter widgets.js file only if the twttr object doesn't exist
+                $js = '<script>window.twttr || document.write(\'<script src="' . self::$tw_js . '">\x3C/script>\')</script>';
                 $follow_button = '<a class="' . $class . '" id="' . $id . '" href="http://twitter.com/' . $user 
                                     . '" data-button="' . $button_color 
                                     . '" data-show-count="' . $follower_count 
@@ -128,6 +137,9 @@ class Socialeesta {
                                     . '" data-width="' . $width 
                                     . '" data-align="' . $align 
                                     . '">Follow @' . $user . '</a>';
+                if ($include_js === "yes"){
+                    $follow_button .= '\n' . $js;
+                }
                 break;
             case "iframe";
             default:
@@ -174,10 +186,10 @@ class Socialeesta {
         
     }
     
-    // function plusone {
-    //         
-    //         
-    //     } // end plusone
+    // function plusone() {
+    //     
+    //             
+    // } // end plusone
     // ----------------------------------------------------------------
     
     /**
@@ -210,7 +222,7 @@ class Socialeesta {
         - class : Assign a class attribute to the  element. Only used when type=”none”.
         - id : Assigns an ID attribute to the  element. Only used when type=”none”.
         - link_text : If type=”none”, this will display as the text of the “Tweet” link. Defaults to “Tweet”
-
+        - include_js : If "no", the Twitter widget.js file will not be loaded. Defaults to "yes".
 
     Example tag: 
     ************
