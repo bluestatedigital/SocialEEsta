@@ -77,10 +77,6 @@ class Socialeesta {
                 $tweet_button = '<a href="http://twitter.com/share' . $query_string . '" class="twitter-share-button">Tweet</a>';
                 $tweet_button = $js . "\n" . $tweet_button;
                 break;
-            case "iframe":
-                $iframe_url = "http://platform.twitter.com/widgets/tweet_button.html" . $query_string;
-                $tweet_button = '<iframe allowtransparency="true" frameborder="0" scrolling="no" src="' . $iframe_url . '" style="width:130px; height:50px;"></iframe>';
-                break;
             case "none":
                 $tweet_button = '<a';
                 if ( isset($class) ) {
@@ -91,9 +87,12 @@ class Socialeesta {
                 }
                 $tweet_button .= ' href="http://twitter.com/share' . $query_string . '">' . $link_text . '</a>' ;
                 break;
+            case "iframe";
             default:
                 $iframe_url = "http://platform.twitter.com/widgets/tweet_button.html";
-                $tweet_button = '<iframe allowtransparency="true" frameborder="0" scrolling="no" src="' . $iframe_url . '" style="width:130px; height:50px;"></iframe>';
+                $tweet_button = '<iframe allowtransparency="true" frameborder="0" scrolling="no" src="' . $iframe_url . $query_string . '" style="width:130px; height:';
+                $count_position === "vertical" ? $tweet_button .= '62px' : $tweet_button .= '20px';
+                $tweet_button .= ';"></iframe>';
                 break;
                 
 
@@ -107,7 +106,7 @@ class Socialeesta {
         $user = $this->EE->TMPL->fetch_param('user');
         $follower_count = $this->EE->TMPL->fetch_param('follower_count',NULL);
         // If we're displaying a follower count, default to 300px width; else default to 200px. Plugin params override though...
-        $follower_count = "yes" ? $width = $this->EE->TMPL->fetch_param('width','300') : $width = $this->EE->TMPL->fetch_param('width','200');
+        $follower_count === "yes" ? $width = $this->EE->TMPL->fetch_param('width','300') : $width = $this->EE->TMPL->fetch_param('width','200');
         $button_color = $this->EE->TMPL->fetch_param('button_color','blue');
         $text_color = $this->EE->TMPL->fetch_param('text_color', NULL);
         $link_color = $this->EE->TMPL->fetch_param('link_color', NULL);
@@ -136,12 +135,12 @@ class Socialeesta {
                 $follow_button = '<iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/follow_button.html?screen_name=' . $user;
                 
                 //Build iframe query string...
-                isset($follower_count) ? $follow_button .= '&amp;show_count=' . $follower_count : false;
+                $follower_count === "yes" ? $follow_button .= '&amp;show_count=true'  : $follow_button .= '&amp;show_count=false';
                 $follow_button .= '&amp;button=' . $button_color ;
                 isset($text_color) ? $follow_button .= '&amp;text_color=' . $text_color : false;
                 isset($link_color) ? $follow_button .= '&amp;link_color=' . $link_color : false;
                 $follow_button .= '&amp;lang=' . $lang;
-                $follow_button .= 'style="width:300px; height:20px;"></iframe>';
+                $follow_button .= '" style="width:' . $width . 'px; height:20px;"></iframe>';
                 break;
                 
             
@@ -149,10 +148,10 @@ class Socialeesta {
         return $follow_button;
     } // end function follow()
     
-    function facebook(){
-        
+    function like(){ //Facebook Like Buttons
+        global $IN;
         // Assign variables to params or defaults.
-        $url = $this->EE->TMPL->fetch_param('url', fetch_site_index(1,0));
+        $url = $this->EE->TMPL->fetch_param('url', $this->EE->uri->config->config["site_url"]);
         $type = $this->EE->TMPL->fetch_param('type', 'iframe');
         $layout = $this->EE->TMPL->fetch_param('layout', 'standard');
         $faces = $this->EE->TMPL->fetch_param('faces', 'false');
@@ -167,7 +166,7 @@ class Socialeesta {
                 break;
             case "iframe";
             default:
-                $like_button = '<iframe src="http://www.facebook.com/plugins/like.php?href=' . urlencode($url) . '&amp;send=false&amp;layout=' . $layout .'&amp;width=' . $width . '&amp;show_faces=' . $faces . '&amp;action=' . $verb . '&amp;colorscheme=' . $color . '&amp;font&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:' . $width . 'px; height:35px;" allowTransparency="true"></iframe>';
+                $like_button = '<iframe src="http://www.facebook.com/plugins/like.php?href=' . urlencode($url) . '&amp;send=false&amp;layout=' . $layout .'&amp;width=' . $width . '&amp;show_faces=' . $faces . '&amp;action=' . $verb . '&amp;colorscheme=' . $color . '&amp;font&amp;height=20" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:' . $width . 'px; height:20px;" allowTransparency="true"></iframe>';
                 break;
         } // end switch($type)
         
@@ -257,7 +256,7 @@ class Socialeesta {
         - layout : Accepts one of three options: 1) “standard” : No counter is displayed; 2) “buttoncount” : A counter is displayed to the right of the like button; 3) “boxcount” : A counter is displayed above the like button
             
         - faces : whether to display profile photos below the button (standard layout only)
-        - width : the width of the like button. Defaults to 250px.
+        - width : the width of the like button in pixels. Defaults to 250px.
         - verb : “like” or “recommend”. Defaults to “like”.
         - color : “light” or “dark”. Defaults to “light”.
 
