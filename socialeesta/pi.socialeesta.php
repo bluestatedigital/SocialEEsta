@@ -60,7 +60,7 @@ class Socialeesta {
         $class = $this->EE->TMPL->fetch_param('class');
         $id = $this->EE->TMPL->fetch_param('id');
         $link_text = $this->EE->TMPL->fetch_param('link_text', 'Tweet');
-        $include_js = $this->EE->TMPL->fetch_param('include_js', 'yes');
+        $include_js = $this->EE->TMPL->fetch_param('include_js', 'no');
         
         // Build query string based on set params — only include params that exist:
         $query_string = '?';
@@ -120,7 +120,7 @@ class Socialeesta {
         $align = $this->EE->TMPL->fetch_param('align', NULL);
         $class = $this->EE->TMPL->fetch_param('class', NULL);
         $id = $this->EE->TMPL->fetch_param('id', NULL);
-        $include_js = $this->EE->TMPL->fetch_param('include_js', 'yes');
+        $include_js = $this->EE->TMPL->fetch_param('include_js', 'no');
         
         //Set Base URLs
         switch ( $type ){
@@ -222,7 +222,7 @@ class Socialeesta {
         - class : Assign a class attribute to the  element. Only used when type=”none”.
         - id : Assigns an ID attribute to the  element. Only used when type=”none”.
         - link_text : If type=”none”, this will display as the text of the “Tweet” link. Defaults to “Tweet”
-        - include_js : If "no", the Twitter widget.js file will not be loaded. Defaults to "yes".
+        - include_js : If "yes", the Twitter widget.js file will be loaded. Defaults to "no".
 
     Example tag: 
     ************
@@ -242,6 +242,7 @@ class Socialeesta {
     - text_color : Specify a hexadecimal color code for the "Followers count" and “Following state” text
     - link_color : Specify a hexadecimal color code for the Username text
     - lang : Specify the language for the button using ISO-639-1 Language code. Defaults to "en" (english).
+    - include_js : If "yes", the Twitter widget.js file will be loaded. Defaults to "no".
 
 
     Javascript button specific params — not supported with IFRAME version
