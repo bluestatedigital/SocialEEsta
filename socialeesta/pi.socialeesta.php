@@ -39,6 +39,8 @@ class Socialeesta {
     public $return_data;
     
     private static $tw_js = "http://platform.twitter.com/widgets.js"; // The location of the Twitter widgets.js file
+    private static $tw_share_url = "http://twitter.com/share" // The Twitter Share URL
+    
     /**
      * Constructor
      */
@@ -50,12 +52,12 @@ class Socialeesta {
     function tweet()
     {
         // Pull params into local vars
-        $type = $this->EE->TMPL->fetch_param('type');
-        $url = $this->EE->TMPL->fetch_param('url');
-        $count_url = $this->EE->TMPL->fetch_param('count_url');
-        $via = $this->EE->TMPL->fetch_param('via');
-        $text = $this->EE->TMPL->fetch_param('text');
-        $count_position = $this->EE->TMPL->fetch_param('count_position');
+        $type = $this->EE->TMPL->fetch_param('type','iframe');
+        $url = $this->EE->TMPL->fetch_param('url', NULL);
+        $count_url = $this->EE->TMPL->fetch_param('count_url', NULL);
+        $via = $this->EE->TMPL->fetch_param('via', NULL);
+        $text = $this->EE->TMPL->fetch_param('text', NULL);
+        $count_position = $this->EE->TMPL->fetch_param('count_position', NULL);
         $related = $this->EE->TMPL->fetch_param('related');
         $class = $this->EE->TMPL->fetch_param('class');
         $id = $this->EE->TMPL->fetch_param('id');
@@ -75,15 +77,9 @@ class Socialeesta {
         // Build the $tweet_button depending on whether type= js, iframe, or none
         switch ( $type ) 
         {
-            case "js":
-                // Simple conditional to load the Twitter widgets.js file only if the twttr object doesn't exist
-                $js = '<script>window.twttr || document.write(\'<script src="' . self::$tw_js . '">\x3C/script>\')</script>';
-                $tweet_button = '<a href="http://twitter.com/share' . $query_string . '" class="twitter-share-button">Tweet</a>';
-                if ($include_js === "yes"){
-                    $tweet_button = $js . "\n" . $tweet_button;
-                }
-                break;
+            case "js";
             case "none":
+            
                 $tweet_button = '<a';
                 if ( isset($class) ) {
                     $tweet_button .= ' class="' . $class . '"';
@@ -91,7 +87,10 @@ class Socialeesta {
                 if ( isset($id) ){
                     $tweet_button .= ' id="' . $id . '"'; 
                 }
-                $tweet_button .= ' href="http://twitter.com/share' . $query_string . '">' . $link_text . '</a>' ;
+                $tweet_button .= ' href="' self::$tw_share_url . $query_string . '">' . $link_text . '</a>' ;
+                if ($include_js === "yes"){
+                    $tweet_button = $js . "\n" . $tweet_button;
+                }
                 break;
             case "iframe";
             default:
@@ -120,7 +119,7 @@ class Socialeesta {
         $align = $this->EE->TMPL->fetch_param('align', NULL);
         $class = $this->EE->TMPL->fetch_param('class', NULL);
         $id = $this->EE->TMPL->fetch_param('id', NULL);
-        $include_js = $this->EE->TMPL->fetch_param('include_js', 'no');
+        $include_js = $this->EE->TMPL->fetch_param('include_js', 'yes');
         
         //Set Base URLs
         switch ( $type ){
@@ -138,7 +137,7 @@ class Socialeesta {
                                     . '" data-align="' . $align 
                                     . '">Follow @' . $user . '</a>';
                 if ($include_js === "yes"){
-                    $follow_button .= '\n' . $js;
+                    $follow_button .= "\n" . $js;
                 }
                 break;
             case "iframe";
@@ -167,18 +166,22 @@ class Socialeesta {
         $type = $this->EE->TMPL->fetch_param('type', 'iframe');
         $layout = $this->EE->TMPL->fetch_param('layout', 'standard');
         $faces = $this->EE->TMPL->fetch_param('faces', 'false');
-        $width = $this->EE->TMPL->fetch_param('width', '250');
+        $faces === "yes" ? $faces = true : $faces = false; // convert to boolean
+        // Use the $faces param to figure height default
+        $faces ? $this->EE->TMPL->fetch_param('height', '80') : $this->EE->TMPL->fetch_param('height', '35');
+        $width = $this->EE->TMPL->fetch_param('width', '450');
         $verb = $this->EE->TMPL->fetch_param('verb', 'like');
         $color = $this->EE->TMPL->fetch_param('color', 'light');
         
         // Build Like Button Code
+        
         switch ( $type ){
             case "xfbml":
                 $like_button = '<fb:like href="' . $url . '" send="false" width="' . $width . '" show_faces="' . $faces . '" colorscheme="' . $color .'" font=""></fb:like>';
                 break;
             case "iframe";
             default:
-                $like_button = '<iframe src="http://www.facebook.com/plugins/like.php?href=' . urlencode($url) . '&amp;send=false&amp;layout=' . $layout .'&amp;width=' . $width . '&amp;show_faces=' . $faces . '&amp;action=' . $verb . '&amp;colorscheme=' . $color . '&amp;font&amp;height=20" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:' . $width . 'px; height:20px;" allowTransparency="true"></iframe>';
+                $like_button = '<iframe src="http://www.facebook.com/plugins/like.php?href=' . urlencode($url) . '&amp;send=false&amp;layout=' . $layout .'&amp;width=' . $width . '&amp;show_faces=' . $faces . '&amp;action=' . $verb . '&amp;colorscheme=' . $color . '&amp;font&amp;height=' . $height . '" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:' . $width . 'px; height:' . $height . 'px;" allowTransparency="true"></iframe>';
                 break;
         } // end switch($type)
         
@@ -199,9 +202,10 @@ class Socialeesta {
     {
         ob_start();
 ?>
-    This plugin has two uses:
+    This plugin has three uses:
     
-    - Generate a Twitter "Tweet" button
+    - Generate Twitter "Tweet" and button
+    - Generate Twitter "Follow" and button 
     - Generate a Facebook "Like" button
     
     
@@ -211,18 +215,24 @@ class Socialeesta {
     
     (based on Tweet Button specs). All Parameters are optional, but the Tweet Button won't function as expected without at least "url" or "text".
     
-
-        - url : The URL to share on Twitter. The URL should be absolute.
-        - type : “iframe”, “js”, or “none”. If no type is specified, defaults to iframe. The “js” version will also insert the Javascript.
-        - count_url : The URL to which your shared URL resolves to; useful is the URL you are sharing has already been shortened. This affects the display of the Tweet count.
-        - via : Screen name of the user to attribute the Tweet to.
-        - text : Text of the suggested Tweet.
-        - count_position : If set, determines where the counter is display. Valid values are “none”, “horizontal”, and “vertical”. Defaults to “none”.
-        - related : Related accounts.
-        - class : Assign a class attribute to the  element. Only used when type=”none”.
-        - id : Assigns an ID attribute to the  element. Only used when type=”none”.
-        - link_text : If type=”none”, this will display as the text of the “Tweet” link. Defaults to “Tweet”
-        - include_js : If "yes", the Twitter widget.js file will be loaded. Defaults to "no".
+        - url | The URL to share on Twitter. The URL should be absolute.
+        - type | "iframe", "js", or "none" | Default value: "iframe" | The "js" version will also insert the Javascript, you should either manually include the Twitter widgets.js file, or use the "include_js" option in this plugin.
+        - count_url | The URL to which your shared URL resolves to; useful is the URL you are sharing has already been shortened. This affects the display of the Tweet count.
+        - via | Screen name of the user to attribute the Tweet to.
+        - text | Text of the suggested Tweet.
+        - count_position | "none", "horizontal", or "vertical" | Default value: "none".
+        - related | Related accounts.
+        
+        Type-specific Options:
+        **********************
+        
+        Type "none" & "js":
+        - class | Assign a class attribute to the element. 
+        - id | Assigns an ID attribute to the  element. Only used when type="none".
+        - link_text | If type="none", this will display as the text of the "Tweet" link. Defaults to "Tweet"
+        
+        Type "js":
+        - include_js | "yes" or "no" | Default: yes | If "yes", the Twitter widgets.js file will be loaded.
 
     Example tag: 
     ************
@@ -235,21 +245,21 @@ class Socialeesta {
     
     All parameters are options, but the Follow button won't work without at least "user"
     
-    - type : "js" or "iframe" :: Defines whether to use Javascript version or IFRAME version of the Follow Button. Defaults to IFRAME.
-    - user : Which user to follow. Do not include the '@'.
-    - follower_count : "yes" or "no" :: Whether to display the follower count adjacent to the follow button. Defaults to "no".
-    - button_color : "blue" or "grey" :: Change the color of the button itself. Defaults to "blue".
-    - text_color : Specify a hexadecimal color code for the "Followers count" and “Following state” text
-    - link_color : Specify a hexadecimal color code for the Username text
-    - lang : Specify the language for the button using ISO-639-1 Language code. Defaults to "en" (english).
-    - include_js : If "yes", the Twitter widget.js file will be loaded. Defaults to "no".
+    - type | "js" or "iframe" | Default: "iframe" | Defines whether to use Javascript version or IFRAME version of the Follow Button.
+    - user |  Default value: none | Which user to follow. Do not include the '@'.
+    - follower_count | "yes" or "no" | Default value: "no" | Whether to display the follower count adjacent to the follow button. 
+    - button_color | "blue" or "grey" | Default value: "blue" | Change the color of the button itself.
+    - text_color | Default value: none | Specify a hexadecimal color code for the "Followers count" and "Following state" text
+    - link_color | Default value: none | Specify a hexadecimal color code for the Username text
+    - lang | Default value: "en" | Specify the language for the button using ISO-639-1 Language code. Defaults to "en" (english).
+    - include_js | "yes" or "no" | Default value: "yes" | If "yes", the Twitter widget.js file will be loaded.
 
 
-    Javascript button specific params — not supported with IFRAME version
-    *********************************************************************
+    Javascript button specific parameters — not supported with IFRAME version
+    *************************************************************************
     
-    - width : A pixel or percentage value to set the button element width
-    - align : "right" or "left" - Defaults to "left".
+    - width | A pixel or percentage value to set the button element width
+    - align | "right" or "left" - Defaults to "left".
 
     Example tag:
     ************
@@ -262,21 +272,25 @@ class Socialeesta {
     ===================================
     
     All parameters are optional, but the button won't function as expected without at least a "url".
-    
-    
-        - url : The URL to Like on Facebook. Defaults to the Site Index (homepage) if no value is present.
-        - type : “iframe” or “xfbml”. Defaults to “iframe”. If you choose “xfbml”, you must include the Facebook Javascript SDK on your page.
-        - layout : Accepts one of three options: 1) “standard” : No counter is displayed; 2) “buttoncount” : A counter is displayed to the right of the like button; 3) “boxcount” : A counter is displayed above the like button
-            
-        - faces : whether to display profile photos below the button (standard layout only)
-        - width : the width of the like button in pixels. Defaults to 250px.
-        - verb : “like” or “recommend”. Defaults to “like”.
-        - color : “light” or “dark”. Defaults to “light”.
+        
+        - url | The URL to Like on Facebook. Defaults to the Site Index (homepage) if no value is present.
+        - type | "iframe" or "xfbml" | Defaults to "iframe". If you choose "xfbml", you must include the Facebook Javascript SDK on your page.
+        - layout | "standard", "button_count" or "box_count" | Default value: "standard" | 1) "standard" : No counter is displayed; 2) "button_count" : A counter is displayed to the right of the like button; 3) "box_count" : A counter is displayed above the like button
+        - faces | "yes" or "no" | Default value: "no" | whether to display profile photos below the button (standard layout only)
+        - verb | "like" or "recommend" | Default value: "like".
+        - color | "light" or "dark" | Default value: "light".
+
+        IFRAME specific parameters, not supported in the XFBML version
+        ************************************************************************
+        
+        - width | a value in pixels | Default value: "450" | The width of the like button container in pixels.
+        - height | a value in pixels | Default value: "35" or "85" depending on whether faces are shown | The height of the like button container in pixels.
+        
 
     Example tag: 
     ************
     
-    {exp:socialeesta:facebook url="{pages_url}" type="iframe" verb="recommend" color="light" layout="button_count" width="450"}
+    {exp:socialeesta:like url="{pages_url}" type="iframe" verb="recommend" color="light" layout="button_count" width="450"}
     
 <?php
         $buffer = ob_get_contents();
@@ -287,4 +301,4 @@ class Socialeesta {
 
 
 /* End of file pi.socialeesta.php */
-/* Location: /system/expressionengine/third_party/bsd_socialeesta/pi.socialeesta.php */
+/* Location: /system/expressionengine/third_party/socialeesta/pi.socialeesta.php */
