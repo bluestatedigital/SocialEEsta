@@ -22,11 +22,13 @@ This plugin has three uses:
 ###Type-specific Options:
 
 Type "none" & "js":
+
 - class  :  Assign a class attribute to the element. 
 - id  :  Assigns an ID attribute to the  element. Only used when type="none".
 - link_text  :  If type="none", this will display as the text of the "Tweet" link. Defaults to "Tweet"
 
 Type "js":
+
 - include_js  :  "yes" or "no"  :  Default value: yes  :  If "yes", the Twitter widgets.js file will be loaded.
 
 
@@ -53,7 +55,7 @@ Type "js":
 
 
 ###Javascript button specific parameters — not supported with IFRAME version
-**********************************************************************************
+
 - width  :  A pixel or percentage value to set the button element width
 - align  :  "right" or "left" - Defaults to "left".
 
