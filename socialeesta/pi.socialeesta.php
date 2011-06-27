@@ -88,7 +88,6 @@ class Socialeesta {
             . "console.log ( twsc );\n"
             . "}})();"
             . "</script>";
-            //$js = '<script>window.twttr || document.write(\'<script src="' . self::$tw_js . '">\x3C/script>\')</script>';
             
                 $tweet_button = '<a class="twitter-share-button';
                 if ( isset($class) ) {
