@@ -78,7 +78,17 @@ class Socialeesta {
         switch ( $type ) 
         {
             case "js":
-            $js = '<script>window.twttr || document.write(\'<script src="' . self::$tw_js . '">\x3C/script>\')</script>';
+            $js = "<script>\n"
+            . "(function(){\n"
+            . "if ( !window.twttr ){\n"
+            . "var twsc = document.createElement('script');\n"
+            . "twsc.type = 'text/javascript';\n"
+            . "twsc.src = '"  . self::$tw_js . "';\n"
+            . "document.body.appendChild(twsc);\n"
+            . "console.log ( twsc );\n"
+            . "}})();"
+            . "</script>";
+            //$js = '<script>window.twttr || document.write(\'<script src="' . self::$tw_js . '">\x3C/script>\')</script>';
             
                 $tweet_button = '<a class="twitter-share-button';
                 if ( isset($class) ) {
@@ -127,7 +137,16 @@ class Socialeesta {
             
             case "js":
                 // Simple conditional to load the Twitter widgets.js file only if the twttr object doesn't exist
-                $js = '<script>window.twttr || document.write(\'<script src="' . self::$tw_js . '">\x3C/script>\')</script>';
+                $js = "<script>\n"
+                . "(function(){\n"
+                . "if ( !window.twttr ){\n"
+                . "var twsc = document.createElement('script');\n"
+                . "twsc.type = 'text/javascript';\n"
+                . "twsc.src = '"  . self::$tw_js . "';\n"
+                . "document.body.appendChild(twsc);\n"
+                . "console.log ( twsc );\n"
+                . "}})();"
+                . "</script>";
                 $follow_button = '<a class="' . $class . '" id="' . $id . '" href="http://twitter.com/' . $user 
                                     . '" data-button="' . $button_color 
                                     . '" data-show-count="' . $follower_count 
