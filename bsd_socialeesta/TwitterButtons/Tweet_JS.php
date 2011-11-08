@@ -9,7 +9,7 @@ class Tweet_JS {
     private $_class;
     private $_includeJs = TRUE;
 
-    public function __construct(TwitterWidget $widget, QueryString $queryString) {
+    public function __construct(TwitterWidgetJS $widget, QueryString $queryString) {
         $this->_widget = $widget;
         $this->_queryString = $queryString;
     }
@@ -39,11 +39,11 @@ class Tweet_JS {
 
         $html .= '<a href="' . self::SHARE_URL . '?' . $this->_queryString->getQueryString() . '"';
 
-        if (isset($this->_id) {
+        if (isset($this->_id)) {
             $html .= ' id="' . $this->_id . '"';
         }
 
-        if (isset($this->_class) {
+        if (isset($this->_class)) {
             $html .= ' class="' . $this->_class . '"';
         }
 

@@ -26,17 +26,17 @@
 
 $plugin_info = array(
     'pi_name'       => 'SocialEEsta',
-    'pi_version'    => '1.0',
+    'pi_version'    => '1.0b',
     'pi_author'     => 'Douglas Back',
     'pi_author_url' => 'http://www.bluestatedigital.com',
     'pi_description'=> 'Generate social sharing plugins for your EE pages.',
     'pi_usage'      => Socialeesta::usage()
 );
 
+require_once 'Utils/QueryString.php';
+require_once 'Utils/DataAttrs.php';
 
-class Bsd_Socialeesta {
-    require_once 'Utils/QueryString.php';
-    
+class Socialeesta {
     public $return_data;
     
     /**
@@ -64,85 +64,56 @@ class Bsd_Socialeesta {
 
         switch ($params->getType()) {
             case 'iframe':
-
-                require_once 'TwitterButtons/TweetIframe.php';
+                require_once 'TwitterButtons/Tweet_Iframe.php';
                 $iframe = new TweetIframe($queryString);
-                
                 return $iframe->getHtml();
-            case 'js';
+                
+            case 'js':
             default:
                 require_once 'TwitterButtons/Tweet_JS.php';
-
+                
                 $button = new Tweet_JS(new TwitterWidget(), $queryString);
                 $button->setId($params->getCssId());
                 $button->setClass($params->getCssClass());
                 $button->setIncludeJs($params->getIncludeJS());
-
                 return $button->getHtml($params->getLinkText());                
         }
     }
     
     function follow(){
-        // Pull params into local vars
-        $type = $this->EE->TMPL->fetch_param('type', 'iframe');
-        $user = $this->EE->TMPL->fetch_param('user');
-        $follower_count = $this->EE->TMPL->fetch_param('follower_count',NULL);
-        // If we're displaying a follower count, default to 300px width; else default to 200px. Plugin params override though...
-        $follower_count === "yes" ? $width = $this->EE->TMPL->fetch_param('width','300') : $width = $this->EE->TMPL->fetch_param('width','200');
-        $button_color = $this->EE->TMPL->fetch_param('button_color','blue');
-        $text_color = $this->EE->TMPL->fetch_param('text_color', NULL);
-        $link_color = $this->EE->TMPL->fetch_param('link_color', NULL);
-        $lang = $this->EE->TMPL->fetch_param('lang', 'en');
-        $align = $this->EE->TMPL->fetch_param('align', NULL);
-        $class = $this->EE->TMPL->fetch_param('class', NULL);
-        $id = $this->EE->TMPL->fetch_param('id', NULL);
-        $include_js = $this->EE->TMPL->fetch_param('include_js', 'yes');
-        $include_js === "yes" ? $include_js = true : $include_js = false; // convert to boolean!
-        //Set Base URLs
-        switch ( $type ){
-            
-            case "js":
-                // Simple conditional to load the Twitter widgets.js file only if the twttr object doesn't exist
-                $js = "<script>\n"
-                . "(function(){\n"
-                . "if ( !window.twttr ){\n"
-                . "var twsc = document.createElement('script');\n"
-                . "twsc.type = 'text/javascript';\n"
-                . "twsc.src = '"  . self::$tw_js . "';\n"
-                . "document.body.appendChild(twsc);\n"
-                . "console.log ( twsc );\n"
-                . "}})();"
-                . "</script>";
-                $follow_button = '<a class="' . $class . '" id="' . $id . '" href="http://twitter.com/' . $user 
-                                    . '" data-button="' . $button_color 
-                                    . '" data-show-count="' . $follower_count 
-                                    . '" data-text-color="' . $text_color 
-                                    . '" data-link-color="' . $link_color 
-                                    . '" data-lang="' . $lang 
-                                    . '" data-width="' . $width 
-                                    . '" data-align="' . $align 
-                                    . '">Follow @' . $user . '</a>';
-                if ( $include_js ){
-                    $follow_button .= "\n" . $js;
-                }
-                break;
-            case "iframe";
-            default:
+        require_once 'TemplateParams/Follow.php';
 
-                $follow_button = '<iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/follow_button.html?screen_name=' . $user;
-                
-                //Build iframe query string...
-                $follower_count === "yes" ? $follow_button .= '&amp;show_count=true'  : $follow_button .= '&amp;show_count=false';
-                $follow_button .= '&amp;button=' . $button_color ;
-                isset($text_color) ? $follow_button .= '&amp;text_color=' . $text_color : false;
-                isset($link_color) ? $follow_button .= '&amp;link_color=' . $link_color : false;
-                $follow_button .= '&amp;lang=' . $lang;
-                $follow_button .= '" style="width:' . $width . 'px; height:20px;"></iframe>';
-                break;
-                
-            
+        $params = new TemplateParams_Follow($this->EE->TMPL);
+        switch ($params->getType()) {
+            case 'iframe':
+                require_once 'TwitterButtons/Follow_Iframe.php';
+                $queryString = new QueryString();
+                $queryString->addParam('screen_name', $params->getUser());
+                $queryString->addParam('show_count', $params->getFollowerCount());
+                $queryString->addParam('button', $params->getButtonColor());
+                $queryString->addParam('text_color', $params->getTextColor());
+                $queryString->addParam('link_color', $params->getLinkColor());
+                $queryString->addParam('lang', $param->getLang());
+                $iframe = new FollowIframe($queryString, $param->getWidth());
+                return $iframe->getHtml();
+            case 'js':
+            default:
+                require_once 'TwitterButtons/Follow_JS.php';
+
+                $dataAttr = new DataAttrs();
+                $dataAttr->addAttr('screen_name', $params->getUser());
+                $dataAttr->addAttr('show_count', $params->getFollowerCount());
+                $dataAttr->addAttr('button', $params->getButtonColor());
+                $dataAttr->addAttr('text_color', $params->getTextColor());
+                $dataAttr->addAttr('link_color', $params->getLinkColor());
+                $dataAttr->addAttr('lang', $param->getLang());
+                $dataAttr->addArry('width', $param->getWidth());
+                $dataAttr->addArry('align', $param->getAlign());
+                $button = new Follow_JS($dataAttr);
+                $button->setIncludeJs($params->getIncludeJS());
+                return $button->getHtml();
         }
-        return $follow_button;
+
     } // end function follow()
     
     function like(){ //Facebook Like Buttons
