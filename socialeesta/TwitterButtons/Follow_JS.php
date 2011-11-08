@@ -10,18 +10,20 @@ class Follow_JS {
     private $_class;
     private $_includeJs = TRUE;
 
-    public function __construct(TwitterWidgetJS $widget, DataAttrs $dataAttrs) {
+    public function __construct(TwitterWidgetsJS $widget, DataAttrs $dataAttrs, $id, $class) {
         $this->_widget = $widget;
         $this->_dataAttrs = $dataAttrs;
+        $this->setClass($id);
+        $this->setId($class);
     }
 
-    public function setId($id) {
+    private function setId($id) {
         if (!is_null($id)) {
             $this->_id = $id;
         }
     }
 
-    public function setClass($class) {
+    private function setClass($class) {
         $this->_class = self::SHARE_BUTTON_CLASS;
         if (!is_null($class)) {
             $this->_class .= " " . $class;
@@ -33,14 +35,14 @@ class Follow_JS {
         $this->_includeJs = (bool) $include;
     }
 
-    public function getHtml($linkText) {
+    public function getHtml() {
         $html = '';
 
         if ($this->_includeJs) {
             $html .= $this->_widget->getHtml();
         }
 
-        $html .= '<a href="' . self::TWITTER_URL . ' ' . $this->_dataAttrs->getAttrs() . '"';
+        $html .= '<a href="' . self::TWITTER_URL . $this->_dataAttrs->fetchAttr("screen-name") . '" ' . $this->_dataAttrs->getAttrs();
 
         if (isset($this->_id)) {
             $html .= ' id="' . $this->_id . '"';
@@ -50,7 +52,7 @@ class Follow_JS {
             $html .= ' class="' . $this->_class . '"';
         }
 
-        $html .= ">Follow @" . $this->_dataAttrs->fetchAttr("user") . "</a>";
+        $html .= ">Follow @" . $this->_dataAttrs->fetchAttr("screen-name") . "</a>";
 
         return $html;
     }

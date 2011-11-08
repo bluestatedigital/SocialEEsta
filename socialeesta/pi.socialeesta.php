@@ -65,14 +65,15 @@ class Socialeesta {
         switch ($params->getType()) {
             case 'iframe':
                 require_once 'TwitterButtons/Tweet_Iframe.php';
-                $iframe = new TweetIframe($queryString);
+                $iframe = new Tweet_Iframe($queryString);
                 return $iframe->getHtml();
                 
             case 'js':
             default:
                 require_once 'TwitterButtons/Tweet_JS.php';
-                
-                $button = new Tweet_JS(new TwitterWidget(), $queryString);
+                require_once 'TwitterButtons/TwitterWidgetsJS.php';
+
+                $button = new Tweet_JS(new TwitterWidgetsJS(), $queryString);
                 $button->setId($params->getCssId());
                 $button->setClass($params->getCssClass());
                 $button->setIncludeJs($params->getIncludeJS());
@@ -93,23 +94,23 @@ class Socialeesta {
                 $queryString->addParam('button', $params->getButtonColor());
                 $queryString->addParam('text_color', $params->getTextColor());
                 $queryString->addParam('link_color', $params->getLinkColor());
-                $queryString->addParam('lang', $param->getLang());
-                $iframe = new FollowIframe($queryString, $param->getWidth());
+                $queryString->addParam('lang', $params->getLang());
+                $iframe = new FollowIframe($queryString, $params->getWidth());
                 return $iframe->getHtml();
             case 'js':
             default:
                 require_once 'TwitterButtons/Follow_JS.php';
-
+                require_once 'TwitterButtons/TwitterWidgetsJS.php';
                 $dataAttr = new DataAttrs();
-                $dataAttr->addAttr('screen_name', $params->getUser());
-                $dataAttr->addAttr('show_count', $params->getFollowerCount());
+                $dataAttr->addAttr('screen-name', $params->getUser());
+                $dataAttr->addAttr('show-count', $params->getFollowerCount());
                 $dataAttr->addAttr('button', $params->getButtonColor());
-                $dataAttr->addAttr('text_color', $params->getTextColor());
-                $dataAttr->addAttr('link_color', $params->getLinkColor());
-                $dataAttr->addAttr('lang', $param->getLang());
-                $dataAttr->addArry('width', $param->getWidth());
-                $dataAttr->addArry('align', $param->getAlign());
-                $button = new Follow_JS($dataAttr);
+                $dataAttr->addAttr('text-color', $params->getTextColor());
+                $dataAttr->addAttr('link-color', $params->getLinkColor());
+                $dataAttr->addAttr('lang', $params->getLang());
+                $dataAttr->addAttr('width', $params->getWidth());
+                $dataAttr->addAttr('align', $params->getAlign());
+                $button = new Follow_JS(new TwitterWidgetsJS(), $dataAttr, $params->getCssId(), $params->getCssClass());
                 $button->setIncludeJs($params->getIncludeJS());
                 return $button->getHtml();
         }

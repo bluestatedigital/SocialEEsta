@@ -8,7 +8,7 @@ class TemplateParams_Follow {
         $this->_eeTemplate = $eeTemplate;
     }
     function getType() {
-        return $this->_eeTemplate->fetch_param('type', 'iframe');
+        return $this->_eeTemplate->fetch_param('type', 'js');
     }
     function getUser(){
         return $this->_eeTemplate->fetch_param('user');
@@ -17,7 +17,7 @@ class TemplateParams_Follow {
         return $this->_eeTemplate->fetch_param('follower_count');
     }
     function getWidth(){
-        return $this->_eeTemplate->fetch_param('follower_count') === "yes" ? $this->EE->TMPL->fetch_param('width','300') : $this->EE->TMPL->fetch_param('width','200');
+        return $this->_eeTemplate->fetch_param('follower_count') === "yes" ? $this->_eeTemplate->fetch_param('width','300') : $this->_eeTemplate->fetch_param('width','200');
     }
     function getButtonColor(){
         return $this->_eeTemplate->fetch_param('button_color', 'blue');

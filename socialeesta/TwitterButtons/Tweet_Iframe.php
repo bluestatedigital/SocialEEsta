@@ -8,7 +8,7 @@ class Tweet_Iframe {
     private $_iframeHeight;
     
     private function _setIframeHeight(){
-        switch ($this->_countPosition) {
+        switch ($this->_queryString->getValue("count")) {
             case "vertical":
                 $this->_iframeHeight = "62px";
                 break;
@@ -18,17 +18,16 @@ class Tweet_Iframe {
                 
         }
     }
-    public function __construct(QueryString $queryString, $countPosition) {
+    public function __construct(QueryString $queryString) {
         $this->_queryString = $queryString;
-        $this->_countPosition = $countPosition;
         $this->_setIframeHeight();
     }
     
 
     public function getHtml(){
         return '<iframe allowtransparency="true" frameborder="0" scrolling="no" src="' 
-                . $this->IFRAME_URL 
-                . $this->_queryString
+                . self::IFRAME_URL 
+                . $this->_queryString->getQueryString()
                 . '" style="width:130px; height:'
                 . $this->_iframeHeight
                 . ';"></iframe>';

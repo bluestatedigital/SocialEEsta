@@ -1,6 +1,6 @@
 <?php 
 
-class TwitterWidgetJS {
+class TwitterWidgetsJS {
     const URL = '//platform.twitter.com/widgets.js';
 
     public function getHtml() {

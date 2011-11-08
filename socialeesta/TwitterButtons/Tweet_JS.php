@@ -9,7 +9,7 @@ class Tweet_JS {
     private $_class;
     private $_includeJs = TRUE;
 
-    public function __construct(TwitterWidgetJS $widget, QueryString $queryString) {
+    public function __construct(TwitterWidgetsJS $widget, QueryString $queryString) {
         $this->_widget = $widget;
         $this->_queryString = $queryString;
     }
