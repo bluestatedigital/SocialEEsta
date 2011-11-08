@@ -34,8 +34,7 @@ $plugin_info = array(
 );
 
 
-class Socialeesta {
-    require_once 'TemplateParams/Tweet.php';
+class Bsd_Socialeesta {
     require_once 'Utils/QueryString.php';
     
     public $return_data;
@@ -50,6 +49,8 @@ class Socialeesta {
     
     public function tweet()
     {
+        require_once 'TemplateParams/Tweet.php';
+        
         $params = new TemplateParams_Tweet($this->EE->TMPL);
 
         $queryString = new QueryString();
@@ -62,26 +63,22 @@ class Socialeesta {
         $queryString->addParam('lang', $params->getLang());
 
         switch ($params->getType()) {
-            case 'js':
+            case 'iframe':
+
+                require_once 'TwitterButtons/TweetIframe.php';
+                $iframe = new TweetIframe($queryString);
+                
+                return $iframe->getHtml();
+            case 'js';
+            default:
                 require_once 'TwitterButtons/Tweet_JS.php';
 
-                $button = new Tweet_JS(
-                    new TwitterWidget(),
-                    $queryString
-                );
+                $button = new Tweet_JS(new TwitterWidget(), $queryString);
                 $button->setId($params->getCssId());
                 $button->setClass($params->getCssClass());
                 $button->setIncludeJs($params->getIncludeJS());
 
-                return $button->getHtml($params->getLinkText());
-            case 'iframe';
-            default:
-                require_once 'TwitterButtons/TweetIframe.php';
-                $iframe = new Tweet_Iframe($queryString);
-                // Et cetera...
-
-                return $iframe->getHtml();
-                
+                return $button->getHtml($params->getLinkText());                
         }
     }
     
