@@ -35,11 +35,10 @@ $plugin_info = array(
 
 
 class Socialeesta {
-
-    public $return_data;
+    require_once 'TemplateParams/Tweet.php';
+    require_once 'Utils/QueryString.php';
     
-    private static $tw_js = "http://platform.twitter.com/widgets.js"; // The location of the Twitter widgets.js file
-    private static $tw_share_url = "http://twitter.com/share"; // The Twitter Share URL
+    public $return_data;
     
     /**
      * Constructor
@@ -49,70 +48,41 @@ class Socialeesta {
         $this->EE =& get_instance();
     }
     
-    function tweet()
+    public function tweet()
     {
-        // Pull params into local vars
-        $type = $this->EE->TMPL->fetch_param('type','iframe');
-        $url = $this->EE->TMPL->fetch_param('url', NULL);
-        $count_url = $this->EE->TMPL->fetch_param('count_url', NULL);
-        $via = $this->EE->TMPL->fetch_param('via', NULL);
-        $text = $this->EE->TMPL->fetch_param('text', NULL);
-        $count_position = $this->EE->TMPL->fetch_param('count_position', NULL);
-        $related = $this->EE->TMPL->fetch_param('related');
-        $class = $this->EE->TMPL->fetch_param('class');
-        $id = $this->EE->TMPL->fetch_param('id');
-        $link_text = $this->EE->TMPL->fetch_param('link_text', 'Tweet');
-        $include_js = $this->EE->TMPL->fetch_param('include_js', 'yes');
-        
-        // Build query string based on set params — only include params that exist:
-        $query_string = '?';
-        $url ? $query_string .= 'url=' . urlencode($url) . '&amp;' : false;
-        $count_url ? $query_string .= 'count_url=' . urlencode($count_url) . '&amp;' : false;
-        $via ? $query_string .= 'via=' . urlencode($via) . '&amp;' : false;
-        $text ? $query_string .= 'text=' . $text . '&amp;' : false;
-        $related ? $query_string .= 'related=' . $related . '&amp;' : false;
-        $count_position ? $query_string .= 'count=' . $count_position : false;
-        
-        
-        // Build the $tweet_button depending on whether type= js, iframe, or none
-        switch ( $type ) 
-        {
-            case "js":
-            $js = "<script>\n"
-            . "(function(){\n"
-            . "if ( !window.twttr ){\n"
-            . "var twsc = document.createElement('script');\n"
-            . "twsc.type = 'text/javascript';\n"
-            . "twsc.src = '"  . self::$tw_js . "';\n"
-            . "document.body.appendChild(twsc);\n"
-            . "console.log ( twsc );\n"
-            . "}})();"
-            . "</script>";
-            
-                $tweet_button = '<a class="twitter-share-button';
-                if ( isset($class) ) {
-                    $tweet_button .= ' ' . $class;
-                }
-                $tweet_button .= '"'; // close the quote
-                if ( isset($id) ){
-                    $tweet_button .= ' id="' . $id . '"'; 
-                }
-                $tweet_button .= ' href="' . self::$tw_share_url . $query_string . '">' . $link_text . '</a>' ;
-                if ($include_js === "yes"){
-                    $tweet_button = $js . "\n" . $tweet_button;
-                }
-                break;
-            case "iframe";
-            default:
-                $iframe_url = "http://platform.twitter.com/widgets/tweet_button.html";
-                $tweet_button = '<iframe allowtransparency="true" frameborder="0" scrolling="no" src="' . $iframe_url . $query_string . '" style="width:130px; height:';
-                $count_position === "vertical" ? $tweet_button .= '62px' : $tweet_button .= '20px';
-                $tweet_button .= ';"></iframe>';
-                break;
-                
+        $params = new TemplateParams_Tweet($this->EE->TMPL);
 
+        $queryString = new QueryString();
+        $queryString->addParam('url', $params->getUrl());
+        $queryString->addParam('counturl', $params->getCountUrl());
+        $queryString->addParam('via', $params->getVia());
+        $queryString->addParam('text', $params->getText());
+        $queryString->addParam('count', $params->getCountPosition());
+        $queryString->addParam('related', $params->getRelatedAccts());
+        $queryString->addParam('lang', $params->getLang());
+
+        switch ($params->getType()) {
+            case 'js':
+                require_once 'TwitterButtons/Tweet_JS.php';
+
+                $button = new Tweet_JS(
+                    new TwitterWidget(),
+                    $queryString
+                );
+                $button->setId($params->getCssId());
+                $button->setClass($params->getCssClass());
+                $button->setIncludeJs($params->getIncludeJS());
+
+                return $button->getHtml($params->getLinkText());
+            case 'iframe';
+            default:
+                require_once 'TwitterButtons/TweetIframe.php';
+                $iframe = new Tweet_Iframe($queryString);
+                // Et cetera...
+
+                return $iframe->getHtml();
+                
         }
-        return $tweet_button;
     }
     
     function follow(){
