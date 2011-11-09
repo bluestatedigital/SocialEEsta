@@ -8,7 +8,7 @@ class TemplateParams_Tweet {
         $this->_eeTemplate = $eeTemplate;
     }
     function getType() {
-        return $this->_eeTemplate->fetch_param('type', 'iframe');
+        return $this->_eeTemplate->fetch_param('type', 'js');
     }
     function getUrl() {
         return $this->_eeTemplate->fetch_param('url');
