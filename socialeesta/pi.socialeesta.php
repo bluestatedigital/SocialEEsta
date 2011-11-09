@@ -71,7 +71,7 @@ class Socialeesta {
             case 'js':
             default:
                 require_once 'TwitterButtons/Tweet_JS.php';
-                require_once 'TwitterButtons/TwitterWidgetsJS.php';
+                require_once 'Script/TwitterWidgetsJS.php';
                 $dataAttrs = new DataAttrs();
                 $dataAttrs->addAttr('url', $params->getUrl());
                 $dataAttrs->addAttr('counturl', $params->getCountUrl());
@@ -107,7 +107,7 @@ class Socialeesta {
             case 'js':
             default:
                 require_once 'TwitterButtons/Follow_JS.php';
-                require_once 'TwitterButtons/TwitterWidgetsJS.php';
+                require_once 'Script/TwitterWidgetsJS.php';
                 $dataAttr = new DataAttrs();
                 $dataAttr->addAttr('screen-name', $params->getUser());
                 $dataAttr->addAttr('show-count', $params->getFollowerCount());
@@ -168,7 +168,15 @@ class Socialeesta {
         return $like_button;
         
     }
-    
+    function scripts(){
+        require_once 'Script/FacebookJS.php';
+        require_once 'Script/GoogleJS.php';
+        require_once 'Script/TwitterWidgetsJS.php';
+        require_once 'Script/Scripts.php';
+        
+        $scripts = new JsLibraries(new FacebookJS, new GoogleJS, new TwitterWidgetsJS);
+        return $scripts->getScripts();
+    }
     // function plusone() {
     //     
     //             

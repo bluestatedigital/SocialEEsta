@@ -61,12 +61,12 @@ class Socialeesta_ext {
     public function settings()
     {
         return array(
-            "fb_app" => array('i', '', '');
-            "include_js_libraries" => array('c', array(
-                                                'fb' => "Facebook",
-                                                'tw' => "Twitter",
-                                                'goog' => "Google +1"
-            ), array('fb','tw','goog'));
+            "include_tw" => array('r', array('y' => 'Yes', 'n' => "No"), "n"),
+            "include_goog" => array('r', array('y' => 'Yes', 'n' => "No"), "n"),
+            "include_fb" => array('r', array('y' => 'Yes', 'n' => "No"), "n"),
+            "fb_app" => array('i', ' ', ""),
+            "fb_channelUrl" => array('i', ' ', "")
+            
         );
     }
     
@@ -85,9 +85,22 @@ class Socialeesta_ext {
     public function activate_extension()
     {
         // Setup custom settings in this array.
-        $this->settings = array();
+        $defaults = $this->settings();
+        
+        
         
         // No hooks selected, add in your own hooks installation code here.
+        $this->EE->db->insert('extensions',
+            array(
+                'class' => __CLASS__,
+                'method' => 'socialeesta_ext',
+                'hook' => 'socialeesta_ext',
+                'settings' => serialize($this->settings),
+                'priority' => 10,
+                'version' => $this->version,
+                'enabled' => 'y'
+                )
+            );
     }   
 
     // ----------------------------------------------------------------------
