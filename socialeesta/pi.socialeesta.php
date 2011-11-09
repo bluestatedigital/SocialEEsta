@@ -53,18 +53,18 @@ class Socialeesta {
         
         $params = new TemplateParams_Tweet($this->EE->TMPL);
 
-        $queryString = new QueryString();
-        $queryString->addParam('url', $params->getUrl());
-        $queryString->addParam('counturl', $params->getCountUrl());
-        $queryString->addParam('via', $params->getVia());
-        $queryString->addParam('text', $params->getText());
-        $queryString->addParam('count', $params->getCountPosition());
-        $queryString->addParam('related', $params->getRelatedAccts());
-        $queryString->addParam('lang', $params->getLang());
 
         switch ($params->getType()) {
             case 'iframe':
                 require_once 'TwitterButtons/Tweet_Iframe.php';
+                $queryString = new QueryString();
+                $queryString->addParam('url', $params->getUrl());
+                $queryString->addParam('counturl', $params->getCountUrl());
+                $queryString->addParam('via', $params->getVia());
+                $queryString->addParam('text', $params->getText());
+                $queryString->addParam('count', $params->getCountPosition());
+                $queryString->addParam('related', $params->getRelatedAccts());
+                $queryString->addParam('lang', $params->getLang());
                 $iframe = new Tweet_Iframe($queryString);
                 return $iframe->getHtml();
                 
@@ -72,8 +72,15 @@ class Socialeesta {
             default:
                 require_once 'TwitterButtons/Tweet_JS.php';
                 require_once 'TwitterButtons/TwitterWidgetsJS.php';
-
-                $button = new Tweet_JS(new TwitterWidgetsJS(), $queryString);
+                $dataAttrs = new DataAttrs();
+                $dataAttrs->addAttr('url', $params->getUrl());
+                $dataAttrs->addAttr('counturl', $params->getCountUrl());
+                $dataAttrs->addAttr('via', $params->getVia());
+                $dataAttrs->addAttr('text', $params->getText());
+                $dataAttrs->addAttr('count', $params->getCountPosition());
+                $dataAttrs->addAttr('related', $params->getRelatedAccts());
+                $dataAttrs->addAttr('lang', $params->getLang());
+                $button = new Tweet_JS(new TwitterWidgetsJS(), $dataAttrs, $params->getCssId(), $params->getCssClass());
                 $button->setId($params->getCssId());
                 $button->setClass($params->getCssClass());
                 $button->setIncludeJs($params->getIncludeJS());
@@ -111,6 +118,8 @@ class Socialeesta {
                 $dataAttr->addAttr('width', $params->getWidth());
                 $dataAttr->addAttr('align', $params->getAlign());
                 $button = new Follow_JS(new TwitterWidgetsJS(), $dataAttr, $params->getCssId(), $params->getCssClass());
+                $button->setId($params->getCssId());
+                $button->setClass($params->getCssClass());
                 $button->setIncludeJs($params->getIncludeJS());
                 return $button->getHtml();
         }

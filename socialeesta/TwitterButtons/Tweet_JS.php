@@ -2,16 +2,17 @@
 
 class Tweet_JS {
     const SHARE_URL = "http://twitter.com/share";
+    const SHARE_BUTTON_CLASS = "twitter-share-button";
 
     private $_widget;
-    private $_queryString;
+    private $_dataAttrs;
     private $_id;
     private $_class;
     private $_includeJs = TRUE;
 
-    public function __construct(TwitterWidgetsJS $widget, QueryString $queryString) {
+    public function __construct(TwitterWidgetsJS $widget, DataAttrs $dataAttrs) {
         $this->_widget = $widget;
-        $this->_queryString = $queryString;
+        $this->_dataAttrs = $dataAttrs;
     }
 
     public function setId($id) {
@@ -21,8 +22,9 @@ class Tweet_JS {
     }
 
     public function setClass($class) {
+        $this->_class = self::SHARE_BUTTON_CLASS;
         if (!is_null($class)) {
-            $this->_class = $class;
+            $this->_class .= " " . $class;
         }
     }
 
@@ -37,13 +39,13 @@ class Tweet_JS {
             $html .= $this->_widget->getHtml();
         }
 
-        $html .= '<a href="' . self::SHARE_URL . '?' . $this->_queryString->getQueryString() . '"';
+        $html .= '<a href="' . self::SHARE_URL . '" ' . $this->_dataAttrs->getAttrs();
 
-        if (isset($this->_id)) {
+        if (!is_null($this->_id)) {
             $html .= ' id="' . $this->_id . '"';
         }
 
-        if (isset($this->_class)) {
+        if (!is_null($this->_class)) {
             $html .= ' class="' . $this->_class . '"';
         }
 

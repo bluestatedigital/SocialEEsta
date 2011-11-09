@@ -10,20 +10,18 @@ class Follow_JS {
     private $_class;
     private $_includeJs = TRUE;
 
-    public function __construct(TwitterWidgetsJS $widget, DataAttrs $dataAttrs, $id, $class) {
+    public function __construct(TwitterWidgetsJS $widget, DataAttrs $dataAttrs) {
         $this->_widget = $widget;
         $this->_dataAttrs = $dataAttrs;
-        $this->setClass($id);
-        $this->setId($class);
     }
 
-    private function setId($id) {
+    public function setId($id) {
         if (!is_null($id)) {
             $this->_id = $id;
         }
     }
 
-    private function setClass($class) {
+    public function setClass($class) {
         $this->_class = self::SHARE_BUTTON_CLASS;
         if (!is_null($class)) {
             $this->_class .= " " . $class;
