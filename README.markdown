@@ -19,7 +19,9 @@ SocialEEsta defaults to the HTML5 versions of these buttons; use the {exp:social
 
 ###Example tag:
 
+```
 {exp:socialeesta:scripts google="yes" twitter="yes" facebook="yes" fb_app_id="123456789" fb_channel_url="//www.yourdomain.com/path/to/channel.html"}
+```
 
 SocialEEsta provides the asynchronous version of all three scripts libraries.
 
@@ -35,7 +37,9 @@ SocialEEsta provides the asynchronous version of all three scripts libraries.
 
 ###Example tag:
 
+```
 {exp:socialeesta:tweet url="{title_permalink='blog/entry'}" type="iframe" via="bsdwire" text="{title}" count_position="vertical"}
+```
 
 All Parameters are optional.
 
@@ -53,7 +57,9 @@ All Parameters are optional.
 
 ###Example tag:
 
+```
 {exp:socialeesta:follow user="bsdwire" follower_count="yes" type="iframe"}
+```
 
 ###Required Parameters
 
@@ -81,7 +87,9 @@ All Parameters are optional.
 
 ###Example tag: 
 
+```
 {exp:socialeesta:like url="{pages_url}" type="iframe" verb="recommend" color="light" layout="button_count"}
+```
 
 All parameters are optional.
 
@@ -107,7 +115,9 @@ The height and width parameters have default values that depend upon the button 
 
 ###Example tag: 
 
+```
 {exp:socialeesta:plusone size="standard" annotation="inline" href="{site_url}"}
+```
 
 All parameters are optional:
 
