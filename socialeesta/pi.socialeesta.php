@@ -169,6 +169,22 @@ class Socialeesta {
         
         
     }
+    function plusone(){
+        require_once 'GoogleButtons/GooglePlusOne_HTML5.php';
+        require_once 'Script/GoogleJS.php';
+        $params = new TemplateParams_GooglePlusOne($this->EE->TMPL);
+        $dataAttr = new DataAttrs();
+        $dataAttr->addAttr('href', $params->getHref());
+        $dataAttr->addAttr('annotation', $params->getAnnotation());
+        $dataAttr->addAttr('size', $params->getSize());
+        $dataAttr->addAttr('width', $params->getWidth());
+
+        $button = new GooglePlusOne_HTML5($dataAttr);
+        $button->setCallback($param->getJsCallback());
+        $button->setClass($params->getCssClass());
+        $button->setId($params->getCssId());
+        
+    }
     function scripts(){
         require_once 'Script/FacebookJS.php';
         require_once 'Script/GoogleJS.php';
