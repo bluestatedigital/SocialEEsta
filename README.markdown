@@ -1,8 +1,12 @@
 #BSD SocialEEsta v1.0
 
-SocialEEsta adds social buttons to your ExpressionEngine pages with a minimum of fuss.
+##All Social. No Fuss.
+
+SocialEEsta adds social buttons to your ExpressionEngine pages with no fuss.
 
 It supports Twitter's Tweet & Follow buttons, Facebook's Like button, and Google's +1 button.
+
+## HTML5 Social Buttons By Default
 
 SocialEEsta defaults to the HTML5 versions of these buttons; use the {exp:socialeesta:scripts} tag to add the Javascript required for each of these buttons to work.
 
@@ -23,7 +27,7 @@ SocialEEsta defaults to the HTML5 versions of these buttons; use the {exp:social
 {exp:socialeesta:scripts google="yes" twitter="yes" facebook="yes" fb_app_id="123456789" fb_channel_url="//www.yourdomain.com/path/to/channel.html"}
 ```
 
-SocialEEsta provides the asynchronous version of all three scripts libraries.
+SocialEEsta provides the asynchronous version of all three scripts libraries. This tag can be placed anywhere within the <body> element.
 
 - google  :  "yes"  :  Include the Javascript necessary to use the Google +1 button.
 - twitter  :  "yes"  :  Include the Javascript necessary to use the HTML5 version of the Twitter Tweet and Follow buttons.

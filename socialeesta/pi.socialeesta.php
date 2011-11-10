@@ -212,7 +212,7 @@ class Socialeesta {
     {
         ob_start();
 ?>
-    SocialEEsta adds social buttons to your ExpressionEngine pages with a minimum of fuss.
+    SocialEEsta adds social buttons to your ExpressionEngine pages with no fuss.
 
     It supports Twitter's Tweet & Follow buttons, Facebook's Like button, and Google's +1 button.
 
