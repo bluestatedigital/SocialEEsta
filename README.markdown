@@ -27,7 +27,7 @@ SocialEEsta defaults to the HTML5 versions of these buttons; use the {exp:social
 {exp:socialeesta:scripts google="yes" twitter="yes" facebook="yes" fb_app_id="123456789" fb_channel_url="//www.yourdomain.com/path/to/channel.html"}
 ```
 
-SocialEEsta provides the asynchronous version of all three scripts libraries. This tag can be placed anywhere within the &lt;body&gt; element.
+SocialEEsta provides the asynchronous version of all three scripts libraries. This tag can be placed anywhere within the &lt;body&gt; element, but you'll probably be happiest with it just before the closing &lt;/body&gt; tag.
 
 - google  :  "yes"  :  Include the Javascript necessary to use the Google +1 button.
 - twitter  :  "yes"  :  Include the Javascript necessary to use the HTML5 version of the Twitter Tweet and Follow buttons.
