@@ -12,26 +12,26 @@ class TemplateParams_Scripts {
 
     public function __construct(EE_Template $eeTemplate) {
         $this->_eeTemplate = $eeTemplate;
-        $this->_params = explode($this->_eeTemplate->fetch_param('scripts'));
+        $this->_params = explode("|", $this->_eeTemplate->fetch_param('scripts'));
     }
     public function setFacebook(){
-        $this->$_scripts["facebook"] = in_array("facebook", $this->_params);
+        $this->_scripts["facebook"] = in_array("facebook", $this->_params);
     }
     public function setTwitter(){
-        $this->$_scripts["twitter"] = in_array("twitter", $this->_params);
+        $this->_scripts["twitter"] = in_array("twitter", $this->_params);
     }
     public function setGoogle(){
-        $this->$_scripts["google"] = in_array("google", $this->_params);
+        $this->_scripts["google"] = in_array("google", $this->_params);
     }
     
     function includeFacebook() {
-        return $_scripts['facebook'];
+        return $this->_scripts['facebook'];
     }
     function includeGoogle(){
-        return $_scripts['google'];
+        return $this->_scripts['google'];
     }
     function includeTwitter(){
-        return $_scripts['twitter'];
+        return $this->_scripts['twitter'];
     }
     function getFbChannelUrl() {
         return $this->_eeTemplate->fetch_param('fb_channel_url', NULL);

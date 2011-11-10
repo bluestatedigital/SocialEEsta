@@ -8,7 +8,6 @@ class TwitterJS {
             . "(function(){\n"
             . "var twsc = document.createElement('script');\n"
             . "twsc.type = 'text/javascript';\n"
-            . "twsc.id = 'socialeesta-tw';\n" 
             . "twsc.src = '"  . self::URL . "';\n"
             . "document.body.appendChild(twsc);\n"
             . "})();\n"
