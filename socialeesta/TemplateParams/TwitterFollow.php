@@ -1,6 +1,6 @@
 <?php 
 
-class TemplateParams_Follow {
+class TemplateParams_TwitterFollow {
     
     private $_eeTemplate;
 

@@ -9,18 +9,18 @@ class TemplateParams_Scripts {
     }
 
     function includeFacebook() {
-        return $this->_eeTemplate->fetch_param('facebook', "yes") === "yes";
+        return $this->_eeTemplate->fetch_param('facebook', "no") === "yes";
     }
     function includeGoogle(){
-        return $this->_eeTemplate->fetch_param('google', "yes") === "yes";
+        return $this->_eeTemplate->fetch_param('google', "no") === "yes";
     }
     function includeTwitter(){
-        return $this->_eeTemplate->fetch_param('twitter', "yes") === "yes";
+        return $this->_eeTemplate->fetch_param('twitter', "no") === "yes";
     }
     function getFbChannelUrl() {
         return $this->_eeTemplate->fetch_param('fb_channel_url', NULL);
     }
     function getFbAppId(){
-        return $this->_eeTemplate->fetch_param('fb_app_id');
+        return $this->_eeTemplate->fetch_param('fb_app_id', NULL);
     }
 }

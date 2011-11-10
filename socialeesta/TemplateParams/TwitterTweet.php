@@ -1,6 +1,6 @@
 <?php 
 
-class TemplateParams_Tweet {
+class TemplateParams_TwitterTweet {
     
     private $_eeTemplate;
 
@@ -23,16 +23,16 @@ class TemplateParams_Tweet {
         return $this->_eeTemplate->fetch_param('text', NULL);
     }
     function getCountPosition(){
-        return $this->_eeTemplate->fetch_param('count_position', NULL);
+        return $this->_eeTemplate->fetch_param('count_position', 'horizontal');
     }
     function getRelatedAccts(){
-        return $this->_eeTemplate->fetch_param('related');
+        return $this->_eeTemplate->fetch_param('related', NULL);
     }
     function getCssClass(){
-        return $this->_eeTemplate->fetch_param('class');
+        return $this->_eeTemplate->fetch_param('class', NULL);
     }
     function getCssId(){
-        return $this->_eeTemplate->fetch_param('id');
+        return $this->_eeTemplate->fetch_param('id', NULL);
     }
     function getLinkText(){
         return $this->_eeTemplate->fetch_param('link_text', 'Tweet');
