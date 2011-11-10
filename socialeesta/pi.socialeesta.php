@@ -171,6 +171,7 @@ class Socialeesta {
     }
     function plusone(){
         require_once 'GoogleButtons/GooglePlusOne_HTML5.php';
+        require_once 'TemplateParams/GooglePlusOne.php';
         require_once 'Script/GoogleJS.php';
         $params = new TemplateParams_GooglePlusOne($this->EE->TMPL);
         $dataAttr = new DataAttrs();
@@ -179,11 +180,11 @@ class Socialeesta {
         $dataAttr->addAttr('size', $params->getSize());
         $dataAttr->addAttr('width', $params->getWidth());
 
-        $button = new GooglePlusOne_HTML5($dataAttr);
-        $button->setCallback($param->getJsCallback());
+        $button = new GooglePlusOne_HTML5(new GoogleJS(), $dataAttr);
+        $button->setCallback($params->getJsCallback());
         $button->setClass($params->getCssClass());
         $button->setId($params->getCssId());
-        
+        return $button->getHtml();
     }
     function scripts(){
         require_once 'Script/FacebookJS.php';

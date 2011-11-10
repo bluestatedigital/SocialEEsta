@@ -9,7 +9,7 @@ class DataAttrs {
         foreach ( $array as $key => $val ) {
             if ( is_array( $val ) )
                 $val = implode( ',', $val );
-            $string[] = "{$key}='{$val}'";
+            $string[] = "{$key}=\"{$val}\"";
         }
         return implode( $separator, $string );
     }

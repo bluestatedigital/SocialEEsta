@@ -21,13 +21,13 @@ class TemplateParams_GooglePlusOne {
         return $this->_eeTemplate->fetch_param('width');
     }
     function getJsCallback(){
-        return $this->_eeTemplate->fetch_param('callback');
+        return $this->_eeTemplate->fetch_param('callback', NULL);
     }
     function getCssClass(){
-        return $this->_eeTemplate->fetch_param('class');
+        return $this->_eeTemplate->fetch_param('class', NULL);
     }
     function getCssId(){
-        return $this->_eeTemplate->fetch_param('id');
+        return $this->_eeTemplate->fetch_param('id', NULL);
     }
     function getIncludeJS(){
         return $this->_eeTemplate->fetch_param('include_js', "no") === "yes";

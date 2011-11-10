@@ -49,7 +49,7 @@ class GooglePlusOne_HTML5 {
         
 
         if (!is_null($this->_id)) {
-            $html .= ' id="' . $this->_id . '"';
+            $html .= ' id="' . $this->_id . '" ';
         }
         
         $html .= $this->_dataAttrs->getAttrs();
