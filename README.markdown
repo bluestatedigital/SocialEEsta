@@ -15,9 +15,9 @@ SocialEEsta defaults to the HTML5 versions of these buttons; use the {exp:social
 - {exp:socialeesta:plusone}
 
 
-### Load Javascript Required by Social Buttons: {exp:socialeesta:scripts}  =
+## Load Javascript Required by Social Buttons: {exp:socialeesta:scripts}
 
-####Example tag:
+###Example tag:
 
 {exp:socialeesta:scripts google="yes" twitter="yes" facebook="yes" fb_app_id="123456789" fb_channel_url="//www.yourdomain.com/path/to/channel.html"}
 
@@ -30,10 +30,10 @@ SocialEEsta provides the asynchronous version of all three scripts libraries.
 - fb_channel_url  :  This is optional, but Facebook recommends it. See https://developers.facebook.com/docs/reference/javascript/ for more information.
 
 
-### Twitter Tweet Button: {exp:socialeesta:tweet} =
+## Twitter Tweet Button: {exp:socialeesta:tweet} 
 
 
-####Example tag:
+###Example tag:
 
 {exp:socialeesta:tweet url="{title_permalink='blog/entry'}" type="iframe" via="bsdwire" text="{title}" count_position="vertical"}
 
@@ -49,17 +49,17 @@ All Parameters are optional.
 
 
 
-### Twitter Follow Button: {exp:socialeesta:follow}
+## Twitter Follow Button: {exp:socialeesta:follow}
 
-####Example tag:
+###Example tag:
 
 {exp:socialeesta:follow user="bsdwire" follower_count="yes" type="iframe"}
 
-####Required Parameters
+###Required Parameters
 
 - user  :   Default value: none  :  Which user to follow. Do not include the '@'.
 
-####Optional Parameters
+###Optional Parameters
 
 - type  :  "js" or "iframe"  :  Default value: "js"  :  Defines whether to use HTML5 version or iframe version of the Follow Button.
 - follower_count  :  "yes" or "no"  :  Default value: "no"  :  Whether to display the follower count adjacent to the follow button. 
@@ -68,7 +68,7 @@ All Parameters are optional.
 - link_color  :  Default value: none  :  Specify a hexadecimal color code for the Username text. Omit the '#' character.
 - lang  :  Default value: "en"  :  Specify the language for the button using ISO-639-1 Language code. Defaults to "en" (english).
 
-####Javascript button specific parameters — not supported with iframe version
+###Javascript button specific parameters — not supported with iframe version
 
 - width  :  A pixel or percentage value to set the button element width
 - align  :  "right" or "left" - Defaults to "left".
@@ -76,10 +76,10 @@ All Parameters are optional.
 
 
 
-###Facebook Like Button: {exp:socialeesta:like}
+##Facebook Like Button: {exp:socialeesta:like}
 
 
-####Example tag: 
+###Example tag: 
 
 {exp:socialeesta:like url="{pages_url}" type="iframe" verb="recommend" color="light" layout="button_count"}
 
@@ -92,7 +92,7 @@ All parameters are optional.
 - color  :  "light" or "dark"  :  Default value: "light".
 - font :  "arial", "lucida grande", "segoe ui", "tahoma", "trebuchet ms", "verdana" : Default value: "lucida grande" (Facebook's default)
 
-####Layout-specific parameters
+###Layout-specific parameters
 
 The height and width parameters have default values that depend upon the button layout chosen. Refer to Facebook's documentation for more info: https://developers.facebook.com/docs/reference/plugins/like/
 
@@ -103,9 +103,9 @@ The height and width parameters have default values that depend upon the button 
 
 
 
-### Google Plus One Button: {exp:socialeesta:plusone}
+## Google Plus One Button: {exp:socialeesta:plusone}
 
-####Example tag: 
+###Example tag: 
 
 {exp:socialeesta:plusone size="standard" annotation="inline" href="{site_url}"}
 
