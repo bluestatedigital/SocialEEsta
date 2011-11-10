@@ -24,14 +24,12 @@ SocialEEsta defaults to the HTML5 versions of these buttons; use the {exp:social
 ###Example tag:
 
 ```
-{exp:socialeesta:scripts google="yes" twitter="yes" facebook="yes" fb_app_id="123456789" fb_channel_url="//www.yourdomain.com/path/to/channel.html"}
+{exp:socialeesta:scripts scripts="twitter|facebook" fb_app_id="123456789" fb_channel_url="//www.yourdomain.com/path/to/channel.html"}
 ```
 
 SocialEEsta provides the asynchronous version of all three scripts libraries. This tag can be placed anywhere within the &lt;body&gt; element, but you'll probably be happiest with it just before the closing &lt;/body&gt; tag.
 
-- google  :  "yes"  :  Include the Javascript necessary to use the Google +1 button.
-- twitter  :  "yes"  :  Include the Javascript necessary to use the HTML5 version of the Twitter Tweet and Follow buttons.
-- facebook  :  "yes"  : Include the Facebook Javascript SDK, required to use the HTML5 version of the Like button.
+- scripts : "facebook", "twitter", "google" :  A pipe-separated list of Javascript libraries to include.
 - fb_app_id  :  Your site's Facebook App ID. Required if you are loading the Facebook Javascript SDK.
 - fb_channel_url  :  This is optional, but Facebook recommends it. See https://developers.facebook.com/docs/reference/javascript/ for more information.
 

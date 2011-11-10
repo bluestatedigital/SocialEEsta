@@ -235,13 +235,11 @@ class Socialeesta {
 
     Example tag:
     **************
-    {exp:socialeesta:scripts google="yes" twitter="yes" facebook="yes" fb_app_id="123456789" fb_channel_url="//www.yourdomain.com/path/to/channel.html"}
+    {exp:socialeesta:scripts scripts="facebook|twitter" fb_app_id="123456789" fb_channel_url="//www.yourdomain.com/path/to/channel.html"}
 
     SocialEEsta provides the asynchronous version of all three scripts libraries.
 
-        - google  :  "yes"  :  Include the Javascript necessary to use the Google +1 button.
-        - twitter  :  "yes"  :  Include the Javascript necessary to use the HTML5 version of the Twitter Tweet and Follow buttons.
-        - facebook  :  "yes"  : Include the Facebook Javascript SDK, required to use the HTML5 version of the Like button.
+        - scripts : "facebook", "twitter", "google" :  A pipe-separated list of Javascript libraries to include.
         - fb_app_id  :  Your site's Facebook App ID. Required if you are loading the Facebook Javascript SDK.
         - fb_channel_url  :  This is optional, but Facebook recommends it. See https://developers.facebook.com/docs/reference/javascript/ for more information.
 
