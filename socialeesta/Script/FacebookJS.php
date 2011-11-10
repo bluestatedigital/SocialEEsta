@@ -1,6 +1,8 @@
 <?php 
 
 class FacebookJS {
+
+    
     public function asyncScript(){
         return "<script>\n"
                 . "(function(d){\n"
@@ -12,13 +14,21 @@ class FacebookJS {
                 . "</script>";
     }
     public function fbInit($appId, $channelUrl){
-        return "FB.init({\n"
-          . "appId      : " . $app_id 
-          . "channelURL : " . $channelUrl
-          . "status     : true,"
-          . "cookie     : true,"
-          . "oauth      : true,"
-          . "xfbml      : true"
-          . "});";
+        $initOptions = array(
+            "appID" => $appId,
+            "status" => true,
+            "cookie" => true,
+            "oauth" => true,
+            "xfbml" => true
+        );
+        if (!is_null($channelUrl)){
+            $initOptions["channelURL"] = $channelUrl;
+        }
+        return "<div id='fb-root'></div>\n"
+        ."<script>\n"
+        ." window.fbAsyncInit = function() {\n"
+        ."FB.init(\n"
+        . json_encode((object) $initOptions) 
+        . "\n);};</script>";
     }
 }

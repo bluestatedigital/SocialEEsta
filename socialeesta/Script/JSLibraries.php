@@ -1,41 +1,38 @@
 <?php
 class JSLibraries {
-    const CLASS_NAME = "Socialeesta_ext";
     
-    private $_eeTemplate;
-    private $_scripts;
-    private $_facebookJs;
-    private $_twitterJs;
-    private $_googleJs;
-    private $_extensionSettings = array();
+    private $_params;
+    private $_facebookJS;
+    private $_twitterJS;
+    private $_googleJS;
     
-    public function __construct(EE_Template $eeTemplate) {
-        $this->_eeTemplate = $eeTemplate;
-        $_extensionSettings = unserialize($this->db->get_where('exp_extensions', array('class' => self::CLASS_NAME)));
+    
+    public function __construct($params, $googleJS, $twitterJS, $facebookJS) {
+        
+        $this->_params = $params;
+        $this->_googleJS = $googleJS;
+        $this->_twitterJS = $twitterJS;
+        $this->_facebookJS = $facebookJS;
+    
     }
-    
-    private function includeFacebook(){
-        return $this->_extensionSettings['include_fb'] == 'y';
-    }
-    private function includeTwitter(){
-        return $this->_extensionSettings['include_tw'] == 'y';
-    }
-    private function includeGoogle(){
-        return $this->_extensionSettings['include_goog'] == 'y';
-    }
-    
-    
-    public function getScripts($fb, $goog, $tw){
-        if ($this->includeFacebook()){
-            $_scripts .= $fb->asyncScript();
-            $_scripts .= $fb->fbInit($this->_extensionSettings['fb_app'], $this->_extensionSettings['fb_channelurl']);
-            $
+
+    public function getScripts(){
+        $_scripts = "";
+        if ($this->_params->includeFacebook()){
+            $_scripts .= $this->_facebookJS->asyncScript();
+            if (isset($this->_params->_fbAppId)){
+                $_scripts .= $this->_facebookJS->fbInit($this->_params->_fbAppId);
+            }
+            if (isset($this->_fbChannelUrl)){
+                $_scripts .= $this->_facebookJS->fbInit($this->_params->_fbChannelUrl);
+            }
+
         }
-        if ($this->includeGoogle()){
-            $_scripts .= $goog->asyncScript();
+        if ($this->_params->includeGoogle()){
+            $_scripts .= $this->_googleJS->asyncScript();
         }
-        if ($this->includeTwitter()){
-            $_scripts .= $fb->asyncScript();
+        if ($this->_params->includeTwitter()){
+            $_scripts .= $this->_twitterJS->asyncScript();
             
         }
         return $_scripts;

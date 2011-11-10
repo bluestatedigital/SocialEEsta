@@ -1,6 +1,7 @@
 <?php 
 
-class FacebookJS {
+class GoogleJS {
+    
     public function asyncScript(){
         return "<script type='text/javascript'>\n"
                 . "(function() {\n"

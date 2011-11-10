@@ -38,7 +38,7 @@ require_once 'Utils/DataAttrs.php';
 
 class Socialeesta {
     public $return_data;
-    
+    const CLASS_NAME = 'Socialeesta_ext';
     /**
      * Constructor
      */
@@ -71,7 +71,7 @@ class Socialeesta {
             case 'js':
             default:
                 require_once 'TwitterButtons/Tweet_JS.php';
-                require_once 'Script/TwitterWidgetsJS.php';
+                require_once 'Script/TwitterJS.php';
                 $dataAttrs = new DataAttrs();
                 $dataAttrs->addAttr('url', $params->getUrl());
                 $dataAttrs->addAttr('counturl', $params->getCountUrl());
@@ -80,10 +80,10 @@ class Socialeesta {
                 $dataAttrs->addAttr('count', $params->getCountPosition());
                 $dataAttrs->addAttr('related', $params->getRelatedAccts());
                 $dataAttrs->addAttr('lang', $params->getLang());
-                $button = new Tweet_JS(new TwitterWidgetsJS(), $dataAttrs, $params->getCssId(), $params->getCssClass());
+                $button = new Tweet_JS(new TwitterJS(), $dataAttrs, $params->getCssId(), $params->getCssClass());
                 $button->setId($params->getCssId());
                 $button->setClass($params->getCssClass());
-                $button->setIncludeJs($params->getIncludeJS());
+                $button->setIncludeJS($params->getIncludeJS());
                 return $button->getHtml($params->getLinkText());                
         }
     }
@@ -107,7 +107,7 @@ class Socialeesta {
             case 'js':
             default:
                 require_once 'TwitterButtons/Follow_JS.php';
-                require_once 'Script/TwitterWidgetsJS.php';
+                require_once 'Script/TwitterJS.php';
                 $dataAttr = new DataAttrs();
                 $dataAttr->addAttr('screen-name', $params->getUser());
                 $dataAttr->addAttr('show-count', $params->getFollowerCount());
@@ -117,17 +117,36 @@ class Socialeesta {
                 $dataAttr->addAttr('lang', $params->getLang());
                 $dataAttr->addAttr('width', $params->getWidth());
                 $dataAttr->addAttr('align', $params->getAlign());
-                $button = new Follow_JS(new TwitterWidgetsJS(), $dataAttr, $params->getCssId(), $params->getCssClass());
+                $button = new Follow_JS(new TwitterJS(), $dataAttr, $params->getCssId(), $params->getCssClass());
                 $button->setId($params->getCssId());
                 $button->setClass($params->getCssClass());
-                $button->setIncludeJs($params->getIncludeJS());
+                $button->setIncludeJS($params->getIncludeJS());
                 return $button->getHtml();
         }
 
     } // end function follow()
     
     function like(){ //Facebook Like Buttons
-        global $IN;
+        require_once 'TemplateParams/FacebookLike.php';
+        $params = new TemplateParams_FacebookLike($this->EE->TMPL);
+        
+        switch($params->getType()){
+            case "iframe":
+                break;
+            case "html5":
+            default:
+                require_once 'FacebookButtons/FacebookLike_HTML5.php';
+                $dataAttr = new DataAttrs();
+                $dataAttr->addAttr('send', $params->getSend());
+                $dataAttr->addAttr('width', $params->getWidth());
+                $dataAttr->addAttr('layout', $params->getLayout();
+                $dataAttr->addAttr('show-faces', $params->getShowFaces());
+                $dataAttr->addAttr('font', $params->getFont());
+                
+                $button = new FacebookLike_HTML5(new FacebookJS(), $dataAttr);
+                $button->setIncludeJS($params->getIncludeJS());
+        }
+        
         // Assign variables to params or defaults.
         $url = $this->EE->TMPL->fetch_param('url', $this->EE->uri->config->config["site_url"]);
         $type = $this->EE->TMPL->fetch_param('type', 'iframe');
@@ -171,16 +190,21 @@ class Socialeesta {
     function scripts(){
         require_once 'Script/FacebookJS.php';
         require_once 'Script/GoogleJS.php';
-        require_once 'Script/TwitterWidgetsJS.php';
-        require_once 'Script/Scripts.php';
+        require_once 'Script/TwitterJS.php';
+        require_once 'Script/JSLibraries.php';
+        require_once 'TemplateParams/Scripts.php';
+        $params = new TemplateParams_Scripts($this->EE->TMPL);
         
-        $scripts = new JsLibraries(new FacebookJS, new GoogleJS, new TwitterWidgetsJS);
+        $scripts = new JSLibraries($params, new GoogleJS(), new TwitterJS(), new FacebookJS() );
+        
         return $scripts->getScripts();
     }
-    // function plusone() {
-    //     
-    //             
-    // } // end plusone
+    
+    
+    
+    
+    
+    
     // ----------------------------------------------------------------
     
     /**

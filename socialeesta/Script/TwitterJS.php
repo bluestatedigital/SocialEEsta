@@ -1,9 +1,9 @@
 <?php 
 
-class TwitterWidgetsJS {
+class TwitterJS {
     const URL = '//platform.twitter.com/widgets.js';
 
-    public function getHtml() {
+    public function asyncScript() {
         return "<script>\n"
             . "(function(){\n"
             . "if ( !document.getElementById('socialeesta-tw') ){\n"

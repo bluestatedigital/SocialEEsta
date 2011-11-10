@@ -40,8 +40,8 @@ class TemplateParams_Tweet {
     function getLang(){
         return $this->_eeTemplate->fetch_param('language', 'en');
     }
-    public function getIncludeJs() {
-        return $this->_eeTemplate->fetch_param('include_js', 'yes') == 'yes';
+    public function getIncludeJS() {
+        return $this->_eeTemplate->fetch_param('include_js', 'no') == 'yes';
     }
     
 }
