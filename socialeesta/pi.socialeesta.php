@@ -218,12 +218,17 @@ class Socialeesta {
 
     SocialEEsta defaults to the HTML5 versions of these buttons; use the {exp:socialeesta:scripts} tag to add the Javascript required for each of these buttons to work.
 
+    The tags:
+    =======
+    {exp:socialeesta:scripts}
+    {exp:socialeesta:tweet}
+    {exp:socialeesta:follow}
+    {exp:socialeesta:like}
+    {exp:socialeesta:plusone}
 
-    =============================
-    = Load Javascript Required by Social Buttons =
-    =         {exp:socialeesta:scripts}           =
-    =============================
-
+    ========================================================
+    = Load Javascript Required by Social Buttons: {exp:socialeesta:scripts}  =
+    ========================================================
 
     Example tag:
     **************
@@ -238,9 +243,10 @@ class Socialeesta {
         - fb_channel_url  :  This is optional, but Facebook recommends it. See https://developers.facebook.com/docs/reference/javascript/ for more information.
 
 
-    =============================
-    = Twitter "Tweet" Button Parameters =
-    =============================
+
+    =====================================
+    = Twitter Tweet Button: {exp:socialeesta:tweet} =
+    =====================================
 
     Example tag:
     **************
@@ -258,14 +264,13 @@ class Socialeesta {
 
 
 
-    ==============================
-    = Twitter "Follow" Button Parameters =
-    ==============================
+    ======================================
+    = Twitter Follow Button: {exp:socialeesta:follow}  =
+    ======================================
 
     Example tag:
     **************
     {exp:socialeesta:follow user="bsdwire" follower_count="yes" type="iframe"}
-
 
     Required Parameters
     **************************
@@ -280,8 +285,6 @@ class Socialeesta {
     - link_color  :  Default value: none  :  Specify a hexadecimal color code for the Username text. Omit the '#' character.
     - lang  :  Default value: "en"  :  Specify the language for the button using ISO-639-1 Language code. Defaults to "en" (english).
 
-
-
     Javascript button specific parameters — not supported with iframe version
     **********************************************************************************
     - width  :  A pixel or percentage value to set the button element width
@@ -289,11 +292,9 @@ class Socialeesta {
 
 
 
-
-
-    =============================
-    = Facebook Like Button Parameters =
-    =============================
+    =====================================
+    = Facebook Like Button: {exp:socialeesta:like} =
+    =====================================
 
     Example tag: 
     **************
@@ -301,31 +302,30 @@ class Socialeesta {
 
     All parameters are optional.
 
-        - href  :  The URL to Like on Facebook. Default value: the page on which the button is present.
-        - type  :  "html5" or "iframe" :  Defaults to "html5". 
-        - layout  :  "standard", "button_count" or "box_count"  :  Default value: "button_count"  :  1) "standard" : No counter is displayed; 2) "button_count" : A counter is displayed to the right of the like button; 3) "box_count" : A counter is displayed above the like button
-        - verb  :  "like" or "recommend"  :  Default value: "like".
-        - color  :  "light" or "dark"  :  Default value: "light".
-        - font :  "arial", "lucida grande", "segoe ui", "tahoma", "trebuchet ms", "verdana" : Default value: "lucida grande" (Facebook's default)
-
+    - href  :  The URL to Like on Facebook. Default value: the page on which the button is present.
+    - type  :  "html5" or "iframe" :  Defaults to "html5". 
+    - layout  :  "standard", "button_count" or "box_count"  :  Default value: "button_count"  :  1) "standard" : No counter is displayed; 2) "button_count" : A counter is displayed to the right of the like button; 3) "box_count" : A counter is displayed above the like button
+    - verb  :  "like" or "recommend"  :  Default value: "like".
+    - color  :  "light" or "dark"  :  Default value: "light".
+    - font :  "arial", "lucida grande", "segoe ui", "tahoma", "trebuchet ms", "verdana" : Default value: "lucida grande" (Facebook's default)
 
         Layout-specific parameters
-        ************************************************************************
+        ******************************
         The height and width parameters have default values that depend upon the button layout chosen. Refer to Facebook's documentation for more info: https://developers.facebook.com/docs/reference/plugins/like/
+        
         - faces  :  "true" or "false"  :  Default value: "false"  :  whether to display profile photos below the button (standard layout only)
-
         - width  :  a value in pixels
         - height  :  a value in pixels
 
 
-    =============================
-    = Google Plus One Button Parameters =
-    =============================
+
+    ==========================================
+    = Google Plus One Button: {exp:socialeesta:plusone} =
+    ==========================================
 
     Example tag: 
     **************
     {exp:socialeesta:plusone size="standard" annotation="inline" href="{site_url}"}
-
 
     All parameters are optional:
 
@@ -334,8 +334,6 @@ class Socialeesta {
         - annotation  :  'none', 'bubble', or 'inline'  :  Default value: bubble. 
         - width  :  a value in pixels (e.g. '250')  :  Applied only to buttons where annotation="inline"
         - callback  :  If specified, this function is called after the user clicks the +1 button. See the Google +1 button docs for additional details: https://developers.google.com/+/plugins/+1button/
-
-
 
 
     
