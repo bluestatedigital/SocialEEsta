@@ -128,18 +128,32 @@ class Socialeesta {
     
     function like(){ //Facebook Like Buttons
         require_once 'TemplateParams/FacebookLike.php';
+        require_once 'Script/FacebookJS.php';
         $params = new TemplateParams_FacebookLike($this->EE->TMPL);
         
         switch($params->getType()){
             case "iframe":
+                require_once 'FacebookButtons/FacebookLike_Iframe.php';
+                $queryString = new QueryString();
+                $queryString->addParam('href', $params->getHref());
+                $queryString->addParam('send', $params->getSend());
+                $queryString->addParam('layout', $params->getLayout());
+                $queryString->addParam('show-faces', $params->getShowFaces());
+                $queryString->addParam('width', $params->getWidth());
+                $queryString->addParam('action', $params->getAction());
+                $queryString->addParam('font', $params->getFont());
+                $queryString->addParam('colorscheme', $params->getColor());
+                $queryString->addParam('ref', $params->getRef());
+                $iframe = new FacebookLike_Iframe($queryString);
+                return $iframe->getHtml();
                 break;
             case "html5":
             default:
                 require_once 'FacebookButtons/FacebookLike_HTML5.php';
                 $dataAttr = new DataAttrs();
-                $dataAttr->addAttr('send', $params->getHref());
+                $dataAttr->addAttr('href', $params->getHref());
                 $dataAttr->addAttr('send', $params->getSend());
-                $dataAttr->addAttr('layout', $params->getLayout();
+                $dataAttr->addAttr('layout', $params->getLayout());
                 $dataAttr->addAttr('show-faces', $params->getShowFaces());
                 $dataAttr->addAttr('width', $params->getWidth());
                 $dataAttr->addAttr('action', $params->getAction());
@@ -148,47 +162,11 @@ class Socialeesta {
                 $dataAttr->addAttr('ref', $params->getRef());
                 
                 $button = new FacebookLike_HTML5(new FacebookJS(), $dataAttr);
+                $button->setClass($params->getCssClass());
                 $button->setIncludeJS($params->getIncludeJS());
+                return $button->getHtml();
         }
         
-        // Assign variables to params or defaults.
-        $url = $this->EE->TMPL->fetch_param('url', $this->EE->uri->config->config["site_url"]);
-        $type = $this->EE->TMPL->fetch_param('type', 'iframe');
-        $layout = $this->EE->TMPL->fetch_param('layout', 'standard');
-        $faces = $this->EE->TMPL->fetch_param('faces', 'false');
-        $faces === "yes" ? $faces = true : $faces = false; // convert to boolean
-        switch ( $layout ){ //The like button has 3 layout modes; each has their own default height/width values
-            case "standard":
-                $width = $this->EE->TMPL->fetch_param('width', '450');
-                // Use the $faces param to figure height default for standard layout
-                $faces ? $height = $this->EE->TMPL->fetch_param('height', '80') : $height = $this->EE->TMPL->fetch_param('height', '35');
-                break;
-            case "button_count":
-                $width = $this->EE->TMPL->fetch_param('width', '90');
-                $height = $this->EE->TMPL->fetch_param('height', '20');
-                break;
-            case "box_count":
-                $width = $this->EE->TMPL->fetch_param('width', '55');
-                $height = $this->EE->TMPL->fetch_param('height', '65');
-                break;
-
-        }
-        $verb = $this->EE->TMPL->fetch_param('verb', 'like');
-        $color = $this->EE->TMPL->fetch_param('color', 'light');
-        
-        // Build Like Button Code
-        
-        switch ( $type ){
-            case "xfbml":
-                $like_button = '<fb:like href="' . $url . '" send="false" width="' . $width . '" show_faces="' . $faces . '" colorscheme="' . $color .'" font=""></fb:like>';
-                break;
-            case "iframe";
-            default:
-                $like_button = '<iframe src="http://www.facebook.com/plugins/like.php?href=' . urlencode($url) . '&amp;send=false&amp;layout=' . $layout .'&amp;width=' . $width . '&amp;show_faces=' . $faces . '&amp;action=' . $verb . '&amp;colorscheme=' . $color . '&amp;font&amp;height=' . $height . '" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:' . $width . 'px; height:' . $height . 'px;" allowTransparency="true"></iframe>';
-                break;
-        } // end switch($type)
-        
-        return $like_button;
         
     }
     function scripts(){

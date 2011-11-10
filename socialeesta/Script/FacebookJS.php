@@ -2,6 +2,24 @@
 
 class FacebookJS {
 
+    private $_initOptions = array(
+        "status" => true,
+        "cookie" => true,
+        "oauth" => true,
+        "xfbml" => true
+    );
+
+    public function setAppId($appId){
+        if (!is_null($appId)){
+            $this->_initOptions["appid"] = $appId;
+        }
+    }
+    
+    public function setChannelUrl($channelUrl){
+        if (!is_null($channelUrl)){
+            $this->_initOptions["channelURL"] = $channelUrl;
+        }
+    }
     
     public function asyncScript(){
         return "<script>\n"
@@ -13,22 +31,13 @@ class FacebookJS {
                 . " }(document));\n"
                 . "</script>";
     }
-    public function fbInit($appId, $channelUrl){
-        $initOptions = array(
-            "appID" => $appId,
-            "status" => true,
-            "cookie" => true,
-            "oauth" => true,
-            "xfbml" => true
-        );
-        if (!is_null($channelUrl)){
-            $initOptions["channelURL"] = $channelUrl;
-        }
+    public function getFbInit(){
+
         return "<div id='fb-root'></div>\n"
         ."<script>\n"
         ." window.fbAsyncInit = function() {\n"
         ."FB.init(\n"
-        . json_encode((object) $initOptions) 
+        . json_encode((object) $this->_initOptions) 
         . "\n);};</script>";
     }
 }

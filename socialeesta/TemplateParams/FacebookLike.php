@@ -8,7 +8,9 @@ class TemplateParams_FacebookLike {
         $this->_eeTemplate = $eeTemplate;
     }
 
-
+    function getType() {
+        return $this->_eeTemplate->fetch_param('type', 'html5');
+    }
     function getHref() {
         return $this->_eeTemplate->fetch_param('href');
     }
@@ -19,7 +21,7 @@ class TemplateParams_FacebookLike {
         return $this->_eeTemplate->fetch_param('layout', "button_count");
     }
     function getShowFaces() {
-        return $this->_eeTemplate->fetch_param('show-faces', "false");
+        return $this->_eeTemplate->fetch_param('show_faces', "false");
     }
 
     function getWidth(){
@@ -38,18 +40,14 @@ class TemplateParams_FacebookLike {
     function getRef(){
         return $this->_eeTemplate->fetch_param('ref');
     }
+    function getCssClass(){
+        return $this->_eeTemplate->fetch_param('class');
+    }
+    function getCssId(){
+        return $this->_eeTemplate->fetch_param('id');
+    }
     function getIncludeJS(){
         return $this->_eeTemplate->fetch_param('include_js', "no") === "yes";
     }
 }
 
-
-$dataAttr->addAttr('href', $params->getHref());
-$dataAttr->addAttr('send', $params->getSend());
-$dataAttr->addAttr('layout', $params->getLayout();
-$dataAttr->addAttr('show-faces', $params->getShowFaces());
-$dataAttr->addAttr('width', $params->getWidth());
-$dataAttr->addAttr('action', $params->getAction());
-$dataAttr->addAttr('font', $params->getFont());
-$dataAttr->addAttr('colorscheme', $params->getColor());
-$dataAttr->addAttr('ref', $params->getRef());

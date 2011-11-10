@@ -20,13 +20,9 @@ class JSLibraries {
         $_scripts = "";
         if ($this->_params->includeFacebook()){
             $_scripts .= $this->_facebookJS->asyncScript();
-            if (isset($this->_params->_fbAppId)){
-                $_scripts .= $this->_facebookJS->fbInit($this->_params->_fbAppId);
-            }
-            if (isset($this->_fbChannelUrl)){
-                $_scripts .= $this->_facebookJS->fbInit($this->_params->_fbChannelUrl);
-            }
-
+            $this->_facebookJS->setAppId($this->_params->getFbAppId());
+            $this->_facebookJS->setChannelUrl($this->_params->getFbChannelUrl());
+            $_scripts .= $this->_facebookJS->getFbInit();
         }
         if ($this->_params->includeGoogle()){
             $_scripts .= $this->_googleJS->asyncScript();

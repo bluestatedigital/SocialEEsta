@@ -18,7 +18,7 @@ class TemplateParams_Scripts {
         return $this->_eeTemplate->fetch_param('twitter', "yes") === "yes";
     }
     function getFbChannelUrl() {
-        return $this->_eeTemplate->fetch_param('fb_channel_url');
+        return $this->_eeTemplate->fetch_param('fb_channel_url', NULL);
     }
     function getFbAppId(){
         return $this->_eeTemplate->fetch_param('fb_app_id');

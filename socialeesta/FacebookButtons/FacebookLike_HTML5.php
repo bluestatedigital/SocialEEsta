@@ -21,7 +21,7 @@ class FacebookLike_HTML5 {
     }
 
     public function setClass($class) {
-        $this->_class = self::SHARE_BUTTON_CLASS;
+        $this->_class = self::LIKE_BUTTON_CLASS;
         if (!is_null($class)) {
             $this->_class .= " " . $class;
         }
@@ -38,11 +38,10 @@ class FacebookLike_HTML5 {
             $html .= $this->_widget->asyncScript();
         }
 
-        $html .= '<div ';
+        $html .= '<div class="' 
+        . $this->_class 
+        . '" ';
         
-        if (!is_null($this->_class)) {
-            $html .= ' class="' . $this->_class . '"';
-        }
 
         if (!is_null($this->_id)) {
             $html .= ' id="' . $this->_id . '"';
