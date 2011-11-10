@@ -8,7 +8,7 @@ class TemplateParams_TwitterTweet {
         $this->_eeTemplate = $eeTemplate;
     }
     function getType() {
-        return $this->_eeTemplate->fetch_param('type', 'js');
+        return $this->_eeTemplate->fetch_param('type', 'html5');
     }
     function getUrl() {
         return $this->_eeTemplate->fetch_param('url');

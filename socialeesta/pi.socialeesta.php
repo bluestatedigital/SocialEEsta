@@ -67,7 +67,7 @@ class Socialeesta {
                 $iframe = new Tweet_Iframe($queryString);
                 return $iframe->getHtml();
                 
-            case 'js':
+            case 'html5':
             default:
                 require_once 'TwitterButtons/Tweet_JS.php';
                 require_once 'Script/TwitterJS.php';
@@ -103,7 +103,7 @@ class Socialeesta {
                 $queryString->addParam('lang', $params->getLang());
                 $iframe = new FollowIframe($queryString, $params->getWidth());
                 return $iframe->getHtml();
-            case 'js':
+            case 'html5':
             default:
                 require_once 'TwitterButtons/Follow_JS.php';
                 require_once 'Script/TwitterJS.php';
@@ -255,7 +255,7 @@ class Socialeesta {
     All Parameters are optional.
 
         - url  :  The URL to share on Twitter. The URL should be absolute.
-        - type  :  "js", "iframe" :  Default value: "js"  :  Defines whether to use HTML5 version or iframe version of the Tweet Button.
+        - type  :  "html5", "iframe" :  Default value: "html5"  :  Defines whether to use HTML5 version or iframe version of the Tweet Button.
         - count_url  :  The URL to which your shared URL resolves to; useful is the URL you are sharing has already been shortened. This affects the display of the Tweet count.
         - via  :  Screen name of the user to attribute the Tweet to.
         - text  :  Text of the suggested Tweet.
@@ -278,7 +278,7 @@ class Socialeesta {
 
     Optional Parameters
     **************************
-    - type  :  "js" or "iframe"  :  Default value: "js"  :  Defines whether to use HTML5 version or iframe version of the Follow Button.
+    - type  :  "html5" or "iframe"  :  Default value: "html5"  :  Defines whether to use HTML5 version or iframe version of the Follow Button.
     - follower_count  :  "yes" or "no"  :  Default value: "no"  :  Whether to display the follower count adjacent to the follow button. 
     - button_color  :  "blue" or "grey"  :  Default value: "blue"  :  Change the color of the button itself.
     - text_color  :  Default value: none  :  Specify a hexadecimal color code for the "Followers count" and "Following state" text. Omit the '#' character.
