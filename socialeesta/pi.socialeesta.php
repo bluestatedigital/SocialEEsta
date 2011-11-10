@@ -137,11 +137,15 @@ class Socialeesta {
             default:
                 require_once 'FacebookButtons/FacebookLike_HTML5.php';
                 $dataAttr = new DataAttrs();
+                $dataAttr->addAttr('send', $params->getHref());
                 $dataAttr->addAttr('send', $params->getSend());
-                $dataAttr->addAttr('width', $params->getWidth());
                 $dataAttr->addAttr('layout', $params->getLayout();
                 $dataAttr->addAttr('show-faces', $params->getShowFaces());
+                $dataAttr->addAttr('width', $params->getWidth());
+                $dataAttr->addAttr('action', $params->getAction());
                 $dataAttr->addAttr('font', $params->getFont());
+                $dataAttr->addAttr('colorscheme', $params->getColor());
+                $dataAttr->addAttr('ref', $params->getRef());
                 
                 $button = new FacebookLike_HTML5(new FacebookJS(), $dataAttr);
                 $button->setIncludeJS($params->getIncludeJS());

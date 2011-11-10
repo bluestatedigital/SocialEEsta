@@ -27,7 +27,7 @@ class Tweet_Iframe {
 
     public function getHtml(){
         return '<iframe allowtransparency="true" frameborder="0" scrolling="no" src="' 
-                . $this->IFRAME_URL 
+                . self::IFRAME_URL 
                 . $this->_queryString
                 . '" style="width:'
                 . $this->_iframeWidth
