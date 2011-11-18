@@ -101,7 +101,7 @@ class Socialeesta {
                 $queryString->addParam('text_color', $params->getTextColor());
                 $queryString->addParam('link_color', $params->getLinkColor());
                 $queryString->addParam('lang', $params->getLang());
-                $iframe = new FollowIframe($queryString, $params->getWidth());
+                $iframe = new Follow_Iframe($queryString, $params->getWidth());
                 return $iframe->getHtml();
             case 'html5':
             default:
