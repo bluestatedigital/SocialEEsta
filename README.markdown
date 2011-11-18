@@ -90,7 +90,7 @@ All Parameters are optional.
 ###Example tag: 
 
 ```
-{exp:socialeesta:like url="{pages_url}" type="iframe" verb="recommend" color="light" layout="button_count"}
+{exp:socialeesta:like url="{pages_url}" type="iframe" action="recommend" color="light" layout="button_count"}
 ```
 
 All parameters are optional.
@@ -98,7 +98,7 @@ All parameters are optional.
 - href  :  The URL to Like on Facebook. Default value: the page on which the button is present.
 - type  :  "html5" or "iframe" :  Defaults to "html5". 
 - layout  :  "standard", "button_count" or "box_count"  :  Default value: "button_count"  :  1) "standard" : No counter is displayed; 2) "button_count" : A counter is displayed to the right of the like button; 3) "box_count" : A counter is displayed above the like button
-- verb  :  "like" or "recommend"  :  Default value: "like".
+- action  :  "like" or "recommend"  :  Default value: "like".
 - color  :  "light" or "dark"  :  Default value: "light".
 - font :  "arial", "lucida grande", "segoe ui", "tahoma", "trebuchet ms", "verdana" : Default value: "lucida grande" (Facebook's default)
 

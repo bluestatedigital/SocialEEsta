@@ -1,6 +1,6 @@
 <?php
 
-class Tweet_Iframe {
+class Follow_Iframe {
     const IFRAME_URL = "//platform.twitter.com/widgets/follow_button.html";
     
     private $_queryString;
