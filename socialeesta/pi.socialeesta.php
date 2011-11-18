@@ -314,7 +314,7 @@ class Socialeesta {
         ******************************
         The height and width parameters have default values that depend upon the button layout chosen. Refer to Facebook's documentation for more info: https://developers.facebook.com/docs/reference/plugins/like/
         
-        - faces  :  "true" or "false"  :  Default value: "false"  :  whether to display profile photos below the button (standard layout only)
+        - show_faces  :  "true" or "false"  :  Default value: "false"  :  whether to display profile photos below the button (standard layout only)
         - width  :  a value in pixels
         - height  :  a value in pixels
 
