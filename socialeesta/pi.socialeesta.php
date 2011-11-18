@@ -321,7 +321,7 @@ class Socialeesta {
 
 
     ==========================================
-    = Google Plus One Button: {exp:socialeesta:plusone} =
+    = Google +1 Button: {exp:socialeesta:plusone} =
     ==========================================
 
     Example tag: 

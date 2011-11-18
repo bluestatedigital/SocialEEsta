@@ -113,7 +113,7 @@ The height and width parameters have default values that depend upon the button 
 
 
 
-## Google Plus One Button: {exp:socialeesta:plusone}
+## Google +1 Button: {exp:socialeesta:plusone}
 
 ###Example tag: 
 
