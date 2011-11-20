@@ -263,6 +263,8 @@ class Socialeesta {
         - count_position  :  "none", "horizontal", or "vertical"  :  Default value: "horizontal".
         - related  :  Up to 2 related accounts, separated by a comma. These accounts are suggested to the user after they publish the Tweet.
 
+        See Twitter's documentation for additional information about any of the above parameters: https://dev.twitter.com/docs/tweet-button
+
 
 
     ======================================
@@ -291,6 +293,7 @@ class Socialeesta {
     - width  :  A pixel or percentage value to set the button element width
     - align  :  "right" or "left" - Defaults to "left".
 
+    See Twitter's documentation for additional information about any of the above parameters: https://dev.twitter.com/docs/follow-button
 
 
     =====================================
@@ -334,7 +337,9 @@ class Socialeesta {
         - size  :  'small', 'medium', 'standard', or 'tall  :  Default value: 'medium'.
         - annotation  :  'none', 'bubble', or 'inline'  :  Default value: bubble. 
         - width  :  a value in pixels (e.g. '250')  :  Applied only to buttons where annotation="inline"
-        - callback  :  If specified, this function is called after the user clicks the +1 button. See the Google +1 button docs for additional details: https://developers.google.com/+/plugins/+1button/
+        - callback  :  If specified, this function is called after the user clicks the +1 button. 
+        
+        See the Google +1 button docs for additional details: https://developers.google.com/+/plugins/+1button/
 
 
     
