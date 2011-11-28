@@ -130,4 +130,4 @@ All parameters are optional:
 - width  :  a value in pixels (e.g. '250')  :  Applied only to buttons where annotation="inline"
 - callback  :  If specified, this function is called after the user clicks the +1 button. 
 
-Refer to the [Google +1 button docs](https://developers.google.com/+/plugins/+1button/) for additional details: 
+Refer to the [Google +1 button docs](https://developers.google.com/+/plugins/+1button/) for additional details.
