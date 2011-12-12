@@ -302,7 +302,7 @@ class Socialeesta {
 
     Example tag: 
     **************
-    {exp:socialeesta:like url="{pages_url}" type="iframe" action="recommend" color="light" layout="button_count"}
+    {exp:socialeesta:like href="{pages_url}" type="iframe" action="recommend" color="light" layout="button_count"}
 
     All parameters are optional.
 
