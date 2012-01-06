@@ -16,17 +16,11 @@ class TemplateParams_TwitterFollow {
     function getFollowerCount(){
         return $this->_eeTemplate->fetch_param('follower_count');
     }
+    function getShowScreenName(){
+        return $this->_eeTemplate->fetch_param('show_username');
+    }
     function getWidth(){
         return $this->_eeTemplate->fetch_param('follower_count') === "yes" ? $this->_eeTemplate->fetch_param('width','300') : $this->_eeTemplate->fetch_param('width','200');
-    }
-    function getButtonColor(){
-        return $this->_eeTemplate->fetch_param('button_color', 'blue');
-    }
-    function getTextColor(){
-        return $this->_eeTemplate->fetch_param('text_color');
-    }
-    function getLinkColor(){
-        return $this->_eeTemplate->fetch_param('link_color');
     }
     function getAlign(){
         return $this->_eeTemplate->fetch_param('align');
