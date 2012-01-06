@@ -70,10 +70,8 @@ See [Twitter's documentation](https://dev.twitter.com/docs/tweet-button) for add
 ###Optional Parameters
 
 - type  :  "html5" or "iframe"  :  Default value: "html5"  :  Defines whether to use HTML5 version or iframe version of the Follow button.
+- show_screen_name  :  "yes" or "no"  :  Default value: "yes"  : Defines whether to show the user's screen name
 - follower_count  :  "yes" or "no"  :  Default value: "no"  :  Whether to display the follower count adjacent to the Follow button. 
-- button_color  :  "blue" or "grey"  :  Default value: "blue"  :  Change the color of the button itself.
-- text_color  :  Default value: none  :  Specify a hexadecimal color code for the "Followers count" and "Following state" text. Omit the '#' character.
-- link_color  :  Default value: none  :  Specify a hexadecimal color code for the Username text. Omit the '#' character.
 - lang  :  Default value: "en"  :  Specify the language for the button using ISO-639-1 Language code. Defaults to "en" (english).
 
 ###Javascript button specific parameters — not supported with iframe version

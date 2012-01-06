@@ -96,10 +96,8 @@ class Socialeesta {
                 require_once 'TwitterButtons/Follow_Iframe.php';
                 $queryString = new QueryString();
                 $queryString->addParam('screen_name', $params->getUser());
-                $queryString->addParam('show_count', $params->getFollowerCount());
-                $queryString->addParam('button', $params->getButtonColor());
-                $queryString->addParam('text_color', $params->getTextColor());
-                $queryString->addParam('link_color', $params->getLinkColor());
+                $queryString->addParam('show_count', $params->getFollowerCount() ? "true" : "false");
+                $queryString->addParam('show_screen_name', $params->getShowScreenName() ? "true" : "false");
                 $queryString->addParam('lang', $params->getLang());
                 $iframe = new Follow_Iframe($queryString, $params->getWidth());
                 return $iframe->getHtml();
@@ -109,14 +107,12 @@ class Socialeesta {
                 require_once 'Script/TwitterJS.php';
                 $dataAttr = new DataAttrs();
                 $dataAttr->addAttr('screen-name', $params->getUser());
-                $dataAttr->addAttr('show-count', $params->getFollowerCount());
-                $dataAttr->addAttr('button', $params->getButtonColor());
-                $dataAttr->addAttr('text-color', $params->getTextColor());
-                $dataAttr->addAttr('link-color', $params->getLinkColor());
+                $dataAttr->addAttr('show-screen-name', $params->getShowScreenName() ? "true" : "false");
+                $dataAttr->addAttr('show-count', $params->getFollowerCount() ? "true" : "false");
                 $dataAttr->addAttr('lang', $params->getLang());
                 $dataAttr->addAttr('width', $params->getWidth());
                 $dataAttr->addAttr('align', $params->getAlign());
-                $button = new Follow_JS(new TwitterJS(), $dataAttr, $params->getCssId(), $params->getCssClass());
+                $button = new Follow_JS(new TwitterJS(), $dataAttr);
                 $button->setId($params->getCssId());
                 $button->setClass($params->getCssClass());
                 $button->setIncludeJS($params->getIncludeJS());
@@ -282,10 +278,8 @@ class Socialeesta {
     Optional Parameters
     **************************
     - type  :  "html5" or "iframe"  :  Default value: "html5"  :  Defines whether to use HTML5 version or iframe version of the Follow Button.
+    - show_screen_name  :  "yes" or "no"  : Default value: "yes"  :  Defines whether to display the username within the button
     - follower_count  :  "yes" or "no"  :  Default value: "no"  :  Whether to display the follower count adjacent to the follow button. 
-    - button_color  :  "blue" or "grey"  :  Default value: "blue"  :  Change the color of the button itself.
-    - text_color  :  Default value: none  :  Specify a hexadecimal color code for the "Followers count" and "Following state" text. Omit the '#' character.
-    - link_color  :  Default value: none  :  Specify a hexadecimal color code for the Username text. Omit the '#' character.
     - lang  :  Default value: "en"  :  Specify the language for the button using ISO-639-1 Language code. Defaults to "en" (english).
 
     Javascript button specific parameters — not supported with iframe version
