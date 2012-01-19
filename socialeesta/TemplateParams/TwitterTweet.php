@@ -40,6 +40,9 @@ class TemplateParams_TwitterTweet {
     function getLang(){
         return $this->_eeTemplate->fetch_param('language', 'en');
     }
+    function getSize(){
+        return $this->_eeTemplate->fetch_param('size', 'medium');
+    }
     public function getIncludeJS() {
         return $this->_eeTemplate->fetch_param('include_js', 'no') == 'yes';
     }

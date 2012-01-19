@@ -73,6 +73,8 @@ See [Twitter's documentation](https://dev.twitter.com/docs/tweet-button) for add
 - show_screen_name  :  "yes" or "no"  :  Default value: "yes"  : Defines whether to show the user's screen name
 - follower_count  :  "yes" or "no"  :  Default value: "no"  :  Whether to display the follower count adjacent to the Follow button. 
 - lang  :  Default value: "en"  :  Specify the language for the button using ISO-639-1 Language code. Defaults to "en" (english).
+- size  : "large" or "medium  :  Default value: "medium"  : Specifies the size of the follow button.
+
 
 ###Javascript button specific parameters — not supported with iframe version
 

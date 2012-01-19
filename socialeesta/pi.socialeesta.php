@@ -25,8 +25,8 @@
  */
 
 $plugin_info = array(
-    'pi_name'       => 'SocialEEsta',
-    'pi_version'    => '1.0.1',
+    'pi_name'       => 'BSD SocialEEsta',
+    'pi_version'    => '1.1',
     'pi_author'     => 'Douglas Back',
     'pi_author_url' => 'http://www.bluestatedigital.com',
     'pi_description'=> 'Generate social sharing plugins for your EE pages.',
@@ -64,6 +64,7 @@ class Socialeesta {
                 $queryString->addParam('count', $params->getCountPosition());
                 $queryString->addParam('related', $params->getRelatedAccts());
                 $queryString->addParam('lang', $params->getLang());
+                $queryString->addParam('size', $params->getSize());
                 $iframe = new Tweet_Iframe($queryString);
                 return $iframe->getHtml();
                 
@@ -79,6 +80,8 @@ class Socialeesta {
                 $dataAttrs->addAttr('count', $params->getCountPosition());
                 $dataAttrs->addAttr('related', $params->getRelatedAccts());
                 $dataAttrs->addAttr('lang', $params->getLang());
+                $dataAttrs->addAttr('size', $params->getSize());
+                
                 $button = new Tweet_JS(new TwitterJS(), $dataAttrs, $params->getCssId(), $params->getCssClass());
                 $button->setId($params->getCssId());
                 $button->setClass($params->getCssClass());
@@ -99,6 +102,7 @@ class Socialeesta {
                 $queryString->addParam('show_count', $params->getFollowerCount() ? "true" : "false");
                 $queryString->addParam('show_screen_name', $params->getShowScreenName() ? "true" : "false");
                 $queryString->addParam('lang', $params->getLang());
+                $queryString->addParam('size', $params->getSize());
                 $iframe = new Follow_Iframe($queryString, $params->getWidth());
                 return $iframe->getHtml();
             case 'html5':
@@ -112,6 +116,7 @@ class Socialeesta {
                 $dataAttr->addAttr('lang', $params->getLang());
                 $dataAttr->addAttr('width', $params->getWidth());
                 $dataAttr->addAttr('align', $params->getAlign());
+                $dataAttr->addAttr('size', $params->getSize());
                 $button = new Follow_JS(new TwitterJS(), $dataAttr);
                 $button->setId($params->getCssId());
                 $button->setClass($params->getCssClass());
@@ -258,6 +263,7 @@ class Socialeesta {
         - text  :  Text of the suggested Tweet.
         - count_position  :  "none", "horizontal", or "vertical"  :  Default value: "horizontal".
         - related  :  Up to 2 related accounts, separated by a comma. These accounts are suggested to the user after they publish the Tweet.
+        - size  : "large" or "medium  :  Default value: "medium"  : Specifies the size of the button.
 
         See Twitter's documentation for additional information about any of the above parameters: https://dev.twitter.com/docs/tweet-button
 
@@ -281,7 +287,8 @@ class Socialeesta {
     - show_screen_name  :  "yes" or "no"  : Default value: "yes"  :  Defines whether to display the username within the button
     - follower_count  :  "yes" or "no"  :  Default value: "no"  :  Whether to display the follower count adjacent to the follow button. 
     - lang  :  Default value: "en"  :  Specify the language for the button using ISO-639-1 Language code. Defaults to "en" (english).
-
+    - size  : "large" or "medium  :  Default value: "medium"  : Specifies the size of the button.
+    
     Javascript button specific parameters — not supported with iframe version
     **********************************************************************************
     - width  :  A pixel or percentage value to set the button element width
