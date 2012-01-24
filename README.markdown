@@ -1,4 +1,4 @@
-#BSD SocialEEsta v1.0
+#BSD SocialEEsta v1.1
 
 ##All Social. No Fuss.
 
