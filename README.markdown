@@ -52,6 +52,8 @@ All Parameters are optional.
 - text  :  Text of the suggested Tweet.
 - count_position  :  "none", "horizontal", or "vertical"  :  Default value: "horizontal".
 - related  :  Up to 2 related accounts, separated by a comma. These accounts are suggested to the user after they publish the Tweet.
+- size  : "large" or "medium  :  Default value: "medium"  : Specifies the size of the button.
+
 
 See [Twitter's documentation](https://dev.twitter.com/docs/tweet-button) for additional information about any of the above parameters.
 
@@ -69,11 +71,11 @@ See [Twitter's documentation](https://dev.twitter.com/docs/tweet-button) for add
 
 ###Optional Parameters
 
-- type  :  "html5" or "iframe"  :  Default value: "html5"  :  Defines whether to use HTML5 version or iframe version of the Follow button.
-- show_screen_name  :  "yes" or "no"  :  Default value: "yes"  : Defines whether to show the user's screen name
-- follower_count  :  "yes" or "no"  :  Default value: "no"  :  Whether to display the follower count adjacent to the Follow button. 
+- type  :  "html5" or "iframe"  :  Default value: "html5"  :  Defines whether to use HTML5 version or iframe version of the Follow Button.
+- show_screen_name  :  "yes" or "no"  : Default value: "yes"  :  Defines whether to display the username within the button
+- follower_count  :  "yes" or "no"  :  Default value: "no"  :  Whether to display the follower count adjacent to the follow button. 
 - lang  :  Default value: "en"  :  Specify the language for the button using ISO-639-1 Language code. Defaults to "en" (english).
-- size  : "large" or "medium  :  Default value: "medium"  : Specifies the size of the follow button.
+- size  : "large" or "medium  :  Default value: "medium"  : Specifies the size of the button.
 
 
 ###Javascript button specific parameters — not supported with iframe version
