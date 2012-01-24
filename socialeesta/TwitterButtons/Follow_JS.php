@@ -8,7 +8,6 @@ class Follow_JS {
     private $_dataAttrs;
     private $_id;
     private $_class;
-    private $_includeJS = FALSE;
 
     public function __construct(TwitterJS $widget, DataAttrs $dataAttrs) {
         $this->_widget = $widget;
@@ -29,16 +28,8 @@ class Follow_JS {
 
     }
 
-    public function setIncludeJS($include) {
-        $this->_includeJS = (bool) $include;
-    }
-
     public function getHtml() {
         $html = '';
-
-        if ($this->_includeJS) {
-            $html .= $this->_widget->asyncScript();
-        }
 
         $html .= '<a href="' . self::TWITTER_URL . $this->_dataAttrs->fetchAttr("screen-name") . '" ' . $this->_dataAttrs->getAttrs();
 

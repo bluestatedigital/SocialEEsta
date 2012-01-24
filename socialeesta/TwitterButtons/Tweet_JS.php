@@ -8,10 +8,8 @@ class Tweet_JS {
     private $_dataAttrs;
     private $_id;
     private $_class;
-    private $_includeJS = FALSE;
 
-    public function __construct(TwitterJS $widget, DataAttrs $dataAttrs) {
-        $this->_widget = $widget;
+    public function __construct(DataAttrs $dataAttrs) {
         $this->_dataAttrs = $dataAttrs;
     }
 
@@ -28,16 +26,9 @@ class Tweet_JS {
         }
     }
 
-    public function setIncludeJS($include) {
-        $this->_includeJS = (bool) $include;
-    }
-
     public function getHtml($linkText) {
         $html = '';
 
-        if ($this->_includeJS) {
-            $html .= $this->_widget->asyncScript();
-        }
 
         $html .= '<a href="' . self::SHARE_URL . '" ' . $this->_dataAttrs->getAttrs();
 

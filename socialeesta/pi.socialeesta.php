@@ -82,10 +82,9 @@ class Socialeesta {
                 $dataAttrs->addAttr('lang', $params->getLang());
                 $dataAttrs->addAttr('size', $params->getSize());
                 
-                $button = new Tweet_JS(new TwitterJS(), $dataAttrs, $params->getCssId(), $params->getCssClass());
+                $button = new Tweet_JS($dataAttrs);
                 $button->setId($params->getCssId());
                 $button->setClass($params->getCssClass());
-                $button->setIncludeJS($params->getIncludeJS());
                 return $button->getHtml($params->getLinkText());                
         }
     }
@@ -120,7 +119,6 @@ class Socialeesta {
                 $button = new Follow_JS(new TwitterJS(), $dataAttr);
                 $button->setId($params->getCssId());
                 $button->setClass($params->getCssClass());
-                $button->setIncludeJS($params->getIncludeJS());
                 return $button->getHtml();
         }
 
