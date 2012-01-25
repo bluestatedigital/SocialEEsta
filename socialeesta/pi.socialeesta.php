@@ -71,7 +71,6 @@ class Socialeesta {
             case 'html5':
             default:
                 require_once 'TwitterButtons/Tweet_JS.php';
-                require_once 'Script/TwitterJS.php';
                 $dataAttrs = new DataAttrs();
                 $dataAttrs->addAttr('url', $params->getUrl());
                 $dataAttrs->addAttr('counturl', $params->getCountUrl());
@@ -107,7 +106,7 @@ class Socialeesta {
             case 'html5':
             default:
                 require_once 'TwitterButtons/Follow_JS.php';
-                require_once 'Script/TwitterJS.php';
+
                 $dataAttr = new DataAttrs();
                 $dataAttr->addAttr('screen-name', $params->getUser());
                 $dataAttr->addAttr('show-screen-name', $params->getShowScreenName() ? "true" : "false");
@@ -116,7 +115,7 @@ class Socialeesta {
                 $dataAttr->addAttr('width', $params->getWidth());
                 $dataAttr->addAttr('align', $params->getAlign());
                 $dataAttr->addAttr('size', $params->getSize());
-                $button = new Follow_JS(new TwitterJS(), $dataAttr);
+                $button = new Follow_JS($dataAttr);
                 $button->setId($params->getCssId());
                 $button->setClass($params->getCssClass());
                 return $button->getHtml();
@@ -159,9 +158,8 @@ class Socialeesta {
                 $dataAttr->addAttr('colorscheme', $params->getColor());
                 $dataAttr->addAttr('ref', $params->getRef());
                 
-                $button = new FacebookLike_HTML5(new FacebookJS(), $dataAttr);
+                $button = new FacebookLike_HTML5($dataAttr);
                 $button->setClass($params->getCssClass());
-                $button->setIncludeJS($params->getIncludeJS());
                 return $button->getHtml();
         }
         
@@ -178,7 +176,7 @@ class Socialeesta {
         $dataAttr->addAttr('size', $params->getSize());
         $dataAttr->addAttr('width', $params->getWidth());
 
-        $button = new GooglePlusOne_HTML5(new GoogleJS(), $dataAttr);
+        $button = new GooglePlusOne_HTML5($dataAttr);
         $button->setCallback($params->getJsCallback());
         $button->setClass($params->getCssClass());
         $button->setId($params->getCssId());

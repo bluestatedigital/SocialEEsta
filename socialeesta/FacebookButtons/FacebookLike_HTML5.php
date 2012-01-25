@@ -3,14 +3,11 @@
 class FacebookLike_HTML5 {
     
     const LIKE_BUTTON_CLASS = "fb-like";
-    private $_widget;
     private $_dataAttrs;
     private $_id;
     private $_class;
-    private $_includeJS = FALSE;
 
-    public function __construct(FacebookJS $widget, DataAttrs $dataAttrs) {
-        $this->_widget = $widget;
+    public function __construct(DataAttrs $dataAttrs) {
         $this->_dataAttrs = $dataAttrs;
     }
 
@@ -27,16 +24,8 @@ class FacebookLike_HTML5 {
         }
     }
 
-    public function setIncludeJS($include) {
-        $this->_includeJS = (bool) $include;
-    }
-
     public function getHtml() {
         $html = '';
-
-        if ($this->_includeJS) {
-            $html .= $this->_widget->asyncScript();
-        }
 
         $html .= '<div class="' 
         . $this->_class 

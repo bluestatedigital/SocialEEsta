@@ -9,8 +9,7 @@ class Follow_JS {
     private $_id;
     private $_class;
 
-    public function __construct(TwitterJS $widget, DataAttrs $dataAttrs) {
-        $this->_widget = $widget;
+    public function __construct(DataAttrs $dataAttrs) {
         $this->_dataAttrs = $dataAttrs;
     }
 

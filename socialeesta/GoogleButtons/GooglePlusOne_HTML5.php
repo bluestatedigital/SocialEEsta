@@ -3,15 +3,12 @@
 class GooglePlusOne_HTML5 {
     
     const PLUSONE_BUTTON_CLASS = "g-plusone";
-    private $_widget;
     private $_dataAttrs;
     private $_id;
     private $_class;
     private $_callback;
-    private $_includeJS = FALSE;
 
-    public function __construct(GoogleJS $widget, DataAttrs $dataAttrs) {
-        $this->_widget = $widget;
+    public function __construct(DataAttrs $dataAttrs) {
         $this->_dataAttrs = $dataAttrs;
     }
 
@@ -32,16 +29,9 @@ class GooglePlusOne_HTML5 {
             $this->_callback = $callback;
         }
     }
-    public function setIncludeJS($include) {
-        $this->_includeJS = (bool) $include;
-    }
 
     public function getHtml() {
         $html = '';
-
-        if ($this->_includeJS) {
-            $html .= $this->_widget->asyncScript();
-        }
 
         $html .= '<div class="' 
         . $this->_class 
