@@ -100,6 +100,7 @@ All parameters are optional.
 
 - href  :  The URL to Like on Facebook. Default value: the page on which the button is present.
 - type  :  "html5" or "iframe" :  Defaults to "html5". 
+- send  :  "true" or "false"  :  Defaults to "false"  :  Include send button.
 - layout  :  "standard", "button_count" or "box_count"  :  Default value: "button_count"  :  1) "standard" : No counter is displayed; 2) "button_count" : A counter is displayed to the right of the like button; 3) "box_count" : A counter is displayed above the like button
 - action  :  "like" or "recommend"  :  Default value: "like".
 - color  :  "light" or "dark"  :  Default value: "light".
