@@ -22,7 +22,9 @@ class Tweet_Iframe {
         $this->_queryString = $queryString;
         $this->_setIframeHeight();
     }
-    
+    public function getIframeUrl(){
+        return self::IFRAME_URL;
+    }
 
     public function getHtml(){
         return '<iframe allowtransparency="true" frameborder="0" scrolling="no" src="' 
