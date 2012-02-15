@@ -9,28 +9,43 @@ class Follow_JS {
     private $_id;
     private $_class;
 
-    public function __construct(DataAttrs $dataAttrs) {
+    public function __construct(DataAttrs $dataAttrs, $htmlAttrs = array("id" => NULL, "class" => NULL)) {
         $this->_dataAttrs = $dataAttrs;
+        
+        isset($htmlAttrs['id']) ?: $htmlAttrs['id'] = NULL;
+        isset($htmlAttrs['class']) ?: $htmlAttrs['class'] = NULL;
+        $this->setCssId($htmlAttrs['id']);
+        $this->setCssClass($htmlAttrs['class']);
     }
 
-    public function setId($id) {
-        if (!is_null($id)) {
+    private function setCssId($id) {
+        if (isset($id)) {
             $this->_id = $id;
         }
     }
 
-    public function setClass($class) {
+    private function setCssClass($class) {
         $this->_class = self::SHARE_BUTTON_CLASS;
-        if (!is_null($class)) {
+        if (isset($class)) {
             $this->_class .= " " . $class;
         }
-
+    }
+    
+    public function getCssClass(){
+        return $this->_class;
+    }
+    public function getCssId(){
+        return $this->_id;
+    }
+    public function getShareButtonClass(){
+        return self::SHARE_BUTTON_CLASS;
+    }
+    public function getTwitterUrl(){
+        return self::TWITTER_URL;
     }
 
     public function getHtml() {
-        $html = '';
-
-        $html .= '<a href="' . self::TWITTER_URL . $this->_dataAttrs->fetchAttr("screen-name") . '" ' . $this->_dataAttrs->getAttrs();
+        $html = '<a href="' . self::TWITTER_URL . $this->_dataAttrs->fetchAttr("screen-name") . '" ' . $this->_dataAttrs->getAttrs();
 
         if (isset($this->_id)) {
             $html .= ' id="' . $this->_id . '"';
