@@ -9,27 +9,36 @@ class Tweet_JS {
     private $_id;
     private $_class;
 
-    public function __construct(DataAttrs $dataAttrs) {
+    public function __construct(DataAttrs $dataAttrs, $id = NULL, $class = NULL) {
         $this->_dataAttrs = $dataAttrs;
+        $this->setId($id);
+        $this->setClass($class);
     }
 
-    public function setId($id) {
+    private function setId($id) {
         if (!is_null($id)) {
             $this->_id = $id;
         }
     }
-
-    public function setClass($class) {
+    
+    private function setClass($class) {
         $this->_class = self::SHARE_BUTTON_CLASS;
         if (!is_null($class)) {
             $this->_class .= " " . $class;
         }
     }
-
-    public function getHtml($linkText) {
+    public function getId(){
+        return $this->_id;
+    }
+    public function getClass(){
+        return $this->_class;
+    }
+    public function getShareUrl(){
+        return self::SHARE_URL;
+    }
+    
+    public function getHtml($linkText = "Tweet") {
         $html = '';
-
-
         $html .= '<a href="' . self::SHARE_URL . '" ' . $this->_dataAttrs->getAttrs();
 
         if (!is_null($this->_id)) {
