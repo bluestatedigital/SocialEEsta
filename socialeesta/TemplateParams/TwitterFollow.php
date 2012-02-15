@@ -8,19 +8,23 @@ class TemplateParams_TwitterFollow {
         $this->_eeTemplate = $eeTemplate;
     }
     function getType() {
-        return $this->_eeTemplate->fetch_param('type', 'html5');
+        return $this->_eeTemplate->fetch_param('type') ? $this->_eeTemplate->fetch_param('type') : 'html5';
     }
     function getUser(){
         return $this->_eeTemplate->fetch_param('user');
     }
     function getFollowerCount(){
-        return $this->_eeTemplate->fetch_param('follower_count', "no") === "yes";
+        return $this->_eeTemplate->fetch_param('follower_count') === "yes" ? "yes" : "no" ;
     }
     function getShowScreenName(){
-        return $this->_eeTemplate->fetch_param('show_screen_name', "yes") === "yes";
+        return $this->_eeTemplate->fetch_param('show_screen_name') === "no" ? "no" : "yes";
     }
     function getWidth(){
-        return $this->_eeTemplate->fetch_param('follower_count') === "yes" ? $this->_eeTemplate->fetch_param('width','300') : $this->_eeTemplate->fetch_param('width','200');
+        if ($this->_eeTemplate->fetch_param('follower_count') === "yes"){
+            return $this->_eeTemplate->fetch_param('width') ? $this->_eeTemplate->fetch_param('width') : '300';
+        } else {
+            return $this->_eeTemplate->fetch_param('width') ? $this->_eeTemplate->fetch_param('width') : '200';
+        }
     }
     function getAlign(){
         return $this->_eeTemplate->fetch_param('align');
@@ -32,14 +36,10 @@ class TemplateParams_TwitterFollow {
         return $this->_eeTemplate->fetch_param('id');
     }
     function getLang(){
-        return $this->_eeTemplate->fetch_param('language', 'en');
+        return $this->_eeTemplate->fetch_param('language') ? $this->_eeTemplate->fetch_param('language') : 'en';
     }
     function getSize(){
-        return $this->_eeTemplate->fetch_param('size', 'medium');
-    }
-    
-    public function getIncludeJS() {
-        return $this->_eeTemplate->fetch_param('include_js', 'no') == 'yes';
+        return $this->_eeTemplate->fetch_param('size') !== '' ? $this->_eeTemplate->fetch_param('size') : "medium" ;
     }
     
 }
