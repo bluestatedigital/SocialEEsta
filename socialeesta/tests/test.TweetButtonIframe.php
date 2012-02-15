@@ -28,7 +28,7 @@ class TweetButton_Iframe extends Testee_unit_test_case {
                     . $this->_tweetButton->getIframeUrl() . $expectedQueryString
                     . '" style="width:130px; height:20px;"></iframe>';
         $this->_queryString->expectOnce('getQueryString');
-        $this->_queryString->expectOnce('getValue', "count");
+        $this->_queryString->expectOnce('getValue', array("count"));
         $this->assertIdentical($expected, $this->_tweetButton->getHtml());
         
     }
@@ -40,7 +40,7 @@ class TweetButton_Iframe extends Testee_unit_test_case {
                     . $this->_tweetButton->getIframeUrl() . $expectedQueryString
                     . '" style="width:130px; height:62px;"></iframe>';
         $this->_queryString->expectOnce('getQueryString');
-        $this->_queryString->expectOnce('getValue', "count");
+        $this->_queryString->expectOnce('getValue', array("count"));
         $this->assertIdentical($expected, $this->_tweetButton->getHtml());
         
     }
