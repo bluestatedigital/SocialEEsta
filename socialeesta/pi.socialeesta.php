@@ -81,9 +81,7 @@ class Socialeesta {
                 $dataAttrs->addAttr('lang', $params->getLang());
                 $dataAttrs->addAttr('size', $params->getSize());
                 
-                $button = new Tweet_JS($dataAttrs);
-                $button->setId($params->getCssId());
-                $button->setClass($params->getCssClass());
+                $button = new Tweet_JS($dataAttrs, $params->getCssId(), $params->getCssClass());
                 return $button->getHtml($params->getLinkText());                
         }
     }
