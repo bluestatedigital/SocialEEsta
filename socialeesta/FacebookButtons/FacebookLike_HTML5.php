@@ -7,27 +7,37 @@ class FacebookLike_HTML5 {
     private $_id;
     private $_class;
 
-    public function __construct(DataAttrs $dataAttrs) {
+    public function __construct(DataAttrs $dataAttrs, $htmlAttrs = array("id" => NULL, "class" => NULL)) {
         $this->_dataAttrs = $dataAttrs;
+        
+        isset($htmlAttrs['id']) ?: $htmlAttrs['id'] = NULL;
+        isset($htmlAttrs['class']) ?: $htmlAttrs['class'] = NULL;
+        $this->setCssId($htmlAttrs['id']);
+        $this->setCssClass($htmlAttrs['class']);
+        
     }
 
-    public function setId($id) {
+    private function setCssId($id) {
         if (!is_null($id)) {
             $this->_id = $id;
         }
     }
 
-    public function setClass($class) {
+    private function setCssClass($class) {
         $this->_class = self::LIKE_BUTTON_CLASS;
         if (!is_null($class)) {
             $this->_class .= " " . $class;
         }
     }
+    public function getCssId(){
+        return $this->_id;
+    }
+    public function getCssClass(){
+        return $this->_class;
+    }
 
     public function getHtml() {
-        $html = '';
-
-        $html .= '<div class="' 
+        $html = '<div class="' 
         . $this->_class 
         . '" ';
         

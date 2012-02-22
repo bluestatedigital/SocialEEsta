@@ -11,16 +11,16 @@ class FacebookInit {
         return $this->_eeTemplate->fetch_param('channel_url');
     }
     function getStatus() {
-        return $this->_eeTemplate->fetch_param('status', true);
+        return $this->_eeTemplate->fetch_param('status') ? $this->_eeTemplate->fetch_param('status') : "true";
     }
     function getCookie(){
-        return $this->_eeTemplate->fetch_param('cookie', true);
+        return $this->_eeTemplate->fetch_param('cookie') ? $this->_eeTemplate->fetch_param('cookie') : "true";
     }
     function getOauth(){
-        return $this->_eeTemplate->fetch_param('oauth', true);
+        return $this->_eeTemplate->fetch_param('oauth') ?  $this->_eeTemplate->fetch_param('oauth') : "true";
     }
     function xfbml(){
-        return $this->_eeTemplate->fetch_param('xfbml', true);
+        return $this->_eeTemplate->fetch_param('xfbml') ? $this->_eeTemplate->fetch_param('xfbml') : "true";
     }
    
 }
