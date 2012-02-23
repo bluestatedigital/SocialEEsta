@@ -29,6 +29,9 @@ class FacebookLike_HTML5 {
             $this->_class .= " " . $class;
         }
     }
+    public function getShareButtonClass(){
+        return self::LIKE_BUTTON_CLASS;
+    }
     public function getCssId(){
         return $this->_id;
     }
@@ -39,14 +42,14 @@ class FacebookLike_HTML5 {
     public function getHtml() {
         $html = '<div class="' 
         . $this->_class 
-        . '" ';
+        . '"';
         
 
         if (!is_null($this->_id)) {
             $html .= ' id="' . $this->_id . '"';
         }
         
-        $html .= $this->_dataAttrs->getAttrs();
+        $html .= " " . $this->_dataAttrs->getAttrs();
 
         $html .= "></div>";
 
