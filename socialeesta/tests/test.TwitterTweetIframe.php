@@ -3,7 +3,7 @@ require_once PATH_THIRD .'socialeesta/Utils/QueryString.php';
 require_once PATH_THIRD .'socialeesta/TwitterButtons/Tweet_Iframe.php';
 Mock::generate('QueryString');
 
-class TweetButton_Iframe extends Testee_unit_test_case {
+class TwitterTweetIframe extends Testee_unit_test_case {
     private $_tweetButton;
     
     

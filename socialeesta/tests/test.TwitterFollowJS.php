@@ -31,7 +31,7 @@ class TwitterFollowJs extends Testee_unit_test_case {
         $this->assertIdentical($expected, $this->_button->getCssClass());
         
     }
-    public function testFollowButtonCssIdReturnsDefault(){
+    public function testFollowButtonCssIdReturnsNullByDefault(){
         $this->_button = new Follow_JS($this->_dataAttrs);
         $expected = NULL;
         $this->assertIdentical($expected, $this->_button->getCssId());
