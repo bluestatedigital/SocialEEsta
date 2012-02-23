@@ -25,7 +25,7 @@ class TemplateParams_FacebookLike {
     }
 
     function getWidth(){
-        return $this->_eeTemplate->fetch_param('width') ? $this->_eeTemplate->fetch_param('width') : "450");
+        return $this->_eeTemplate->fetch_param('width') ? $this->_eeTemplate->fetch_param('width') : "450";
     }
     function getAction(){
         return $this->_eeTemplate->fetch_param('action') ? $this->_eeTemplate->fetch_param('action') : 'like';
@@ -34,7 +34,7 @@ class TemplateParams_FacebookLike {
         return $this->_eeTemplate->fetch_param('font') ? $this->_eeTemplate->fetch_param('font') : 'lucida grande';
     }
     function getColor(){
-        return $this->_eeTemplate->fetch_param('color') ? $this->_eeTemplate->fetch_param('color') : 'blue';
+        return $this->_eeTemplate->fetch_param('color') ? $this->_eeTemplate->fetch_param('color') : 'light';
     }
     function getRef(){
         return $this->_eeTemplate->fetch_param('ref');
