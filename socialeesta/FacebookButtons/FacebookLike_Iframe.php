@@ -12,20 +12,26 @@ class FacebookLike_Iframe {
     
     public function __construct(QueryString $queryString) {
         $this->_queryString = $queryString;
+        $this->_setIframeHeight();
     }
     
-    private function _getIframeHeight(){
+    private function _setIframeHeight(){
         switch ($this->_queryString->getValue('layout')){
             case "standard":
-                return "35px";
+                $this->_iframeHeight =  "35px";
+                break;
             case "box_count":
-                return "65px";
+                $this->_iframeHeight = "65px";
+                break;
             case "button_count":
             default:
-                return "20px";
+                $this->_iframeHeight = "20px";
+                break;
         }
     }
-
+    public function getIframeHeight(){
+        return $this->_iframeHeight;
+    }
     public function getHtml(){
         return '<iframe src="' 
                 . self::IFRAME_URL 
@@ -33,7 +39,7 @@ class FacebookLike_Iframe {
                 . '" allowtransparency="true" frameborder="0" scrolling="no" style="width:'
                 . $this->_queryString->getValue('width')
                 . 'px; height: '
-                . $this->_getIframeHeight() 
+                . $this->_iframeHeight 
                 . '"></iframe>';
     }
 }
