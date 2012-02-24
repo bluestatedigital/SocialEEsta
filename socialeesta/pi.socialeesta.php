@@ -187,10 +187,6 @@ class Socialeesta {
         require_once 'Script/JSLibraries.php';
         require_once 'TemplateParams/Scripts.php';
         $params = new TemplateParams_Scripts($this->EE->TMPL);
-        $params->setFacebook();
-        $params->setTwitter();
-        $params->setGoogle();
-        
         $scripts = new JSLibraries($params, new GoogleJS(), new TwitterJS(), new FacebookJS() );
         
         return $scripts->getScripts();
