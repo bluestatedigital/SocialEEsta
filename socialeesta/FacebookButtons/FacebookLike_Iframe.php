@@ -9,6 +9,11 @@ class FacebookLike_Iframe {
     private $_iframeWidth;
     private $_iframeHeight;
     
+    
+    public function __construct(QueryString $queryString) {
+        $this->_queryString = $queryString;
+    }
+    
     private function _getIframeHeight(){
         switch ($this->_queryString->getValue('layout')){
             case "standard":
@@ -20,12 +25,6 @@ class FacebookLike_Iframe {
                 return "20px";
         }
     }
-    
-    
-    public function __construct(QueryString $queryString) {
-        $this->_queryString = $queryString;
-    }
-    
 
     public function getHtml(){
         return '<iframe src="' 
