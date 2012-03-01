@@ -13,7 +13,7 @@ class FacebookLikeHTML5 extends Testee_unit_test_case {
     public function setUp(){
         parent::setUp();
         $this->_dataAttrs = new MockDataAttrs();
-        $this->_dataAttrs->returns('getAttrs', 'data-send="false" data-layout="button_count" data-show-faces="false" data-width="450" data-action="like" data-font="lucida grande" data-colorscheme="blue"');
+        $this->_dataAttrs->returns('getAttrs', 'data-send="false" data-layout="button_count" data-show-faces="false" data-width="450" data-action="like" data-font="lucida grande" data-colorscheme="light"');
     }
     public function tearDown(){
         unset($this->_dataAttrs);
@@ -45,22 +45,22 @@ class FacebookLikeHTML5 extends Testee_unit_test_case {
         $this->assertIdentical($expected, $this->_button->getCssid());
     }
     public function testGetMarkupWithNoClassNoId(){
-        $expected = '<div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-width="450" data-action="like" data-font="lucida grande" data-colorscheme="blue"></div>';
+        $expected = '<div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-width="450" data-action="like" data-font="lucida grande" data-colorscheme="light"></div>';
         $this->_button = new FacebookLike_HTML5($this->_dataAttrs);
         $this->assertIdentical($expected, $this->_button->getHtml());
     }
     public function testGetMarkupWithClassNoId(){
-        $expected = '<div class="fb-like socialeesta-class" data-send="false" data-layout="button_count" data-show-faces="false" data-width="450" data-action="like" data-font="lucida grande" data-colorscheme="blue"></div>';
+        $expected = '<div class="fb-like socialeesta-class" data-send="false" data-layout="button_count" data-show-faces="false" data-width="450" data-action="like" data-font="lucida grande" data-colorscheme="light"></div>';
         $this->_button = new FacebookLike_HTML5($this->_dataAttrs, array("class" => "socialeesta-class"));
         $this->assertIdentical($expected, $this->_button->getHtml());
     }
     public function testGetMarkupWithIdNoClass(){
-        $expected = '<div class="fb-like" id="socialeesta-id" data-send="false" data-layout="button_count" data-show-faces="false" data-width="450" data-action="like" data-font="lucida grande" data-colorscheme="blue"></div>';
+        $expected = '<div class="fb-like" id="socialeesta-id" data-send="false" data-layout="button_count" data-show-faces="false" data-width="450" data-action="like" data-font="lucida grande" data-colorscheme="light"></div>';
         $this->_button = new FacebookLike_HTML5($this->_dataAttrs, array("id" => "socialeesta-id"));
         $this->assertIdentical($expected, $this->_button->getHtml());
     }
     public function testGetMarkupWithIdAndClass(){
-        $expected = '<div class="fb-like socialeesta-class" id="socialeesta-id" data-send="false" data-layout="button_count" data-show-faces="false" data-width="450" data-action="like" data-font="lucida grande" data-colorscheme="blue"></div>';
+        $expected = '<div class="fb-like socialeesta-class" id="socialeesta-id" data-send="false" data-layout="button_count" data-show-faces="false" data-width="450" data-action="like" data-font="lucida grande" data-colorscheme="light"></div>';
         $this->_button = new FacebookLike_HTML5($this->_dataAttrs, array("id" => "socialeesta-id", "class" => "socialeesta-class"));
         $this->assertIdentical($expected, $this->_button->getHtml());
     }

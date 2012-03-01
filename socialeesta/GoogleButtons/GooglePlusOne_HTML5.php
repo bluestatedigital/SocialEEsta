@@ -17,14 +17,14 @@ class GooglePlusOne_HTML5 {
     }
 
     private function setId($id = NULL) {
-        if (!is_null($id)) {
+        if (!empty($id)) {
             $this->_id = $id;
         }
     }
 
     private function setClass($class = NULL) {
         $this->_class = self::PLUSONE_BUTTON_CLASS;
-        if (!is_null($class)) {
+        if (!empty($class)) {
             $this->_class .= " " . $class;
         }
     }
@@ -41,12 +41,12 @@ class GooglePlusOne_HTML5 {
         . '" ';
         
 
-        if (!is_null($this->_id)) {
+        if (!empty($this->_id)) {
             $html .= ' id="' . $this->_id . '" ';
         }
         
         $html .= $this->_dataAttrs->getAttrs();
-        if (!is_null($this->_callback)) {
+        if (!empty($this->_callback)) {
             $html .= ' callback="' . $this->_callback . '"';
         }
         $html .= "></div>";

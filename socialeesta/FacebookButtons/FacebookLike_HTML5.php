@@ -18,14 +18,14 @@ class FacebookLike_HTML5 {
     }
 
     private function setCssId($id) {
-        if (!is_null($id)) {
+        if (!empty($id)) {
             $this->_id = $id;
         }
     }
 
     private function setCssClass($class) {
         $this->_class = self::LIKE_BUTTON_CLASS;
-        if (!is_null($class)) {
+        if (!empty($class)) {
             $this->_class .= " " . $class;
         }
     }
@@ -45,7 +45,7 @@ class FacebookLike_HTML5 {
         . '"';
         
 
-        if (!is_null($this->_id)) {
+        if (!empty($this->_id)) {
             $html .= ' id="' . $this->_id . '"';
         }
         

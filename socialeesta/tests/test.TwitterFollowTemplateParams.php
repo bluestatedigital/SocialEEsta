@@ -29,25 +29,25 @@ class TwitterFollowTemplateParams extends Testee_unit_test_case {
         $this->EE->TMPL->expectOnce('fetch_param', array('user'));
         $this->assertIdentical('bsdwire', $this->_params->getUser());
     }
-    public function testGetFollowerCountReturnsNoByDefault(){
+    public function testGetFollowerCountReturnsFalseByDefault(){
         $this->EE->TMPL->returns('fetch_param', '', array('follower_count'));
         $this->EE->TMPL->expectOnce('fetch_param', array('follower_count'));
-        $this->assertIdentical("no", $this->_params->getFollowerCount());
+        $this->assertFalse($this->_params->getFollowerCount());
     }
     public function testGetFollowerCountReturnsTemplateParam(){
         $this->EE->TMPL->returns('fetch_param', 'yes', array('follower_count'));
         $this->EE->TMPL->expectOnce('fetch_param', array('follower_count'));
-        $this->assertIdentical("yes", $this->_params->getFollowerCount());
+        $this->assertTrue($this->_params->getFollowerCount());
         }
-    public function testGetShowScreenNameReturnsYesByDefault(){
+    public function testGetShowScreenNameReturnsTrueByDefault(){
         $this->EE->TMPL->returns('fetch_param', '', array('show_screen_name'));
         $this->EE->TMPL->expectOnce('fetch_param', array('show_screen_name'));
-        $this->assertIdentical("yes", $this->_params->getShowScreenName());
+        $this->assertTrue($this->_params->getShowScreenName());
     }
     public function testGetShowScreenNameReturnsTemplateParam(){
         $this->EE->TMPL->returns('fetch_param', 'no', array('show_screen_name'));
         $this->EE->TMPL->expectOnce('fetch_param', array('show_screen_name'));
-        $this->assertIdentical("no", $this->_params->getShowScreenName());
+        $this->assertFalse($this->_params->getShowScreenName());
     }
     public function testGetWidthDefaultsTo300PxWhenFollowerCountIsOn(){
         $this->EE->TMPL->returns('fetch_param', 'yes', array('follower_count'));

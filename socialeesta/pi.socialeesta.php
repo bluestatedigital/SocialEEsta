@@ -80,7 +80,6 @@ class Socialeesta {
                 $dataAttrs->addAttr('related', $params->getRelatedAccts());
                 $dataAttrs->addAttr('lang', $params->getLang());
                 $dataAttrs->addAttr('size', $params->getSize());
-                
                 $button = new Tweet_JS($dataAttrs, $params->getCssId(), $params->getCssClass());
                 return $button->getHtml($params->getLinkText());                
         }
@@ -113,9 +112,7 @@ class Socialeesta {
                 $dataAttr->addAttr('width', $params->getWidth());
                 $dataAttr->addAttr('align', $params->getAlign());
                 $dataAttr->addAttr('size', $params->getSize());
-                $button = new Follow_JS($dataAttr);
-                $button->setId($params->getCssId());
-                $button->setClass($params->getCssClass());
+                $button = new Follow_JS($dataAttr, array("id" => $params->getCssId(), "class" => $params->getCssClass()));
                 return $button->getHtml();
         }
 
@@ -156,8 +153,7 @@ class Socialeesta {
                 $dataAttr->addAttr('colorscheme', $params->getColor());
                 $dataAttr->addAttr('ref', $params->getRef());
                 
-                $button = new FacebookLike_HTML5($dataAttr);
-                $button->setClass($params->getCssClass());
+                $button = new FacebookLike_HTML5($dataAttr, array("class" => $params->getCssClass(), "id" => $params->getCssId()));
                 return $button->getHtml();
         }
         
@@ -186,7 +182,7 @@ class Socialeesta {
         require_once 'Script/JSLibraries.php';
         require_once 'TemplateParams/Scripts.php';
         $params = new TemplateParams_Scripts($this->EE->TMPL);
-        $scripts = new JSLibraries($params, new GoogleJS(), new TwitterJS(), new FacebookJS() );
+        $scripts = new JSLibraries($params, new GoogleJS(), new TwitterJS(), new FacebookJS($params->getFbAppId(), $params->getFbChannelUrl()));
         
         return $scripts->getScripts();
     }

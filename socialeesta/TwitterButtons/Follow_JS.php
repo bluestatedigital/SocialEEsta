@@ -12,8 +12,8 @@ class Follow_JS {
     public function __construct(DataAttrs $dataAttrs, $htmlAttrs = array("id" => NULL, "class" => NULL)) {
         $this->_dataAttrs = $dataAttrs;
         
-        isset($htmlAttrs['id']) ?: $htmlAttrs['id'] = NULL;
-        isset($htmlAttrs['class']) ?: $htmlAttrs['class'] = NULL;
+        if(!isset($htmlAttrs['id'])) $htmlAttrs['id'] = NULL;
+        if(!isset($htmlAttrs['class'])) $htmlAttrs['class'] = NULL;
         $this->setCssId($htmlAttrs['id']);
         $this->setCssClass($htmlAttrs['class']);
     }
@@ -47,11 +47,11 @@ class Follow_JS {
     public function getHtml() {
         $html = '<a href="' . self::TWITTER_URL . $this->_dataAttrs->fetchAttr("screen-name") . '" ' . $this->_dataAttrs->getAttrs();
 
-        if (isset($this->_id)) {
+        if (!empty($this->_id)) {
             $html .= ' id="' . $this->_id . '"';
         }
 
-        if (isset($this->_class)) {
+        if (!empty($this->_class)) {
             $html .= ' class="' . $this->_class . '"';
         }
 

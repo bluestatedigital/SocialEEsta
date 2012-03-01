@@ -14,10 +14,10 @@ class TemplateParams_TwitterFollow {
         return $this->_eeTemplate->fetch_param('user');
     }
     function getFollowerCount(){
-        return $this->_eeTemplate->fetch_param('follower_count') === "yes" ? "yes" : "no" ;
+        return $this->_eeTemplate->fetch_param('follower_count') === "yes" ? TRUE : FALSE ;
     }
     function getShowScreenName(){
-        return $this->_eeTemplate->fetch_param('show_screen_name') === "no" ? "no" : "yes";
+        return $this->_eeTemplate->fetch_param('show_screen_name') === "no" ? FALSE : TRUE;
     }
     function getWidth(){
         if ($this->_eeTemplate->fetch_param('follower_count') === "yes"){

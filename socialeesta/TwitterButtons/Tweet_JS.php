@@ -6,24 +6,24 @@ class Tweet_JS {
 
     private $_widget;
     private $_dataAttrs;
-    private $_id;
-    private $_class;
+    private $_id = '';
+    private $_class = '';
 
-    public function __construct(DataAttrs $dataAttrs, $id = NULL, $class = NULL) {
+    public function __construct(DataAttrs $dataAttrs, $id = '', $class = '') {
         $this->_dataAttrs = $dataAttrs;
         $this->setId($id);
         $this->setClass($class);
     }
 
     private function setId($id) {
-        if (!is_null($id)) {
+        if (!empty($id)) {
             $this->_id = $id;
         }
     }
     
     private function setClass($class) {
         $this->_class = self::SHARE_BUTTON_CLASS;
-        if (!is_null($class)) {
+        if (!empty($class)) {
             $this->_class .= " " . $class;
         }
     }
@@ -38,16 +38,13 @@ class Tweet_JS {
     }
     
     public function getHtml($linkText = "Tweet") {
-        $html = '';
-        $html .= '<a href="' . self::SHARE_URL . '" ' . $this->_dataAttrs->getAttrs();
+        $html = '<a href="' . self::SHARE_URL . '" ' . $this->_dataAttrs->getAttrs();
 
-        if (!is_null($this->_id)) {
+        if (!empty($this->_id)) {
             $html .= ' id="' . $this->_id . '"';
         }
 
-        if (!is_null($this->_class)) {
-            $html .= ' class="' . $this->_class . '"';
-        }
+        $html .= ' class="' . $this->_class . '"';
 
         $html .= ">$linkText</a>";
 
