@@ -4,36 +4,39 @@ class GooglePlusOne_HTML5 {
     
     const PLUSONE_BUTTON_CLASS = "g-plusone";
     private $_dataAttrs;
-    private $_id;
-    private $_class;
-    private $_callback;
+    private $_id = NULL;
+    private $_class = NULL;
+    private $_callback = NULL;
 
-    public function __construct(DataAttrs $dataAttrs) {
+    public function __construct(DataAttrs $dataAttrs, $callback = NULL, $htmlAttrs = array("id" => NULL, "class" => NULL)) {
         $this->_dataAttrs = $dataAttrs;
+        $this->_callback = $callback;
+        if(isset($htmlAttrs["id"])) $this->setId($htmlAttrs["id"]);
+        isset($htmlAttrs["class"]) ? $this->setClass($htmlAttrs["class"]) : $this->setClass();
+        
     }
 
-    public function setId($id) {
+    private function setId($id = NULL) {
         if (!is_null($id)) {
             $this->_id = $id;
         }
     }
 
-    public function setClass($class) {
+    private function setClass($class = NULL) {
         $this->_class = self::PLUSONE_BUTTON_CLASS;
         if (!is_null($class)) {
             $this->_class .= " " . $class;
         }
     }
-    public function setCallback($callback) {
-        if (!is_null($callback)){
-            $this->_callback = $callback;
-        }
+    public function getClass(){
+        return $this->_class;
     }
-
+    public function getId(){
+        return $this->_id;
+    }
     public function getHtml() {
-        $html = '';
 
-        $html .= '<div class="' 
+        $html = '<div class="' 
         . $this->_class 
         . '" ';
         

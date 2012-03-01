@@ -173,11 +173,10 @@ class Socialeesta {
         $dataAttr->addAttr('annotation', $params->getAnnotation());
         $dataAttr->addAttr('size', $params->getSize());
         $dataAttr->addAttr('width', $params->getWidth());
-
-        $button = new GooglePlusOne_HTML5($dataAttr);
-        $button->setCallback($params->getJsCallback());
-        $button->setClass($params->getCssClass());
-        $button->setId($params->getCssId());
+        $button = new GooglePlusOne_HTML5($dataAttr,
+                                        $params->getJsCallback(), 
+                                        array("id" => $params->getCssId(), 
+                                              "class" => $params->getCssClass()));
         return $button->getHtml();
     }
     function scripts(){
