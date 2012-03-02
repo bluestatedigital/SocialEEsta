@@ -12,6 +12,6 @@ class QueryString {
         return $this->_params[$key];
     }
     public function getQueryString() {
-        return "?" . http_build_query($this->_params);
+        return "?" . str_replace("+", "%20", http_build_query($this->_params));
     }
 }

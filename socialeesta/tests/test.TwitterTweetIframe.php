@@ -12,7 +12,7 @@ class TwitterTweetIframe extends Testee_unit_test_case {
     }
     public function setUp(){
         $this->_queryString = new MockQueryString();
-        $this->_queryString->returns('getQueryString', "?text=Check+out+my+website%21&count=horizontal&related=bsdtools%2Cbsdwire%3ABlue+State+Digital&lang=en&size=medium");
+        $this->_queryString->returns('getQueryString', "?text=Check%20out%20my%20website%21&count=horizontal&related=bsdtools%2Cbsdwire%3ABlue%20State%20Digital&lang=en&size=medium");
         
     }
     public function tearDown(){
@@ -23,7 +23,7 @@ class TwitterTweetIframe extends Testee_unit_test_case {
     public function testTweetButtonIframeWithDefaultHeight(){
         $this->_queryString->returns('getValue', 'horizontal', array("count"));
         $this->_tweetButton = new Tweet_Iframe($this->_queryString);
-        $expectedQueryString = "?text=Check+out+my+website%21&count=horizontal&related=bsdtools%2Cbsdwire%3ABlue+State+Digital&lang=en&size=medium";
+        $expectedQueryString = "?text=Check%20out%20my%20website%21&count=horizontal&related=bsdtools%2Cbsdwire%3ABlue%20State%20Digital&lang=en&size=medium";
         $expected = '<iframe allowtransparency="true" frameborder="0" scrolling="no" src="'
                     . $this->_tweetButton->getIframeUrl() . $expectedQueryString
                     . '" style="width:130px; height:20px;"></iframe>';
@@ -35,7 +35,7 @@ class TwitterTweetIframe extends Testee_unit_test_case {
     public function testTweetButtonIframeWithVerticalHeight(){
         $this->_queryString->returns('getValue', 'vertical', array("count"));
         $this->_tweetButton = new Tweet_Iframe($this->_queryString);
-        $expectedQueryString = "?text=Check+out+my+website%21&count=horizontal&related=bsdtools%2Cbsdwire%3ABlue+State+Digital&lang=en&size=medium";
+        $expectedQueryString = "?text=Check%20out%20my%20website%21&count=horizontal&related=bsdtools%2Cbsdwire%3ABlue%20State%20Digital&lang=en&size=medium";
         $expected = '<iframe allowtransparency="true" frameborder="0" scrolling="no" src="'
                     . $this->_tweetButton->getIframeUrl() . $expectedQueryString
                     . '" style="width:130px; height:62px;"></iframe>';
