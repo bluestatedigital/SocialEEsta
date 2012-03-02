@@ -9,24 +9,24 @@ class Follow_JS {
     private $_id;
     private $_class;
 
-    public function __construct(DataAttrs $dataAttrs, $htmlAttrs = array("id" => NULL, "class" => NULL)) {
+    public function __construct(DataAttrs $dataAttrs, $htmlAttrs = array("id" => '', "class" => '')) {
         $this->_dataAttrs = $dataAttrs;
         
-        if(!isset($htmlAttrs['id'])) $htmlAttrs['id'] = NULL;
-        if(!isset($htmlAttrs['class'])) $htmlAttrs['class'] = NULL;
+        if(!isset($htmlAttrs['id'])) $htmlAttrs['id'] = '';
+        if(!isset($htmlAttrs['class'])) $htmlAttrs['class'] = '';
         $this->setCssId($htmlAttrs['id']);
         $this->setCssClass($htmlAttrs['class']);
     }
 
     private function setCssId($id) {
-        if (isset($id)) {
+        if (!empty($id)) {
             $this->_id = $id;
         }
     }
 
     private function setCssClass($class) {
         $this->_class = self::SHARE_BUTTON_CLASS;
-        if (isset($class)) {
+        if (!empty($class)) {
             $this->_class .= " " . $class;
         }
     }
@@ -51,10 +51,7 @@ class Follow_JS {
             $html .= ' id="' . $this->_id . '"';
         }
 
-        if (!empty($this->_class)) {
-            $html .= ' class="' . $this->_class . '"';
-        }
-
+        $html .= ' class="' . $this->_class . '"';
         $html .= ">Follow @" . $this->_dataAttrs->fetchAttr("screen-name") . "</a>";
 
         return $html;
