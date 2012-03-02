@@ -8,7 +8,7 @@ class GooglePlusOne_HTML5 {
     private $_class = NULL;
     private $_callback = NULL;
 
-    public function __construct(DataAttrs $dataAttrs, $callback = NULL, $htmlAttrs = array("id" => NULL, "class" => NULL)) {
+    public function __construct(DataAttrs $dataAttrs, $callback = '', $htmlAttrs = array("id" => '', "class" => '')) {
         $this->_dataAttrs = $dataAttrs;
         $this->_callback = $callback;
         if(isset($htmlAttrs["id"])) $this->setId($htmlAttrs["id"]);
@@ -16,13 +16,13 @@ class GooglePlusOne_HTML5 {
         
     }
 
-    private function setId($id = NULL) {
+    private function setId($id = '') {
         if (!empty($id)) {
             $this->_id = $id;
         }
     }
 
-    private function setClass($class = NULL) {
+    private function setClass($class = '') {
         $this->_class = self::PLUSONE_BUTTON_CLASS;
         if (!empty($class)) {
             $this->_class .= " " . $class;
@@ -36,12 +36,10 @@ class GooglePlusOne_HTML5 {
     }
     public function getHtml() {
 
-        $html = '<div class="' 
-        . $this->_class 
-        . '" ';
+        $html = '<div class="' . $this->_class . '" ';
         
 
-        if (!empty($this->_id)) {
+        if (!is_null($this->_id)) {
             $html .= ' id="' . $this->_id . '" ';
         }
         
