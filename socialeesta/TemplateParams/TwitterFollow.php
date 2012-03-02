@@ -20,11 +20,7 @@ class TemplateParams_TwitterFollow {
         return $this->_eeTemplate->fetch_param('show_screen_name') === "no" ? FALSE : TRUE;
     }
     function getWidth(){
-        if ($this->_eeTemplate->fetch_param('follower_count') === "yes"){
-            return $this->_eeTemplate->fetch_param('width') ? $this->_eeTemplate->fetch_param('width') : '300';
-        } else {
-            return $this->_eeTemplate->fetch_param('width') ? $this->_eeTemplate->fetch_param('width') : '200';
-        }
+        return $this->_eeTemplate->fetch_param('width');
     }
     function getAlign(){
         return $this->_eeTemplate->fetch_param('align');

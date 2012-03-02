@@ -49,21 +49,14 @@ class TwitterFollowTemplateParams extends Testee_unit_test_case {
         $this->EE->TMPL->expectOnce('fetch_param', array('show_screen_name'));
         $this->assertFalse($this->_params->getShowScreenName());
     }
-    public function testGetWidthDefaultsTo300PxWhenFollowerCountIsOn(){
-        $this->EE->TMPL->returns('fetch_param', 'yes', array('follower_count'));
+    
+    public function testGetWidthReturnsEmptyStringByDefault(){
         $this->EE->TMPL->returns('fetch_param', '', array('width'));
         $this->EE->TMPL->expectAtLeastOnce('fetch_param');
-        $this->assertIdentical("300", $this->_params->getWidth());
+        $this->assertIdentical("", $this->_params->getWidth());
     }
-    public function testGetWidthDefaultsTo200PxWhenFollowerCountIsOff(){
-        $this->EE->TMPL->returns('fetch_param', 'no', array('follower_count'));
-        $this->EE->TMPL->returns('fetch_param', '', array('width'));
-        $this->EE->TMPL->expectAtLeastOnce('fetch_param');
-        $this->assertIdentical("200", $this->_params->getWidth());
-    }
-    public function testGetWidthReturnsTemplateParamWhenFollowerCountIsOn(){
-        $expected = "100";
-        $this->EE->TMPL->returns('fetch_param', '', array('follower_count'));
+    public function testGetWidthReturnsTemplateParam(){
+        $expected = "200px";
         $this->EE->TMPL->returns('fetch_param', $expected, array('width'));
         $this->EE->TMPL->expectAtLeastOnce('fetch_param');
         $this->assertIdentical($expected, $this->_params->getWidth());
