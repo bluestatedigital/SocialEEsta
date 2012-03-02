@@ -98,7 +98,7 @@ class Socialeesta {
                 $queryString->addParam('show_screen_name', $params->getShowScreenName() ? "true" : "false");
                 $queryString->addParam('lang', $params->getLang());
                 $queryString->addParam('size', $params->getSize());
-                $iframe = new Follow_Iframe($queryString, $params->getWidth());
+                $iframe = new Follow_Iframe($queryString);
                 return $iframe->getHtml();
             case 'html5':
             default:
@@ -276,7 +276,7 @@ class Socialeesta {
     
     Javascript button specific parameters — not supported with iframe version
     **********************************************************************************
-    - width  :  A pixel or percentage value to set the button element width
+    - width  :  A pixel or percentage value to set the button element width. Must include unit (px/%).
     - align  :  "right" or "left" - Defaults to "left".
 
     See Twitter's documentation for additional information about any of the above parameters: https://dev.twitter.com/docs/follow-button
@@ -323,7 +323,7 @@ class Socialeesta {
         - href  :  The URL to publicly +1. Defaults to the page on which the button is present.
         - size  :  'small', 'medium', 'standard', or 'tall  :  Default value: 'medium'.
         - annotation  :  'none', 'bubble', or 'inline'  :  Default value: bubble. 
-        - width  :  a value in pixels (e.g. '250')  :  Applied only to buttons where annotation="inline"
+        - width  :  a value in pixels (e.g. '250')  :  Applied only to buttons where annotation="inline". Do not include 'px'.
         - callback  :  If specified, this function is called after the user clicks the +1 button. 
         
         See the Google +1 button docs for additional details: https://developers.google.com/+/plugins/+1button/

@@ -7,7 +7,7 @@ class Follow_Iframe {
     private $_countPosition;
     private $_iframeWidth;
     
-    public function __construct(QueryString $queryString, $width = "200px") {
+    public function __construct(QueryString $queryString, $width = "300px") {
         $this->_queryString = $queryString;
         $this->_iframeWidth = $width;
     }
