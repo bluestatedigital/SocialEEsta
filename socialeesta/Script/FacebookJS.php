@@ -15,8 +15,8 @@ class FacebookJS {
         }
     }
     
-    public function setChannelUrl($channelUrl){
-        if (!is_null($channelUrl)){
+    public function setChannelUrl($channelUrl = ''){
+        if (!empty($channelUrl)){
             $this->_initOptions["channelURL"] = $channelUrl;
         }
     }
@@ -37,7 +37,7 @@ class FacebookJS {
         ."<script>\n"
         ." window.fbAsyncInit = function() {\n"
         ."FB.init(\n"
-        . json_encode((object) $this->_initOptions) 
+        . stripslashes(json_encode((object) $this->_initOptions)) 
         . "\n);};</script>";
     }
 }
