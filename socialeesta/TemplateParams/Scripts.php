@@ -39,4 +39,7 @@ class TemplateParams_Scripts {
     function getFbAppId(){
         return $this->_eeTemplate->fetch_param('fb_app_id', NULL);
     }
+    function getFbCanvasAutoGrow(){
+        return $this->_eeTemplate->fetch_param('fb_canvas_autogrow');
+    }
 }
