@@ -47,6 +47,15 @@ class GooglePlusOne extends Testee_unit_test_case {
         $this->_button = new GooglePlusOne_HTML5($this->_dataAttrs);
         $this->assertIdentical($expected, $this->_button->getHtml());
     }
+    public function testShareButtonMarkupIsCorrect(){
+        $expected = '<div class="g-plus" data-action="share"></div>';
+        $attrs = new MockDataAttrs();
+        $this->EE->TMPL->returns('fetch_param', 'share', array('action'));
+        $attrs->returns('getAttrs', 'data-action="share"');
+        $attrs->returns('fetchAttr', 'share', array('action'));
+        $this->_button= new GooglePlusOne_HTML5($attrs);
+        $this->assertIdentical($expected, $this->_button->getHtml());
+    }
 }
 
 //<div class="g-plusone" data-href="http://dback.bsdproduction.com/ee_test/" data-annotation="bubble" data-size="medium"></div>
