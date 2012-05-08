@@ -3,6 +3,7 @@
 class GooglePlusOne_HTML5 {
     
     const PLUSONE_BUTTON_CLASS = "g-plusone";
+    const G_PLUS_SHARE_CLASS = 'g-plus';
     private $_dataAttrs;
     private $_id = NULL;
     private $_class = NULL;
@@ -15,7 +16,7 @@ class GooglePlusOne_HTML5 {
         isset($htmlAttrs["class"]) ? $this->setClass($htmlAttrs["class"]) : $this->setClass();
         
     }
-
+    
     private function setId($id = '') {
         if (!empty($id)) {
             $this->_id = $id;
@@ -23,7 +24,16 @@ class GooglePlusOne_HTML5 {
     }
 
     private function setClass($class = '') {
-        $this->_class = self::PLUSONE_BUTTON_CLASS;
+        switch ($this->_dataAttrs->fetchAttr('action')){
+            case "share":
+                $this->_class = self::G_PLUS_SHARE_CLASS;
+                break;
+            
+            default:
+                $this->_class = self::PLUSONE_BUTTON_CLASS;
+                break;
+        }
+
         if (!empty($class)) {
             $this->_class .= " " . $class;
         }

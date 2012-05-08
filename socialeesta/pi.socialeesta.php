@@ -169,6 +169,7 @@ class Socialeesta {
         $dataAttr->addAttr('annotation', $params->getAnnotation());
         $dataAttr->addAttr('size', $params->getSize());
         $dataAttr->addAttr('width', $params->getWidth());
+        $dataAttr->addAttr('action', $params->getAction());
         $button = new GooglePlusOne_HTML5($dataAttr,
                                         $params->getJsCallback(), 
                                         array("id" => $params->getCssId(), 
@@ -210,7 +211,7 @@ class Socialeesta {
 ?>
     SocialEEsta adds social buttons to your ExpressionEngine pages with no fuss.
 
-    It supports Twitter's Tweet & Follow buttons, Facebook's Like button, and Google's +1 button.
+    It supports Twitter's Tweet and Follow buttons, Facebook's Like button, and Google+ +1 and Share buttons.
 
     SocialEEsta defaults to the HTML5 versions of these buttons; use the {exp:socialeesta:scripts} tag to add the Javascript required for each of these buttons to work.
 
@@ -317,9 +318,9 @@ class Socialeesta {
 
 
 
-    ==========================================
-    = Google +1 Button: {exp:socialeesta:plusone} =
-    ==========================================
+    ===================================================
+    = Google+ Buttons, +1 and G+ Share: {exp:socialeesta:plusone} =
+    ===================================================
 
     Example tag: 
     **************
@@ -331,6 +332,7 @@ class Socialeesta {
         - size  :  'small', 'medium', 'standard', or 'tall  :  Default value: 'medium'.
         - annotation  :  'none', 'bubble', or 'inline'  :  Default value: bubble. 
         - width  :  a value in pixels (e.g. '250')  :  Applied only to buttons where annotation="inline". Do not include 'px'.
+        - action : 'share'  :  Use G+ 'share' button instead of +1. No param needed for the +1 button.
         - callback  :  If specified, this function is called after the user clicks the +1 button. 
         
         See the Google +1 button docs for additional details: https://developers.google.com/+/plugins/+1button/

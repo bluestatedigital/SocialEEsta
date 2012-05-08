@@ -4,7 +4,7 @@
 
 SocialEEsta adds social buttons to your ExpressionEngine pages with no fuss.
 
-It supports Twitter's Tweet & Follow buttons, Facebook's Like button, and Google's +1 button.
+It supports Twitter's Tweet and Follow buttons, Facebook's Like button, and Google+ +1 and Share buttons.
 
 ## HTML5 Social Buttons By Default
 
@@ -117,7 +117,7 @@ The height and width parameters have default values that depend upon the button 
 
 
 
-## Google +1 Button: {exp:socialeesta:plusone}
+## Google+ Buttons, +1 and G+ Share: {exp:socialeesta:plusone}
 
 ###Example tag: 
 
@@ -131,6 +131,7 @@ All parameters are optional:
 - size  :  'small', 'medium', 'standard', or 'tall  :  Default value: 'medium'.
 - annotation  :  'none', 'bubble', or 'inline'  :  Default value: bubble. 
 - width  :  a value in pixels (e.g. '250')  :  Applied only to buttons where annotation="inline". Do not include 'px'.
+- action : 'share'  :  Use G+ 'share' button instead of +1. No param needed for the +1 button.
 - callback  :  If specified, this function is called after the user clicks the +1 button. 
 
 Refer to the [Google +1 button docs](https://developers.google.com/+/plugins/+1button/) for additional details.

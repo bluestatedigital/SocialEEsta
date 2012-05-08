@@ -29,5 +29,8 @@ class TemplateParams_GooglePlusOne {
     function getCssId(){
         return $this->_eeTemplate->fetch_param('id');
     }
+    function getAction(){
+        return $this->_eeTemplate->fetch_param('action') ? $this->_eeTemplate->fetch_param('action') : "";
+    }
 }
 

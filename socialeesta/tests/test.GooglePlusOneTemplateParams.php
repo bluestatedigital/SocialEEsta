@@ -99,4 +99,16 @@ class GooglePlusOneTemplateParams extends Testee_unit_test_case {
         $this->EE->TMPL->expectOnce('fetch_param', array('id'));
         $this->assertIdentical($expected, $this->_params->getCssId());
     }
+    public function testGetActionReturnsEmptyStringByDefault(){
+        $expected = "";
+        $this->EE->TMPL->returns('fetch_param', '', array('action'));
+        $this->EE->TMPL->expectAtLeastOnce('fetch_param', array('action'));
+        $this->assertIdentical($expected, $this->_params->getAction());
+    }
+    public function testGetActionReturnsTemplateParam(){
+        $expected = "share";
+        $this->EE->TMPL->returns('fetch_param', $expected, array('action'));
+        $this->EE->TMPL->expectAtLeastOnce('fetch_param', array('action'));
+        $this->assertIdentical($expected, $this->_params->getAction());
+    }
 }
