@@ -26,7 +26,7 @@
 
 $plugin_info = array(
     'pi_name'       => 'BSD SocialEEsta',
-    'pi_version'    => '1.1',
+    'pi_version'    => '1.2',
     'pi_author'     => 'Douglas Back',
     'pi_author_url' => 'http://www.bluestatedigital.com',
     'pi_description'=> 'Generate social sharing plugins for your EE pages.',
@@ -221,14 +221,14 @@ class Socialeesta {
 
     Example tag:
     **************
-    {exp:socialeesta:scripts scripts="facebook|twitter" fb_app_id="123456789" fb_channel_url="//www.yourdomain.com/path/to/channel.html"}
+    {exp:socialeesta:scripts scripts="facebook|twitter" fb_app_id="YOUR FACEBOOK APP ID" fb_channel_url="YOUR FACEBOOK CHANNEL URL"}
 
     SocialEEsta provides the asynchronous version of all three scripts libraries.
 
         - scripts : "facebook", "twitter", "google" :  A pipe-separated list of Javascript libraries to include.
         - fb_app_id  :  Your site's Facebook App ID. Required if you are loading the Facebook Javascript SDK.
         - fb_channel_url  :  This is optional, but Facebook recommends it. See https://developers.facebook.com/docs/reference/javascript/ for more information.
-
+        - fb_canvas_autogrow  :  "true", "false", or an integer. See https://developers.facebook.com/docs/reference/javascript/FB.Canvas.setAutoGrow/ for more information.
 
 
     =====================================

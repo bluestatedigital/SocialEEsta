@@ -42,8 +42,8 @@ class TestFacebookJs extends Testee_unit_test_case {
                     ."<script>\n"
                     ."window.fbAsyncInit = function() {\n"
                     ."FB.init(\n"
-                    .'{"status":true,"cookie":true,"oauth":true,"xfbml":true,"appid":"123456789012345"}'."\n"
-                    .");};</script>";
+                    .'{"status":true,"cookie":true,"oauth":true,"xfbml":true,"appid":"123456789012345"}'
+                    ."\n);};\n</script>";
         $this->_script = new FacebookJS("123456789012345");
         $this->assertIdentical($expected, $this->_script->getFbInit());
     }
