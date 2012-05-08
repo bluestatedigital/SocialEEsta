@@ -45,7 +45,7 @@ class GooglePlusOne_HTML5 {
         
         $html .= $this->_dataAttrs->getAttrs();
         if (!empty($this->_callback)) {
-            $html .= ' callback="' . $this->_callback . '"';
+            $html .= ' data-callback="' . $this->_callback . '"';
         }
         $html .= "></div>";
 
