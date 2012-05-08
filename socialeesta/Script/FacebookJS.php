@@ -9,10 +9,12 @@ class FacebookJS {
         "xfbml" => true,
         "appid" => NULL
     );
+    private $_autoGrow;
 
-    public function __construct($appId = '', $channelUrl = NULL){
+    public function __construct($appId = '', $channelUrl = NULL, $autoGrow = NULL){
         $this->_initOptions["appid"] = $appId;
         if (!is_null($channelUrl)) $this->_initOptions["channelURL"] = $channelUrl;
+        if (!is_null($autoGrow)) $this->setAutoGrow($autoGrow);
     }
 
     public function getAppId(){
@@ -21,6 +23,25 @@ class FacebookJS {
     public function getChannelUrl(){
         return $this->_initOptions["channelURL"];
     }
+    public function setAutoGrow($val){
+        if ($val === "true"){
+            $this->_autoGrow = TRUE;
+        } else if ( is_numeric($val) ){
+            $this->_autoGrow = $val;
+        } else {
+            $this->_autoGrow = FALSE;
+        }
+    }
+    private function getAutoGrow(){
+        if (is_bool($this->_autoGrow)){
+            return $this->_autoGrow ? "\nFB.Canvas.setAutoGrow();\n" : "";
+        } else if (is_numeric($this->_autoGrow)){
+            return "\nFB.Canvas.setAutoGrow(" . $this->_autoGrow . ");\n";
+        } else {
+            return "";
+        }
+    }
+
     public function asyncScript(){
         return "<script>\n"
                 . "(function(d){\n"
@@ -37,7 +58,7 @@ class FacebookJS {
         ."<script>\n"
         ."window.fbAsyncInit = function() {\n"
         ."FB.init(\n"
-        . json_encode((object) $this->_initOptions) 
-        . "\n);};</script>";
+        . stripslashes(json_encode((object) $this->_initOptions))
+        . "\n);" . $this->getAutoGrow() . "};\n</script>";
     }
 }

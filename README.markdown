@@ -1,4 +1,4 @@
-#BSD SocialEEsta v1.1
+#BSD SocialEEsta v1.2
 
 ##All Social. No Fuss.
 
@@ -24,7 +24,7 @@ SocialEEsta defaults to the HTML5 versions of these buttons; use the {exp:social
 ###Example tag:
 
 ```
-{exp:socialeesta:scripts scripts="twitter|facebook" fb_app_id="123456789" fb_channel_url="//www.yourdomain.com/path/to/channel.html"}
+{exp:socialeesta:scripts scripts="facebook|twitter" fb_app_id="YOUR FACEBOOK APP ID" fb_channel_url="YOUR FACEBOOK CHANNEL URL"}
 ```
 
 SocialEEsta provides the asynchronous version of all three script libraries. This tag can be placed anywhere within the &lt;body&gt; element, but you'll probably be happiest with it just before the closing &lt;/body&gt; tag.
@@ -32,7 +32,7 @@ SocialEEsta provides the asynchronous version of all three script libraries. Thi
 - scripts : "facebook", "twitter", "google" :  A pipe-separated list of Javascript libraries to include.
 - fb_app_id  :  Your site's Facebook App ID. Required if you are loading the Facebook Javascript SDK.
 - fb_channel_url  :  This is optional, but Facebook recommends it. See https://developers.facebook.com/docs/reference/javascript/ for more information.
-
+- fb_canvas_autogrow  :  "true", "false", or an integer. See https://developers.facebook.com/docs/reference/javascript/FB.Canvas.setAutoGrow/ for more information.
 
 ## Twitter Tweet Button: {exp:socialeesta:tweet} 
 

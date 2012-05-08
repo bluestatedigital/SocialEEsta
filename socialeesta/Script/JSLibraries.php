@@ -20,6 +20,7 @@ class JSLibraries {
         $_scripts = "";
         if ($this->_params->includeFacebook()){
             $_scripts .= $this->_facebookJS->asyncScript();
+            $this->_facebookJS->setAutoGrow($this->_params->getFbCanvasAutoGrow());
             $_scripts .= $this->_facebookJS->getFbInit();
         }
         if ($this->_params->includeGoogle()){
