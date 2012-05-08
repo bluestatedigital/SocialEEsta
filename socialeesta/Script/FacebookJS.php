@@ -11,9 +11,10 @@ class FacebookJS {
     );
     private $_autoGrow;
 
-    public function __construct($appId = '', $channelUrl = NULL){
+    public function __construct($appId = '', $channelUrl = NULL, $autoGrow = NULL){
         $this->_initOptions["appid"] = $appId;
         if (!is_null($channelUrl)) $this->_initOptions["channelURL"] = $channelUrl;
+        if (!is_null($autoGrow)) $this->setAutoGrow($autoGrow);
     }
 
     public function getAppId(){

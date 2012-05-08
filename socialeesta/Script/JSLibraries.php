@@ -20,8 +20,6 @@ class JSLibraries {
         $_scripts = "";
         if ($this->_params->includeFacebook()){
             $_scripts .= $this->_facebookJS->asyncScript();
-            $this->_facebookJS->setAppId($this->_params->getFbAppId());
-            $this->_facebookJS->setChannelUrl($this->_params->getFbChannelUrl());
             $this->_facebookJS->setAutoGrow($this->_params->getFbCanvasAutoGrow());
             $_scripts .= $this->_facebookJS->getFbInit();
         }
