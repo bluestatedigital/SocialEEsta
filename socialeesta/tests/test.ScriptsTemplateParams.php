@@ -24,7 +24,8 @@ class ScriptsTemplateParams extends Testee_unit_test_case {
         $expected = array(
             "facebook" => FALSE,
             "twitter" => FALSE,
-            "google" => FALSE
+            "google" => FALSE,
+            "linkedin" => FALSE
         );
         $this->EE->TMPL->returns('fetch_param', '', array('scripts'));
         $this->_params = new TemplateParams_Scripts($this->EE->TMPL);
@@ -35,7 +36,8 @@ class ScriptsTemplateParams extends Testee_unit_test_case {
         $expected = array(
             "facebook" => TRUE,
             "twitter" => TRUE,
-            "google" => FALSE
+            "google" => FALSE,
+            "linkedin" => FALSE
         );
         $this->EE->TMPL->returns('fetch_param', 'facebook|twitter', array('scripts'));
         $this->_params = new TemplateParams_Scripts($this->EE->TMPL);
@@ -77,6 +79,12 @@ class ScriptsTemplateParams extends Testee_unit_test_case {
         $this->_params = new TemplateParams_Scripts($this->EE->TMPL);
         $this->EE->TMPL->expectOnce('fetch_param', array('scripts'));
         $this->assertTrue($this->_params->includeGoogle());
+    }
+    public function testIncludeLinkedInReturnsTrueWhenIncludedInParams(){
+        $this->EE->TMPL->returns('fetch_param', 'facebook|twitter|google|linkedin', array('scripts'));
+        $this->_params = new TemplateParams_Scripts($this->EE->TMPL);
+        $this->EE->TMPL->expectOnce('fetch_param', array('scripts'));
+        $this->assertTrue($this->_params->includeLinkedIn());
     }
     public function testGetFbChannelUrlReturnsEmptyStringByDefault(){
         $this->EE->TMPL->returns('fetch_param', '', array('fb_channel_url'));

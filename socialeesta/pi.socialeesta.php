@@ -187,12 +187,13 @@ class Socialeesta {
         $dataAttr->addAttr('counter', $params->getCounter());
         $dataAttr->addAttr('showzero', $params->getShowZero());
         $button = new LinkedInShareJs($dataAttr);
-        return $button->getButton() . $button->getJsLibrary();
+        return $button->getButton();
     }
     function scripts(){
         require_once 'Script/FacebookJS.php';
         require_once 'Script/GoogleJS.php';
         require_once 'Script/TwitterJS.php';
+        require_once 'Script/LinkedInJS.php';
         require_once 'Script/JSLibraries.php';
         require_once 'TemplateParams/Scripts.php';
         $params = new TemplateParams_Scripts($this->EE->TMPL);
@@ -203,7 +204,8 @@ class Socialeesta {
                                         $params->getFbAppId(), 
                                         $params->getFbChannelUrl(),
                                         $params->getFbCanvasAutoGrow()
-                                    ));
+                                    ),
+                                    new LinkedInJS());
         
         return $scripts->getScripts();
     }
@@ -239,14 +241,14 @@ class Socialeesta {
     ========================================================
     = Load Javascript Required by Social Buttons: {exp:socialeesta:scripts}  =
     ========================================================
-
+    
     Example tag:
     **************
     {exp:socialeesta:scripts scripts="facebook|twitter" fb_app_id="YOUR FACEBOOK APP ID" fb_channel_url="YOUR FACEBOOK CHANNEL URL"}
 
-    SocialEEsta provides the asynchronous version of all three scripts libraries.
+    SocialEEsta provides the asynchronous version of all three scripts libraries with protocol relative src URLs.
 
-        - scripts : "facebook", "twitter", "google" :  A pipe-separated list of Javascript libraries to include.
+        - scripts : "facebook", "twitter", "google", "linkedin" :  A pipe-separated list of Javascript libraries to include.
         - fb_app_id  :  Your site's Facebook App ID. Required if you are loading the Facebook Javascript SDK.
         - fb_channel_url  :  This is optional, but Facebook recommends it. See https://developers.facebook.com/docs/reference/javascript/ for more information.
         - fb_canvas_autogrow  :  "true", "false", or an integer. See https://developers.facebook.com/docs/reference/javascript/FB.Canvas.setAutoGrow/ for more information.
@@ -355,6 +357,11 @@ class Socialeesta {
     =========================================
     = LinkedIn Share Button: {exp:socialeesta:linkedin} = 
     =========================================
+    
+    Example tag: 
+    **************
+    {exp:socialeesta:linkedin url="{title_permalink='blog/entry'}" counter="top"}
+
     All parameters are optional:
 
     - url  :  The URL to share on LinkedIn. Defaults to the page on which the button is present.

@@ -20,15 +20,6 @@ class LinkedInShareJsTest extends Testee_unit_test_case {
        unset($this->_button);
        unset($this->_dataAttrs);
     }
-    public function testGetJsLibraryReturnsCorrectMarkup(){
-        $expected = "<script>(function(d){var li = document.createElement(\"script\");\n"
-                . "li.src = \"" . $this->_button->getJsUrl() . "\";\n"
-                . "li.async = \"true\";\n"
-                . "d.getElementsByTagName(\"script\")[0].appendChild(li);\n"
-                . "}(document));\n"
-                . "</script>";
-        $this->assertIdentical($expected, $this->_button->getJsLibrary());
-    }
     public function testGetButtonReturnsCorrectMarkup(){
         $expected = "<script type=\"IN/Share\" data-url=\"http://www.bluestatedigital.com/\" data-counter=\"top\"></script>";
         $this->assertIdentical($expected, $this->_button->getButton());

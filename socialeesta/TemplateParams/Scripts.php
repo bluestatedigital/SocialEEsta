@@ -7,7 +7,8 @@ class TemplateParams_Scripts {
     private $_scripts = array(
         "facebook" => FALSE,
         "twitter" => FALSE,
-        "google" => FALSE
+        "google" => FALSE,
+        "linkedin" => FALSE
     );
 
     public function __construct(EE_Template $eeTemplate) {
@@ -16,6 +17,7 @@ class TemplateParams_Scripts {
         $this->_setFacebook();
         $this->_setTwitter();
         $this->_setGoogle();
+        $this->_setLinkedIn();
     }
     private function _setFacebook(){
         $this->_scripts["facebook"] = in_array("facebook", $this->_params);
@@ -26,6 +28,10 @@ class TemplateParams_Scripts {
     private function _setGoogle(){
         $this->_scripts["google"] = in_array("google", $this->_params);
     }
+    private function _setLinkedIn(){
+        $this->_scripts["linkedin"] = in_array("linkedin", $this->_params);
+    }
+    
     public function getScripts(){
         return $this->_scripts;
     }
@@ -40,6 +46,9 @@ class TemplateParams_Scripts {
     }
     function includeTwitter(){
         return $this->_scripts['twitter'];
+    }
+    function includeLinkedIn(){
+        return $this->_scripts['linkedin'];
     }
     function getFbChannelUrl() {
         return $this->_eeTemplate->fetch_param('fb_channel_url');
