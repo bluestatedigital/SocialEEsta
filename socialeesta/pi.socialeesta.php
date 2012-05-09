@@ -176,6 +176,19 @@ class Socialeesta {
                                               "class" => $params->getCssClass()));
         return $button->getHtml();
     }
+    function linkedin(){
+        require_once 'LinkedInButtons/LinkedInShare.php';
+        require_once 'TemplateParams/LinkedInShare.php';
+        $params = new TemplateParams_LinkedInShare($this->EE->TMPL);
+        $dataAttr = new DataAttrs();
+        $dataAttr->addAttr('url', $params->getUrl());
+        $dataAttr->addAttr('onsuccess', $params->getSuccessCallback());
+        $dataAttr->addAttr('onerror', $params->getErrorCallback());
+        $dataAttr->addAttr('counter', $params->getCounter());
+        $dataAttr->addAttr('showzero', $params->getShowZero());
+        $button = new LinkedInShareJs($dataAttr);
+        return $button->getButton() . $button->getJsLibrary();
+    }
     function scripts(){
         require_once 'Script/FacebookJS.php';
         require_once 'Script/GoogleJS.php';
@@ -336,7 +349,19 @@ class Socialeesta {
         - callback  :  If specified, this function is called after the user clicks the +1 button. 
         
         See the Google +1 button docs for additional details: https://developers.google.com/+/plugins/+1button/
+        
+        
+        
+    =========================================
+    = LinkedIn Share Button: {exp:socialeesta:linkedin} = 
+    =========================================
+    All parameters are optional:
 
+    - url  :  The URL to share on LinkedIn. Defaults to the page on which the button is present.
+    - counter  : 'top', 'right'  :  Default value: no counter. Display a share count above or to the right of the button.
+    - show_zero  :  'true'  :  Default value: false. Display a 'zero' in the counter if the URL has not been shared.
+    - on_success  : A Javascript callback to run if the share is successful.
+    - on_error  : A Javascript callback to run if the share is not successful or an error occurs.
 
     
 <?php

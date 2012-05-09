@@ -4,7 +4,7 @@
 
 SocialEEsta adds social buttons to your ExpressionEngine pages with no fuss.
 
-It supports Twitter's Tweet and Follow buttons, Facebook's Like button, and Google+ +1 and Share buttons.
+It supports Twitter's Tweet and Follow buttons, Facebook's Like button, Google+ +1 and share buttons, and LinkedIn's share button.
 
 ## HTML5 Social Buttons By Default
 
@@ -17,6 +17,7 @@ SocialEEsta defaults to the HTML5 versions of these buttons; use the {exp:social
 - {exp:socialeesta:follow}
 - {exp:socialeesta:like}
 - {exp:socialeesta:plusone}
+- {exp:socialeesta:linkedin}
 
 
 ## Load Javascript Required by Social Buttons: {exp:socialeesta:scripts}
@@ -135,3 +136,14 @@ All parameters are optional:
 - callback  :  If specified, this function is called after the user clicks the +1 button. 
 
 Refer to the [Google +1 button docs](https://developers.google.com/+/plugins/+1button/) for additional details.
+
+
+## LinkedIn Share Button: {exp:socialeesta:linkedin}
+
+All parameters are optional:
+
+- url  :  The URL to share on LinkedIn. Defaults to the page on which the button is present.
+- counter  : 'top', 'right'  :  Default value: no counter. Display a share count above or to the right of the button.
+- show_zero  :  'true'  :  Default value: false. Display a 'zero' in the counter if the URL has not been shared.
+- on_success  : A Javascript callback to run if the share is successful.
+- on_error  : A Javascript callback to run if the share is not successful or an error occurs.
