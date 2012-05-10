@@ -13,7 +13,7 @@ class FacebookJS {
 
     public function __construct($appId = '', $channelUrl = NULL, $autoGrow = NULL){
         $this->_initOptions["appid"] = $appId;
-        if (!is_null($channelUrl)) $this->_initOptions["channelURL"] = $channelUrl;
+        if (!empty($channelUrl)) $this->_initOptions["channelURL"] = $channelUrl;
         if (!is_null($autoGrow)) $this->setAutoGrow($autoGrow);
     }
 

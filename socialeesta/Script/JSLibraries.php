@@ -1,4 +1,9 @@
 <?php
+require_once 'FacebookJS.php';
+require_once 'GoogleJS.php';
+require_once 'TwitterJS.php';
+require_once 'LinkedInJS.php';
+
 class JSLibraries {
     
     private $_params;
@@ -6,36 +11,35 @@ class JSLibraries {
     private $_twitterJS;
     private $_googleJS;
     private $_linkedInJS;
+    private $_scripts;
     
-    
-    public function __construct($params, $googleJS, $twitterJS, $facebookJS, $linkedInJS) {
-        
+    public function __construct($params) {
         $this->_params = $params;
-        $this->_googleJS = $googleJS;
-        $this->_twitterJS = $twitterJS;
-        $this->_facebookJS = $facebookJS;
-        $this->_linkedInJS = $linkedInJS;
-    
+        $this->_setScripts($this->_params);
     }
-
+    private function _setScripts($params){
+        if ($this->_params->includeLibrary('facebook')){
+            $this->_facebookJS = new FacebookJS($this->_params->getFbAppId(), $this->_params->getFbChannelUrl(), $this->_params->getFbCanvasAutoGrow());
+            $this->_scripts .= $this->_facebookJS->asyncScript();
+            $this->_scripts .= $this->_facebookJS->getFbInit();
+        }
+        if ($this->_params->includeLibrary('google')){
+            $this->_googleJS = new GoogleJS();
+            $this->_scripts .= $this->_googleJS->asyncScript();
+        }
+        if ($this->_params->includeLibrary('twitter')){
+            $this->_twitterJS = new TwitterJS();
+            $this->_scripts .= $this->_twitterJS->asyncScript();
+        }
+        if ($this->_params->includeLibrary('linkedin')){
+            $this->_linkedInJS = new LinkedInJS();
+            $this->_scripts .= $this->_linkedInJS->asyncScript();
+        }
+        
+    }
     public function getScripts(){
-        $_scripts = "";
-        if ($this->_params->includeFacebook()){
-            $_scripts .= $this->_facebookJS->asyncScript();
-            $this->_facebookJS->setAutoGrow($this->_params->getFbCanvasAutoGrow());
-            $_scripts .= $this->_facebookJS->getFbInit();
-        }
-        if ($this->_params->includeGoogle()){
-            $_scripts .= $this->_googleJS->asyncScript();
-        }
-        if ($this->_params->includeTwitter()){
-            $_scripts .= $this->_twitterJS->asyncScript();
-            
-        }
-        if ($this->_params->includeLinkedIn()){
-            $_scripts .= $this->_linkedInJS->asyncScript();
-        }
-        return $_scripts;
+        
+        return $this->_scripts;
     }
 }
 

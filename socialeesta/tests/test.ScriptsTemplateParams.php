@@ -17,7 +17,7 @@ class ScriptsTemplateParams extends Testee_unit_test_case {
         $expected = '';
         $this->EE->TMPL->returns('fetch_param', 'facebook|twitter', array('scripts'));
         $this->_params = new TemplateParams_Scripts($this->EE->TMPL);
-        $this->EE->TMPL->expectOnce('fetch_param', array('scripts'));
+        $this->EE->TMPL->expectAtLeastOnce('fetch_param', array('scripts'));
         $this->assertIsA($this->_params->getScripts(), 'array');
     }
     public function testGetScriptsReturnsNoScriptsByDefault(){
@@ -29,7 +29,7 @@ class ScriptsTemplateParams extends Testee_unit_test_case {
         );
         $this->EE->TMPL->returns('fetch_param', '', array('scripts'));
         $this->_params = new TemplateParams_Scripts($this->EE->TMPL);
-        $this->EE->TMPL->expectOnce('fetch_param', array('scripts'));
+        $this->EE->TMPL->expectAtLeastOnce('fetch_param', array('scripts'));
         $this->assertIdentical($expected, $this->_params->getScripts());
     }
     public function testGetScriptsReturnsCorrectTemplateParams(){
@@ -41,50 +41,50 @@ class ScriptsTemplateParams extends Testee_unit_test_case {
         );
         $this->EE->TMPL->returns('fetch_param', 'facebook|twitter', array('scripts'));
         $this->_params = new TemplateParams_Scripts($this->EE->TMPL);
-        $this->EE->TMPL->expectOnce('fetch_param', array('scripts'));
+        $this->EE->TMPL->expectAtLeastOnce('fetch_param', array('scripts'));
         $this->assertIdentical($expected, $this->_params->getScripts());
     }
     public function testIncludeFacebookReturnsFalseByDefault(){
         $this->EE->TMPL->returns('fetch_param', '', array('scripts'));
         $this->_params = new TemplateParams_Scripts($this->EE->TMPL);
-        $this->EE->TMPL->expectOnce('fetch_param', array('scripts'));
-        $this->assertFalse($this->_params->includeFacebook());
+        $this->EE->TMPL->expectAtLeastOnce('fetch_param', array('scripts'));
+        $this->assertFalse($this->_params->includeLibrary('facebook'));
     }
     public function testIncludeTwitterReturnsFalseByDefault(){
         $this->EE->TMPL->returns('fetch_param', '', array('scripts'));
         $this->_params = new TemplateParams_Scripts($this->EE->TMPL);
-        $this->EE->TMPL->expectOnce('fetch_param', array('scripts'));
-        $this->assertFalse($this->_params->includeTwitter());
+        $this->EE->TMPL->expectAtLeastOnce('fetch_param', array('scripts'));
+        $this->assertFalse($this->_params->includeLibrary('twitter'));
     }
     public function testIncludeGoogleReturnsFalseByDefault(){
         $this->EE->TMPL->returns('fetch_param', '', array('scripts'));
         $this->_params = new TemplateParams_Scripts($this->EE->TMPL);
-        $this->EE->TMPL->expectOnce('fetch_param', array('scripts'));
-        $this->assertFalse($this->_params->includeGoogle());
+        $this->EE->TMPL->expectAtLeastOnce('fetch_param', array('scripts'));
+        $this->assertFalse($this->_params->includeLibrary('google'));
     }
     public function testIncludeFacebookRetunsTrueWhenIncludedInParams(){
         $this->EE->TMPL->returns('fetch_param', 'facebook|twitter|google', array('scripts'));
         $this->_params = new TemplateParams_Scripts($this->EE->TMPL);
-        $this->EE->TMPL->expectOnce('fetch_param', array('scripts'));
-        $this->assertTrue($this->_params->includeFacebook());
+        $this->EE->TMPL->expectAtLeastOnce('fetch_param', array('scripts'));
+        $this->assertTrue($this->_params->includeLibrary('facebook'));
     }
     public function testIncludeTwitterRetunsTrueWhenIncludedInParams(){
         $this->EE->TMPL->returns('fetch_param', 'facebook|twitter|google', array('scripts'));
         $this->_params = new TemplateParams_Scripts($this->EE->TMPL);
-        $this->EE->TMPL->expectOnce('fetch_param', array('scripts'));
-        $this->assertTrue($this->_params->includeTwitter());
+        $this->EE->TMPL->expectAtLeastOnce('fetch_param', array('scripts'));
+        $this->assertTrue($this->_params->includeLibrary('twitter'));
     }
     public function testIncludeGoogleRetunsTrueWhenIncludedInParams(){
         $this->EE->TMPL->returns('fetch_param', 'facebook|twitter|google', array('scripts'));
         $this->_params = new TemplateParams_Scripts($this->EE->TMPL);
-        $this->EE->TMPL->expectOnce('fetch_param', array('scripts'));
-        $this->assertTrue($this->_params->includeGoogle());
+        $this->EE->TMPL->expectAtLeastOnce('fetch_param', array('scripts'));
+        $this->assertTrue($this->_params->includeLibrary('google'));
     }
     public function testIncludeLinkedInReturnsTrueWhenIncludedInParams(){
         $this->EE->TMPL->returns('fetch_param', 'facebook|twitter|google|linkedin', array('scripts'));
         $this->_params = new TemplateParams_Scripts($this->EE->TMPL);
-        $this->EE->TMPL->expectOnce('fetch_param', array('scripts'));
-        $this->assertTrue($this->_params->includeLinkedIn());
+        $this->EE->TMPL->expectAtLeastOnce('fetch_param', array('scripts'));
+        $this->assertTrue($this->_params->includeLibrary('linkedin'));
     }
     public function testGetFbChannelUrlReturnsEmptyStringByDefault(){
         $this->EE->TMPL->returns('fetch_param', '', array('fb_channel_url'));

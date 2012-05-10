@@ -13,42 +13,29 @@ class TemplateParams_Scripts {
 
     public function __construct(EE_Template $eeTemplate) {
         $this->_eeTemplate = $eeTemplate;
-        $this->_params = explode("|", $this->_eeTemplate->fetch_param('scripts'));
-        $this->_setFacebook();
-        $this->_setTwitter();
-        $this->_setGoogle();
-        $this->_setLinkedIn();
+        if ($this->_eeTemplate->fetch_param('scripts') !== ""){
+            $this->_params = explode("|", $this->_eeTemplate->fetch_param('scripts'));
+        }
+
+        $this->_setScripts();
     }
-    private function _setFacebook(){
-        $this->_scripts["facebook"] = in_array("facebook", $this->_params);
+    private function _setScripts(){
+        foreach ( $this->_params as $value ){
+            $this->_scripts[$value] = TRUE;
+        }
     }
-    private function _setTwitter(){
-        $this->_scripts["twitter"] = in_array("twitter", $this->_params);
-    }
-    private function _setGoogle(){
-        $this->_scripts["google"] = in_array("google", $this->_params);
-    }
-    private function _setLinkedIn(){
-        $this->_scripts["linkedin"] = in_array("linkedin", $this->_params);
-    }
-    
     public function getScripts(){
         return $this->_scripts;
     }
     public function getParams(){
         return $this->_params;
     }
-    function includeFacebook() {
-        return $this->_scripts['facebook'];
-    }
-    function includeGoogle(){
-        return $this->_scripts['google'];
-    }
-    function includeTwitter(){
-        return $this->_scripts['twitter'];
-    }
-    function includeLinkedIn(){
-        return $this->_scripts['linkedin'];
+    public function includeLibrary($lib){
+        if (isset($this->_scripts[$lib])){
+            return $this->_scripts[$lib];
+        } else {
+            return FALSE;
+        }
     }
     function getFbChannelUrl() {
         return $this->_eeTemplate->fetch_param('fb_channel_url');

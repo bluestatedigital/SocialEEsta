@@ -190,22 +190,10 @@ class Socialeesta {
         return $button->getButton();
     }
     function scripts(){
-        require_once 'Script/FacebookJS.php';
-        require_once 'Script/GoogleJS.php';
-        require_once 'Script/TwitterJS.php';
-        require_once 'Script/LinkedInJS.php';
         require_once 'Script/JSLibraries.php';
         require_once 'TemplateParams/Scripts.php';
         $params = new TemplateParams_Scripts($this->EE->TMPL);
-        $scripts = new JSLibraries($params, 
-                                    new GoogleJS(), 
-                                    new TwitterJS(), 
-                                    new FacebookJS(
-                                        $params->getFbAppId(), 
-                                        $params->getFbChannelUrl(),
-                                        $params->getFbCanvasAutoGrow()
-                                    ),
-                                    new LinkedInJS());
+        $scripts = new JSLibraries($params);
         
         return $scripts->getScripts();
     }
