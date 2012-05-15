@@ -10,8 +10,8 @@ class FacebookLike_HTML5 {
     public function __construct(DataAttrs $dataAttrs, $htmlAttrs = array("id" => NULL, "class" => NULL)) {
         $this->_dataAttrs = $dataAttrs;
         
-        isset($htmlAttrs['id']) ?: $htmlAttrs['id'] = NULL;
-        isset($htmlAttrs['class']) ?: $htmlAttrs['class'] = NULL;
+        if (!isset($htmlAttrs['id'])) $htmlAttrs['id'] = NULL;
+        if (!isset($htmlAttrs['class'])) $htmlAttrs['class'] = NULL;
         $this->setCssId($htmlAttrs['id']);
         $this->setCssClass($htmlAttrs['class']);
         
