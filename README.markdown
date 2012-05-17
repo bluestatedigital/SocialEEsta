@@ -18,6 +18,7 @@ SocialEEsta defaults to the HTML5 versions of these buttons; use the {exp:social
 - {exp:socialeesta:like}
 - {exp:socialeesta:plusone}
 - {exp:socialeesta:linkedin}
+- {exp:socialeesta:pinit}
 
 
 ## Load Javascript Required by Social Buttons: {exp:socialeesta:scripts}
@@ -137,7 +138,6 @@ All parameters are optional:
 
 Refer to the [Google +1 button docs](https://developers.google.com/+/plugins/+1button/) for additional details.
 
-
 ## LinkedIn Share Button: {exp:socialeesta:linkedin}
 
 All parameters are optional:
@@ -147,3 +147,22 @@ All parameters are optional:
 - show_zero  :  'true'  :  Default value: false. Display a 'zero' in the counter if the URL has not been shared.
 - on_success  : A Javascript callback to run if the share is successful.
 - on_error  : A Javascript callback to run if the share is not successful or an error occurs.
+
+## Pinterest Pin It Button: {exp:socialeesta:pinit}
+
+###Example tag:
+
+````
+{exp:socialeesta:pinit url="{title_permalink='blog/entry'}" media="{blog_image}" count="horizontal" description="{blog_summary}"}
+````
+
+#### Required parameters:
+
+- url  :  The URL of the page the pin is on
+- media  :  The URL of the image to be pinned
+
+####Optional parameters
+
+- count  :  'horizontal', 'vertical', or 'none'  :  Default value: none.
+- description  :  A description of the image to be pinned.
+
