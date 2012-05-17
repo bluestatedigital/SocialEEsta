@@ -29,26 +29,26 @@ class LinkedInTemplateParams extends Testee_unit_test_case {
     }
     public function testGetSuccessCallbackReturnsEmptyStringByDefault(){
         $expected = "";
-        $this->EE->TMPL->returns('fetch_param', '', array('success_callback'));
-        $this->EE->TMPL->expectOnce('fetch_param', array('success_callback'));
+        $this->EE->TMPL->returns('fetch_param', '', array('on_success'));
+        $this->EE->TMPL->expectOnce('fetch_param', array('on_success'));
         $this->assertIdentical($expected, $this->_params->getSuccessCallback());
     }
     public function testGetSuccessCallbackReturnsTemplateParam(){
         $expected = "foo";
-        $this->EE->TMPL->returns('fetch_param', $expected, array('success_callback'));
-        $this->EE->TMPL->expectOnce('fetch_param', array('success_callback'));
+        $this->EE->TMPL->returns('fetch_param', $expected, array('on_success'));
+        $this->EE->TMPL->expectOnce('fetch_param', array('on_success'));
         $this->assertIdentical($expected, $this->_params->getSuccessCallback());
     }
     public function testGetErrorCallbackReturnsEmptyStringByDefault(){
         $expected = "";
-        $this->EE->TMPL->returns('fetch_param', '', array('error_callback'));
-        $this->EE->TMPL->expectOnce('fetch_param', array('error_callback'));
+        $this->EE->TMPL->returns('fetch_param', '', array('on_error'));
+        $this->EE->TMPL->expectOnce('fetch_param', array('on_error'));
         $this->assertIdentical($expected, $this->_params->getErrorCallback());
     }
     public function testGetErrorCallbackReturnsTemplateParam(){
         $expected = "foo";
-        $this->EE->TMPL->returns('fetch_param', $expected, array('error_callback'));
-        $this->EE->TMPL->expectOnce('fetch_param', array('error_callback'));
+        $this->EE->TMPL->returns('fetch_param', $expected, array('on_error'));
+        $this->EE->TMPL->expectOnce('fetch_param', array('on_error'));
         $this->assertIdentical($expected, $this->_params->getErrorCallback());
     }
     public function testGetCounterReturnsEmptyStringByDefault(){

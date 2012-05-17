@@ -12,10 +12,10 @@ class TemplateParams_LinkedInShare {
         return $this->_eeTemplate->fetch_param('url');
     }
     function getSuccessCallback(){
-        return $this->_eeTemplate->fetch_param('success_callback');
+        return $this->_eeTemplate->fetch_param('on_success');
     }
     function getErrorCallback(){
-        return $this->_eeTemplate->fetch_param('error_callback');
+        return $this->_eeTemplate->fetch_param('on_error');
     }
     function getCounter(){
         return $this->_eeTemplate->fetch_param('counter');
