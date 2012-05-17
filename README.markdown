@@ -48,7 +48,7 @@ All Parameters are optional.
 
 - url  :  The URL to share on Twitter. The URL should be absolute.
 - type  :  "html5", "iframe" :  Default value: "html5"  :  Defines whether to use HTML5 version or iframe version of the Tweet Button.
-- count_url  :  The URL to which your shared URL resolves to; useful is the URL you are sharing has already been shortened. This affects the display of the Tweet count.
+- count_url  :  The URL to which your shared URL resolves to; useful if the URL you are sharing has already been shortened. This affects the display of the Tweet count.
 - via  :  Screen name of the user to attribute the Tweet to.
 - text  :  Text of the suggested Tweet.
 - count_position  :  "none", "horizontal", or "vertical"  :  Default value: "horizontal".
