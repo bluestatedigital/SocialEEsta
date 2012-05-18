@@ -3,6 +3,7 @@ require_once 'FacebookJS.php';
 require_once 'GoogleJS.php';
 require_once 'TwitterJS.php';
 require_once 'LinkedInJS.php';
+require_once 'PinterestJS.php';
 
 class JSLibraries {
     

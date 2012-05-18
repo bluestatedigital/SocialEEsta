@@ -23,5 +23,3 @@ class PinterestPinIt {
                 . '"><img border="0" src="'. self::PINIT_BUTTON_IMGSRC . '" title="Pin It" /></a>';
     }
 }
-
-//<a href="http://pinterest.com/pin/create/button/?url=url_of_the_page&media=url_of_image&description=Description%20of%20the%20thing" class="pin-it-button" count-layout="none"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
