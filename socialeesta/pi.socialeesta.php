@@ -26,7 +26,7 @@
 
 $plugin_info = array(
     'pi_name'       => 'BSD SocialEEsta',
-    'pi_version'    => '1.2',
+    'pi_version'    => '1.5',
     'pi_author'     => 'Douglas Back',
     'pi_author_url' => 'http://www.bluestatedigital.com',
     'pi_description'=> 'Generate social sharing plugins for your EE pages.',
