@@ -226,17 +226,20 @@ class Socialeesta {
 ?>
     SocialEEsta adds social buttons to your ExpressionEngine pages with no fuss.
 
-    It supports Twitter's Tweet and Follow buttons, Facebook's Like button, and Google+ +1 and Share buttons.
-
     SocialEEsta defaults to the HTML5 versions of these buttons; use the {exp:socialeesta:scripts} tag to add the Javascript required for each of these buttons to work.
+    
+    =================
+    = SocialEEsta Supports… =
+    =================
 
-    The tags:
-    =======
-    {exp:socialeesta:scripts}
-    {exp:socialeesta:tweet}
-    {exp:socialeesta:follow}
-    {exp:socialeesta:like}
-    {exp:socialeesta:plusone}
+    - Twitter Tweet: {exp:socialeesta:tweet}
+    - Twitter Follow: {exp:socialeesta:follow}
+    - Facebook Like: {exp:socialeesta:like}
+    - Google +1 / Google+ Share: {exp:socialeesta:plusone}
+    - LinkedIn Share: {exp:socialeesta:linkedin}
+    - Pinterest Pin It: {exp:socialeesta:pinit}
+    - …and the Javascript that's required for the buttons to work: {exp:socialeesta:scripts}
+    
 
     ========================================================
     = Load Javascript Required by Social Buttons: {exp:socialeesta:scripts}  =
@@ -246,9 +249,9 @@ class Socialeesta {
     **************
     {exp:socialeesta:scripts scripts="facebook|twitter" fb_app_id="YOUR FACEBOOK APP ID" fb_channel_url="YOUR FACEBOOK CHANNEL URL"}
 
-    SocialEEsta provides the asynchronous version of all three scripts libraries with protocol relative src URLs.
+    SocialEEsta provides the asynchronous version of all three script libraries with protocol neutral URLs. This tag can be placed anywhere within the page, but you'll probably be happiest with it just before the closing &lt;/body&gt; tag.
 
-        - scripts : "facebook", "twitter", "google", "linkedin" :  A pipe-separated list of Javascript libraries to include.
+        - scripts : "facebook", "twitter", "google", "linkedin", "pinterest" :  A pipe-separated list of Javascript libraries to include.
         - fb_app_id  :  Your site's Facebook App ID. Required if you are loading the Facebook Javascript SDK.
         - fb_channel_url  :  This is optional, but Facebook recommends it. See https://developers.facebook.com/docs/reference/javascript/ for more information.
         - fb_canvas_autogrow  :  "true", "false", or an integer. See https://developers.facebook.com/docs/reference/javascript/FB.Canvas.setAutoGrow/ for more information.
@@ -378,12 +381,13 @@ class Socialeesta {
     {exp:socialeesta:pinit url="{title_permalink='blog/entry'}" media="{blog_image}" count="horizontal" description="{blog_summary}"}
 
     Required parameters:
-
+    **************************
+    
     - url  :  The URL of the page the pin is on
     - media  :  The URL of the image to be pinned
 
     Optional parameters
-
+    **************************
     - count  :  'horizontal', 'vertical', or 'none'  :  Default value: none.
     - description  :  A description of the image to be pinned.
     

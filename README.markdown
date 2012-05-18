@@ -1,25 +1,22 @@
-#BSD SocialEEsta v1.2
+#BSD SocialEEsta v1.5
 
 ##All Social. No Fuss.
 
 SocialEEsta adds social buttons to your ExpressionEngine pages with no fuss.
 
-It supports Twitter's Tweet and Follow buttons, Facebook's Like button, Google+ +1 and share buttons, and LinkedIn's share button.
-
 ## HTML5 Social Buttons By Default
 
 SocialEEsta defaults to the HTML5 versions of these buttons; use the {exp:socialeesta:scripts} tag to add the Javascript required for each of these buttons to work.
 
-##The tags:
+##SocialEEsta Supports…
 
-- {exp:socialeesta:scripts}
-- {exp:socialeesta:tweet}
-- {exp:socialeesta:follow}
-- {exp:socialeesta:like}
-- {exp:socialeesta:plusone}
-- {exp:socialeesta:linkedin}
-- {exp:socialeesta:pinit}
-
+- Twitter Tweet: {exp:socialeesta:tweet}
+- Twitter Follow: {exp:socialeesta:follow}
+- Facebook Like: {exp:socialeesta:like}
+- Google +1 / Google+ Share: {exp:socialeesta:plusone}
+- LinkedIn Share: {exp:socialeesta:linkedin}
+- Pinterest Pin It: {exp:socialeesta:pinit}
+- …and the Javascript that's required for the buttons to work: {exp:socialeesta:scripts}
 
 ## Load Javascript Required by Social Buttons: {exp:socialeesta:scripts}
 
@@ -29,9 +26,9 @@ SocialEEsta defaults to the HTML5 versions of these buttons; use the {exp:social
 {exp:socialeesta:scripts scripts="facebook|twitter" fb_app_id="YOUR FACEBOOK APP ID" fb_channel_url="YOUR FACEBOOK CHANNEL URL"}
 ```
 
-SocialEEsta provides the asynchronous version of all three script libraries. This tag can be placed anywhere within the &lt;body&gt; element, but you'll probably be happiest with it just before the closing &lt;/body&gt; tag.
+SocialEEsta provides the asynchronous version of all three script libraries with protocol neutral URLs. This tag can be placed anywhere within the page, but you'll probably be happiest with it just before the closing &lt;/body&gt; tag.
 
-- scripts : "facebook", "twitter", "google", "linkedin" :  A pipe-separated list of Javascript libraries to include.
+- scripts : "facebook", "twitter", "google", "linkedin", "pinterest" :  A pipe-separated list of Javascript libraries to include.
 - fb_app_id  :  Your site's Facebook App ID. Required if you are loading the Facebook Javascript SDK.
 - fb_channel_url  :  This is optional, but Facebook recommends it. See https://developers.facebook.com/docs/reference/javascript/ for more information.
 - fb_canvas_autogrow  :  "true", "false", or an integer. See https://developers.facebook.com/docs/reference/javascript/FB.Canvas.setAutoGrow/ for more information.
