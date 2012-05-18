@@ -30,8 +30,8 @@ SocialEEsta provides the asynchronous version of all three script libraries with
 
 - scripts : "facebook", "twitter", "google", "linkedin", "pinterest" :  A pipe-separated list of Javascript libraries to include.
 - fb_app_id  :  Your site's Facebook App ID. Required if you are loading the Facebook Javascript SDK.
-- fb_channel_url  :  This is optional, but Facebook recommends it. See https://developers.facebook.com/docs/reference/javascript/ for more information.
-- fb_canvas_autogrow  :  "true", "false", or an integer. See https://developers.facebook.com/docs/reference/javascript/FB.Canvas.setAutoGrow/ for more information.
+- fb_channel_url  :  This is optional, but Facebook recommends it. See [Facebook's documentation](https://developers.facebook.com/docs/reference/javascript/) for more information.
+- fb_canvas_autogrow  :  "true", "false", or an integer. See [Facebook's documentation](https://developers.facebook.com/docs/reference/javascript/FB.Canvas.setAutoGrow/) for more information.
 
 ## Twitter Tweet Button: {exp:socialeesta:tweet} 
 
