@@ -86,6 +86,12 @@ class ScriptsTemplateParams extends Testee_unit_test_case {
         $this->EE->TMPL->expectAtLeastOnce('fetch_param', array('scripts'));
         $this->assertTrue($this->_params->includeLibrary('linkedin'));
     }
+    public function testIncludePinterestReturnsTrueWhenIncludedInParams(){
+        $this->EE->TMPL->returns('fetch_param', 'facebook|twitter|pinterest|linkedin', array('scripts'));
+        $this->_params = new TemplateParams_Scripts($this->EE->TMPL);
+        $this->EE->TMPL->expectAtLeastOnce('fetch_param', array('scripts'));
+        $this->assertTrue($this->_params->includeLibrary('pinterest'));
+    }
     public function testGetFbChannelUrlReturnsEmptyStringByDefault(){
         $this->EE->TMPL->returns('fetch_param', '', array('fb_channel_url'));
         $this->_params = new TemplateParams_Scripts($this->EE->TMPL);

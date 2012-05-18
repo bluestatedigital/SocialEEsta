@@ -189,6 +189,18 @@ class Socialeesta {
         $button = new LinkedInShareJs($dataAttr);
         return $button->getButton();
     }
+    
+    function pinit(){
+        require_once 'PinterestButtons/PinterestPinIt.php';
+        require_once 'TemplateParams/PinterestPinIt.php';
+        $params = new TemplateParams_PinterestPinIt($this->EE->TMPL);
+        $queryString = new QueryString();
+        $queryString->addParam('url', $params->getUrl());
+        $queryString->addParam('media', $params->getMedia());
+        $queryString->addParam('description', $params->getDescription());
+        $button = new PinterestPinIt($queryString, $params->getCount());
+        return $button->getButton();
+    }
     function scripts(){
         require_once 'Script/JSLibraries.php';
         require_once 'TemplateParams/Scripts.php';
@@ -358,6 +370,24 @@ class Socialeesta {
     - on_success  : A Javascript callback to run if the share is successful.
     - on_error  : A Javascript callback to run if the share is not successful or an error occurs.
 
+    ========================================
+    = Pinterest Pin It Button: {exp:socialeesta:pinit} =
+    ========================================
+    Example tag:
+    **************
+    {exp:socialeesta:pinit url="{title_permalink='blog/entry'}" media="{blog_image}" count="horizontal" description="{blog_summary}"}
+
+    Required parameters:
+
+    - url  :  The URL of the page the pin is on
+    - media  :  The URL of the image to be pinned
+
+    Optional parameters
+
+    - count  :  'horizontal', 'vertical', or 'none'  :  Default value: none.
+    - description  :  A description of the image to be pinned.
+    
+    
     
 <?php
         $buffer = ob_get_contents();

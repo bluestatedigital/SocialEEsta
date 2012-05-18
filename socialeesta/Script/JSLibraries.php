@@ -11,6 +11,7 @@ class JSLibraries {
     private $_twitterJS;
     private $_googleJS;
     private $_linkedInJS;
+    private $_pinterestJS;
     private $_scripts;
     
     public function __construct($params) {
@@ -34,6 +35,10 @@ class JSLibraries {
         if ($this->_params->includeLibrary('linkedin')){
             $this->_linkedInJS = new LinkedInJS();
             $this->_scripts .= $this->_linkedInJS->asyncScript();
+        }
+        if ($this->_params->includeLibrary('pinterest')){
+            $this->_pinterestJS = new PinterestJS();
+            $this->_scripts .= $this->_pinterestJS->asyncScript();
         }
         
     }
