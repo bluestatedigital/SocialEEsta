@@ -119,5 +119,15 @@ class TwitterTweetTemplateParams extends Testee_unit_test_case {
         $this->assertIdentical('medium', $this->_params->getSize());
 
     }
+    public function testGetDntReturnsEmptyStringByDefault(){
+        $expected = '';
+        $this->EE->TMPL->returns('fetch_param', '', array('dnt'));
+        $this->assertIdentical($expected, $this->_params->getDnt());
+    }
+    public function tstGetDntReturnsTemplatParam(){
+        $expcted = 'true';
+        $this->EE->TMPL->returns('fetch_param', 'true', array('dnt'));
+        $this->assertIdentical($expected, $this->_params->getDnt());
+    }
    
 }

@@ -1,5 +1,9 @@
 #SocialEEsta Version History
 
+##v1.5.1 - Released May 25, 2012
+
+- Added support for "Do Not Track" parameters to Twitter Follow and Tweet buttons.
+
 ##v1.5 — Released May 18, 2012
 
 - Now support Pinterest Pin It, Google+ share, and LinkedIn share buttons

@@ -65,6 +65,7 @@ class Socialeesta {
                 $queryString->addParam('related', $params->getRelatedAccts());
                 $queryString->addParam('lang', $params->getLang());
                 $queryString->addParam('size', $params->getSize());
+                $queryString->addParam('dnt', $params->getDnt());
                 $iframe = new Tweet_Iframe($queryString);
                 return $iframe->getHtml();
                 
@@ -80,6 +81,7 @@ class Socialeesta {
                 $dataAttrs->addAttr('related', $params->getRelatedAccts());
                 $dataAttrs->addAttr('lang', $params->getLang());
                 $dataAttrs->addAttr('size', $params->getSize());
+                $dataAttrs->addAttr('dnt', $params->getDnt());
                 $button = new Tweet_JS($dataAttrs, $params->getCssId(), $params->getCssClass());
                 return $button->getHtml($params->getLinkText());                
         }
@@ -98,21 +100,23 @@ class Socialeesta {
                 $queryString->addParam('show_screen_name', $params->getShowScreenName() ? "true" : "false");
                 $queryString->addParam('lang', $params->getLang());
                 $queryString->addParam('size', $params->getSize());
+                $queryString->addParam('dnt', $params->getDnt());
                 $iframe = new Follow_Iframe($queryString);
                 return $iframe->getHtml();
             case 'html5':
             default:
                 require_once 'TwitterButtons/Follow_JS.php';
 
-                $dataAttr = new DataAttrs();
-                $dataAttr->addAttr('screen-name', $params->getUser());
-                $dataAttr->addAttr('show-screen-name', $params->getShowScreenName() ? "true" : "false");
-                $dataAttr->addAttr('show-count', $params->getFollowerCount() ? "true" : "false");
-                $dataAttr->addAttr('lang', $params->getLang());
-                $dataAttr->addAttr('width', $params->getWidth());
-                $dataAttr->addAttr('align', $params->getAlign());
-                $dataAttr->addAttr('size', $params->getSize());
-                $button = new Follow_JS($dataAttr, array("id" => $params->getCssId(), "class" => $params->getCssClass()));
+                $dataAttrs = new DataAttrs();
+                $dataAttrs->addAttr('screen-name', $params->getUser());
+                $dataAttrs->addAttr('show-screen-name', $params->getShowScreenName() ? "true" : "false");
+                $dataAttrs->addAttr('show-count', $params->getFollowerCount() ? "true" : "false");
+                $dataAttrs->addAttr('lang', $params->getLang());
+                $dataAttrs->addAttr('width', $params->getWidth());
+                $dataAttrs->addAttr('align', $params->getAlign());
+                $dataAttrs->addAttr('size', $params->getSize());
+                $dataAttrs->addAttr('dnt', $params->getDnt());
+                $button = new Follow_JS($dataAttrs, array("id" => $params->getCssId(), "class" => $params->getCssClass()));
                 return $button->getHtml();
         }
 
@@ -275,6 +279,7 @@ class Socialeesta {
         - count_position  :  "none", "horizontal", or "vertical"  :  Default value: "horizontal".
         - related  :  Up to 2 related accounts, separated by a comma. These accounts are suggested to the user after they publish the Tweet.
         - size  : "large" or "medium  :  Default value: "medium"  : Specifies the size of the button.
+        - dnt  :  "true"  :  Opt-out of tailoring Twitter — Read more about tailoring Twitter here: https://support.twitter.com/articles/20169421
 
         See Twitter's documentation for additional information about any of the above parameters: https://dev.twitter.com/docs/tweet-button
 
@@ -299,6 +304,7 @@ class Socialeesta {
     - follower_count  :  "yes" or "no"  :  Default value: "no"  :  Whether to display the follower count adjacent to the follow button. 
     - lang  :  Default value: "en"  :  Specify the language for the button using ISO-639-1 Language code. Defaults to "en" (english).
     - size  : "large" or "medium  :  Default value: "medium"  : Specifies the size of the button.
+    - dnt  :  "true"  :  Opt-out of tailoring Twitter — Read more about tailoring Twitter here: https://support.twitter.com/articles/20169421
     
     Javascript button specific parameters — not supported with iframe version
     **********************************************************************************

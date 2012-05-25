@@ -37,5 +37,8 @@ class TemplateParams_TwitterFollow {
     function getSize(){
         return $this->_eeTemplate->fetch_param('size') !== '' ? $this->_eeTemplate->fetch_param('size') : "medium" ;
     }
+    function getDnt(){
+        return $this->_eeTemplate->fetch_param('dnt');
+    }
     
 }

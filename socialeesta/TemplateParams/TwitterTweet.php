@@ -46,5 +46,8 @@ class TemplateParams_TwitterTweet {
     public function getIncludeJS() {
         return $this->_eeTemplate->fetch_param('include_js', 'no') == 'yes';
     }
+    function getDnt(){
+        return $this->_eeTemplate->fetch_param('dnt');
+    }
     
 }
