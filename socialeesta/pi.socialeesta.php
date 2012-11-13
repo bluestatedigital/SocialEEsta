@@ -26,7 +26,7 @@
 
 $plugin_info = array(
     'pi_name'       => 'BSD SocialEEsta',
-    'pi_version'    => '1.5',
+    'pi_version'    => '1.5.1',
     'pi_author'     => 'Douglas Back',
     'pi_author_url' => 'http://www.bluestatedigital.com',
     'pi_description'=> 'Generate social sharing plugins for your EE pages.',
@@ -267,7 +267,7 @@ class Socialeesta {
 
     Example tag:
     **************
-    {exp:socialeesta:tweet url="{title_permalink='blog/entry'}" type="iframe" via="bsdwire" text="{title}" count_position="vertical"}
+    {exp:socialeesta:tweet url="{title_permalink='blog/entry'}" type="iframe" text="{title}" count_position="vertical"}
 
     All Parameters are optional.
 

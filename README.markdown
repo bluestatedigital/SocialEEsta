@@ -39,7 +39,7 @@ SocialEEsta provides the asynchronous version of all three script libraries with
 ###Example tag:
 
 ```
-{exp:socialeesta:tweet url="{title_permalink='blog/entry'}" type="iframe" via="bsdwire" text="{title}" count_position="vertical"}
+{exp:socialeesta:tweet url="{title_permalink='blog/entry'}" type="iframe" text="{title}" count_position="vertical"}
 ```
 
 All Parameters are optional.
