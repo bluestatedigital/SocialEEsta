@@ -7,18 +7,18 @@ class FacebookJS {
         "cookie" => true,
         "oauth" => true,
         "xfbml" => true,
-        "appid" => NULL
+        "appId" => NULL
     );
     private $_autoGrow;
 
     public function __construct($appId = '', $channelUrl = NULL, $autoGrow = NULL){
-        $this->_initOptions["appid"] = $appId;
+        $this->_initOptions["appId"] = $appId;
         if (!empty($channelUrl)) $this->_initOptions["channelURL"] = $channelUrl;
         if (!is_null($autoGrow)) $this->setAutoGrow($autoGrow);
     }
 
     public function getAppId(){
-        return $this->_initOptions["appid"];
+        return $this->_initOptions["appId"];
     }
     public function getChannelUrl(){
         return $this->_initOptions["channelURL"];
