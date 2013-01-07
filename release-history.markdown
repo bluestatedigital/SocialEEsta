@@ -1,5 +1,9 @@
 #SocialEEsta Version History
 
+##v1.5.2 - Released January 7, 2013
+
+- Bug fix for Facebook appId
+
 ##v1.5.1 - Released May 25, 2012
 
 - Added support for "Do Not Track" parameters to Twitter Follow and Tweet buttons.
