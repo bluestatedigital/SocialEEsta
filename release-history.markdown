@@ -1,5 +1,9 @@
 #SocialEEsta Version History
 
+##v1.5.3 - Released Feburary 4, 2013
+
+- Added Twitter hashtag support for Tweet button
+
 ##v1.5.2 - Released January 7, 2013
 
 - Bug fix for Facebook appId

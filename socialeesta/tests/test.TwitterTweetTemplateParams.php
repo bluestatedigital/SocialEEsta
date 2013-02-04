@@ -124,10 +124,20 @@ class TwitterTweetTemplateParams extends Testee_unit_test_case {
         $this->EE->TMPL->returns('fetch_param', '', array('dnt'));
         $this->assertIdentical($expected, $this->_params->getDnt());
     }
-    public function tstGetDntReturnsTemplatParam(){
-        $expcted = 'true';
+    public function testGetDntReturnsTemplatParam(){
+        $expected = 'true';
         $this->EE->TMPL->returns('fetch_param', 'true', array('dnt'));
         $this->assertIdentical($expected, $this->_params->getDnt());
     }
-   
+    public function testGetHashtagReturnsEmptyStringByDefault(){
+        $expected = '';
+        $this->EE->TMPL->returns('fetch_param', '', array('hashtags'));
+        $this->assertIdentical($expected, $this->_params->getHashtag());
+    }
+    public function testGetHashtagReturnsTemplatParam(){
+        $expected = 'bananastand';
+        $this->EE->TMPL->returns('fetch_param', 'bananastand', array('hashtags'));
+        $this->assertIdentical($expected, $this->_params->getHashtag());
+    }
+
 }

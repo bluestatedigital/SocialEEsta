@@ -49,5 +49,7 @@ class TemplateParams_TwitterTweet {
     function getDnt(){
         return $this->_eeTemplate->fetch_param('dnt');
     }
-    
+    function getHashtags(){
+        return $this->_eeTemplate->fetch_param('hashtags');
+    }
 }

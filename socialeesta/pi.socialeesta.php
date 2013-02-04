@@ -61,6 +61,7 @@ class Socialeesta {
                 $queryString->addParam('counturl', $params->getCountUrl());
                 $queryString->addParam('via', $params->getVia());
                 $queryString->addParam('text', $params->getText());
+                $queryString->addParam('hashtags', $params->getHashtags());
                 $queryString->addParam('count', $params->getCountPosition());
                 $queryString->addParam('related', $params->getRelatedAccts());
                 $queryString->addParam('lang', $params->getLang());
@@ -77,6 +78,7 @@ class Socialeesta {
                 $dataAttrs->addAttr('counturl', $params->getCountUrl());
                 $dataAttrs->addAttr('via', $params->getVia());
                 $dataAttrs->addAttr('text', $params->getText());
+                $dataAttrs->addAttr('hashtags', $params->getHashtags());
                 $dataAttrs->addAttr('count', $params->getCountPosition());
                 $dataAttrs->addAttr('related', $params->getRelatedAccts());
                 $dataAttrs->addAttr('lang', $params->getLang());
@@ -276,6 +278,7 @@ class Socialeesta {
         - count_url  :  The URL to which your shared URL resolves to; useful if the URL you are sharing has already been shortened. This affects the display of the Tweet count.
         - via  :  Screen name of the user to attribute the Tweet to.
         - text  :  Text of the suggested Tweet.
+        - hashtags  :  What, if any, hashtags to include in the tweet. Separate multiple hashtags with a comma, e.g. "awesomesauce,pawnee"
         - count_position  :  "none", "horizontal", or "vertical"  :  Default value: "horizontal".
         - related  :  Up to 2 related accounts, separated by a comma. These accounts are suggested to the user after they publish the Tweet.
         - size  : "large" or "medium  :  Default value: "medium"  : Specifies the size of the button.
